@@ -1,0 +1,42 @@
+header.app.app-header
+    .wrapper
+        a(href="./index.html").header-logo: img(src="./assets/img/general-logo.svg").header-logo-img
+
+        .header-auth
+            .auth-user
+                .auth-user-name info@rminds.nl
+                .auth-user-role Sponsor
+                img(src="./assets/img/organization-logo.jpg").auth-user-img
+                .auth-user-menu
+                    a(href="#").auth-user-menu-item
+                        em.mdi.mdi-account
+                        | My profile
+                    a(href="#").auth-user-menu-item
+                        em.mdi.mdi-settings
+                        | Settings
+                    .auth-user-menu-sep
+                    a(href="#").auth-user-menu-item
+                        em.mdi.mdi-logout
+                        | Sign out
+        .notifications
+            .notifications-icon.mdi.mdi-bell
+            .notifications-menu: .notifications-menu-inner
+                .arrow-box: .arrow
+                .notifications-menu-header 
+                    | Notifications
+                    .notifications-menu-header-link 
+                        | View all
+                        em.mdi.mdi-arrow-right 
+                .notifications-menu-body.nano
+                    .nano-content
+                        mixin notification_item(icon, text, date)
+                            .notifications-menu-item
+                                img(src="./assets/img/note-icons/note-icon-" + icon + ".jpg").notifications-menu-item-icon
+                                .notifications-menu-item-text=text
+                                .notifications-menu-item-date=date
+                        
+                        +notification_item('quote', 'Payment succeeded', 'Jan 23, 12:26 AM')
+                        +notification_item('quote', 'Payment declined by customer\'s bank The bank returned the decline code do...', 'Jan 23, 12:26 AM')
+                        +notification_item('quote', 'Stripe risk evaluation: normal', 'Jan 23, 12:26 AM')
+                        +notification_item('quote', 'Lorem ipsum dolor sit amet, consectet...', 'Jan 23, 12:26 AM')
+                        +notification_item('quote', 'Lorem ipsum dolor sit amet, consectet...', 'Jan 23, 12:26 AM')

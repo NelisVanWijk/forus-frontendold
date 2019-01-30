@@ -1,0 +1,13 @@
+div
+    .form-group.form-group-inline
+        label.form-label {{ "multi_select.title"  | translate }}
+        select(
+            ng-options="option.id as option.name for option in selectorOptions" 
+            ng-model="selectedOption"
+            placeholder="Status").form-control
+    .form-group.form-group-inline
+        label.form-label &nbsp;
+        .form-offset
+            div(ng-repeat="id in ngModel").tag.tag-primary.tag-square.pull-left 
+                | {{ optionsById[id] }}
+                .tag-link.mdi.mdi-close(ng-click="removeItem(id)")

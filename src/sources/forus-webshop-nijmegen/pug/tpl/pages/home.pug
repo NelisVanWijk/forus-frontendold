@@ -1,0 +1,140 @@
+.header-splash: .splash
+
+header.section.section-header.section-header-landing: .wrapper
+    .heade-sprite
+    top-navbar
+
+    .header-content
+        .header-title {{ "home.header.nijmegen.title" | translate }}
+        .header-description(ng-bind="'home.header.nijmegen.subtitle' | translate")
+        a(scroll-to="#steps" translate="home.header.nijmegen.button").button.button-primary 
+
+block-products(
+    ng-if="$root.appConfigs.features.products.list"
+    sample="true" 
+    products="$ctrl.products" 
+    product-categories="$ctrl.productCategories")
+
+section.section.section-map: .wrapper
+    .block.block-map
+        .block-content
+            .block-title {{ "home.map.nijmegen.title" | translate }}
+            .block-description(ng-bind="'home.map.nijmegen.subtitle' | translate")
+            button(ng-click="$root.popups.offices.open()" translate="home.map.button").button.button-primary
+    
+section.section.section-steps#steps: .wrapper
+    //.section-splash
+    //.section-sprite
+    .section-title {{ "home.guide.nijmegen.title" | translate }}
+    .steps
+        .step-item: .step-item-content
+            h4 {{ "home.guide.nijmegen.stepone" | translate }}
+            p {{ "home.guide.nijmegen.one" | translate }}
+        .step-item: .step-item-content
+            h4 {{ "home.guide.nijmegen.steptwo" | translate }}
+            p {{ "home.guide.nijmegen.two" | translate }}
+        .step-item: .step-item-content
+            h4 {{ "home.guide.nijmegen.stepthree" | translate }}
+            p {{ "home.guide.nijmegen.three" | translate }}
+        .step-item: .step-item-content
+            h4 {{ "home.guide.nijmegen.stepfour" | translate }}
+            p {{ "home.guide.nijmegen.four" | translate }}
+        .step-item: .step-item-content
+            h4 {{ "home.guide.nijmegen.stepfive" | translate }}
+            p {{ "home.guide.nijmegen.five" | translate }}
+
+        .step-item
+
+section.section.section-blogs(ng-if="$root.appConfigs.features.blog"): .wrapper
+    .section-title {{ "home.blog.nijmegen.title" | translate }}
+    
+    .block.block-blogs
+        mixin blog_item(nth)
+            .blog-item: a(href="#").blog-item-inner
+                .blog-image: img(src="./assets/img/blog-image-" + nth + ".jpg")
+                .blog-name {{ "home.blog.nijmegen.name" | translate }}
+                .blog-read-more 
+                    | {{ "home.blog.more" | translate }}
+                    em.mdi.mdi-arrow-right
+        +blog_item(1)
+        +blog_item(2)
+        +blog_item(3)
+    .block.block-show-more: a(href="#").button.button-primary {{ "home.blog.button" | translate }}
+    
+section.section.section-faq: .wrapper
+    //.section-splash
+    .section-title {{ "home.faq.nijmegen.title" | translate }}
+    .faq(collapse)
+        mixin faq_item(title, content, active)
+            .faq-item(class=active?'active':'' collapse-item)
+                .faq-item-header(collapse-header)
+                    | #{title}
+                    .faq-item-chevron-down.mdi.mdi-chevron-down
+                    .faq-item-chevron-up.mdi.mdi-chevron-up
+                .faq-item-content(collapse-content)=content
+
+        +faq_item(
+            "{{ 'home.faq.nijmegen.faq_one' | translate }}",
+            "{{ 'home.faq.nijmegen.one' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.nijmegen.faq_two' | translate }}",
+            "{{ 'home.faq.nijmegen.two' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.nijmegen.faq_three' | translate }}",
+            "{{ 'home.faq.nijmegen.three' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.nijmegen.faq_four' | translate }}",
+            "{{ 'home.faq.nijmegen.four' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.nijmegen.faq_five' | translate }}",
+            "{{ 'home.faq.nijmegen.five' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.nijmegen.faq_six' | translate }}",
+            "{{ 'home.faq.nijmegen.six' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.nijmegen.faq_seven' | translate }}",
+            "{{ 'home.faq.nijmegen.seven' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.nijmegen.faq_eight' | translate }}",
+            "{{ 'home.faq.nijmegen.eight' | translate }}")
+            
+        +faq_item(
+            "{{ 'home.faq.nijmegen.faq_nine' | translate }}",
+            "{{ 'home.faq.nijmegen.nine' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.nijmegen.faq_ten' | translate }}",
+            "{{ 'home.faq.nijmegen.ten' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.nijmegen.faq_eleven' | translate }}",
+            "{{ 'home.faq.nijmegen.eleven' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.nijmegen.faq_twelve' | translate }}",
+            "{{ 'home.faq.nijmegen.twelve' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.nijmegen.faq_thirteen' | translate }}",
+            "{{ 'home.faq.nijmegen.thirteen' | translate }}")
+
+        //+faq_item(
+            "{{ 'home.faq.nijmegen.faq_fourteen' | translate }}",
+            "{{ 'home.faq.nijmegen.fourteen' | translate }}")
+
+        //+faq_item(
+            "{{ 'home.faq.nijmegen.faq_fifteen' | translate }}",
+            "{{ 'home.faq.nijmegen.fifteen' | translate }}")
+
+        //+faq_item(
+            "{{ 'home.faq.nijmegen.faq_sixteen' | translate }}",
+            "{{ 'home.faq.nijmegen.sixteen' | translate }}")    
+
+contact-form  

@@ -1,0 +1,98 @@
+.card
+    .card-section
+        .card-section-actions
+            div(ng-show="fundProvider.state == 'approved'")
+                .tag.tag-success {{ "fund_card_provider_finances.status.accepted" | translate }}
+            div(ng-show="fundProvider.state == 'declined'")
+                .tag.tag-default {{ "fund_card_provider_finances.status.rejected" | translate }}
+            div(ng-show="fundProvider.state == 'pending'")
+                .tag.tag-warning {{ "fund_card_provider_finances.status.hold" | translate }}
+
+        .card-block.card-block-provider
+            .provider-img: img(ng-src="{{ fundProvider.organization.logo.sizes.thumbnail || './assets/img/placeholders/organization-thumbnail.png' }}")
+            span(ng-bind="fundProvider.organization.name").provider-title
+            br
+            .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                .card-block-listing-label {{ "fund_card_provider_finances.labels.mail" | translate }}
+                span.text-primary-light(ng-bind="fundProvider.organization.email")
+        //.card-block.card-block-listing
+            .card-block-listing-label {{ "fund_card_provider_finances.labels.categories" | translate }}
+            | {{ fundProvider.organization.fundCategories.join(', ') }}
+            small(ng-show="$ctrl.fundCategories.length == 0").text-muted.small {{ "fund_card_provider_finances.labels.nocategories" | translate }}
+        //br
+        //.card-block.card-block-listing
+            .card-block-listing-label {{ "fund_card_provider_finances.labels.join" | translate }}
+            span(
+                ui-sref="funds-show(fundProvider.fund)"
+                ng-bind="fundProvider.fund.name").text-primary-light
+                
+    .card-section.card-section-primary.text-center
+        button(
+            ng-click="toggleDetails('stats')"
+            ).button.button-default
+            em.mdi.mdi-poll 
+            | {{ "fund_card_provider_finances.buttons.view" | translate }}
+        button(
+            ng-click="toggleDetails('transactions')"
+            ).button.button-primary
+            em.mdi.mdi-coins 
+            | {{ "fund_card_provider_finances.buttons.transactions" | translate }}
+
+    .block.block-charts(ng-show="fundProvider.showStatistics")
+        .card-section
+            .chart-header
+                .chart-header-range
+                    .chart-header-item(ng-click="chartData.changeType('quarter')" ng-class="chartData.request.type=='quarter'?'active':''") {{ "fund_card_provider_finances.labels.quarter" | translate }}
+                    .chart-header-item(ng-click="chartData.changeType('month')" ng-class="chartData.request.type=='month'?'active':''") {{ "fund_card_provider_finances.labels.month" | translate }}
+                    .chart-header-item(ng-click="chartData.changeType('week')" ng-class="chartData.request.type=='week'?'active':''") {{ "fund_card_provider_finances.labels.week" | translate }}
+                    .chart-header-item(ng-click="chartData.changeType('all')" ng-class="chartData.request.type=='all'?'active':''") {{ "fund_card_provider_finances.labels.all" | translate }}
+                .chart-header-title {{ chartData.stringTitle }}
+                .chart-header-actions
+                    div(ng-if="chartData.request.type!='all'")
+                        .button.button-default(ng-click="chartData.decrease()") {{ "fund_card_provider_finances.buttons.previous" | translate }}
+                        .button.button-default(ng-click="chartData.increase()") {{ "fund_card_provider_finances.buttons.next" | translate }}
+            .chart-body
+                linear-chart(data="chartData.response.dates")
+        .card-section
+            .row.chart-row.chart-row-condensed
+                .col.col-sm-3
+                    .chart-control
+                        .chart-label {{ "fund_card_provider_finances.labels.share" | translate }}
+                        radial-chart(total="one" value="chartData.response.share_total" size="sm")
+
+                .col.col-sm-3
+                    .chart-control
+                        .chart-label {{ "fund_card_provider_finances.labels.share" | translate }} ({{ chartData.stringTitle }})
+                        radial-chart(total="one" value="chartData.response.share_in_range" size="sm")
+
+                .col.col-sm-3
+                    .chart-control
+                        .chart-label {{ chartData.stringTitle }} {{ "fund_card_provider_finances.labels.usage" | translate }}
+                        .chart-value
+                            .chart-value_value €{{ chartData.response.usage | to_fixed:2 }}
+                            .chart-value_label in {{ chartData.response.transactions }} {{ "fund_card_provider_finances.labels.transaction" | translate }}
+
+                .col.col-sm-3
+                    .chart-control
+                        .chart-label {{ "fund_card_provider_finances.labels.average" | translate }}
+                        .chart-value
+                            .chart-value_value €{{ chartData.response.avg_transaction | to_fixed:2 }}
+
+    .card-group(ng-show="fundProvider.showTransactions")
+        .card-header
+            .arrow-box.border.bg-dim: .arrow
+            .card-title {{ "fund_card_provider_finances.buttons.transactions" | translate }} ({{ transactions.length }})
+        .card-section
+            .card-block.card-block-table
+                .table-wrapper
+                    table.table
+                        tr
+                            th {{ "fund_card_provider_finances.labels.price" | translate }}
+                            th {{ "fund_card_provider_finances.labels.date" | translate }}
+                            th {{ "fund_card_provider_finances.labels.status" | translate }}
+                        tr(
+                            ng-repeat="transaction in transactions" 
+                            ng-click="showTransaction(transaction)").pointer
+                            td: a.text-primary-light €{{ transaction.amount | to_fixed:2 }}
+                            td(ng-bind="transaction.created_at_locale")
+                            td(ng-bind="{pending: 'Pending', success : 'Voltooid'}[transaction.state]")

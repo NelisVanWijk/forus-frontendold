@@ -1,0 +1,41 @@
+extends ../layout/layout
+block content
+    .header-splash: .splash.splash-d
+    
+    header.section.section-header: .wrapper
+        include ../layout/includes/navbar
+    
+    section.section.section-profile: .wrapper
+        .section-title My Vouchers (2)
+        
+        .block.block-profile
+            include ../layout/blocks/profile-inner
+
+            .profile-content
+                .block.block-records
+                    mixin record_item(type, value)
+                        .record-item
+                            .record-details
+                                .record-type=type
+                                .record-value=value
+                            .record-validations
+                                a(href="#").record-validation-count
+                                    strong 3
+                                    | validaties
+                                a(href="#").record-validation-request
+                                    em.mdi.mdi-check
+                                    | Validate
+                    
+                    +record_item("First Name", "John")
+                    +record_item("Last Name", "Doe")
+                    +record_item("BSN", "45547646455")
+                    +record_item("E-mail", "johndoe@gmail.com")
+                    +record_item("Phone Number", "+31 563 894 230")
+                
+                    .text-right: a(href="#").button.button-primary 
+                        em.mdi.mdi-plus
+                        | CREATE RECORD
+
+                include ../layout/blocks/empty
+
+    include ../layout/sections/contact-form 

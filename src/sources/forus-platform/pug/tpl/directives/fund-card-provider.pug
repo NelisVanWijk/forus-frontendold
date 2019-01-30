@@ -1,0 +1,25 @@
+.card(ng-class="{'card-outline' : fund.state == 'closed'}")
+    .card-section
+        .card-section-actions
+            div(ng-show="providerFund.state == 'pending'")
+                .tag.tag-warning(translate="fund_card_provider.status.hold")
+
+            div(ng-show="providerFund.state == 'approved'")
+                .tag.tag-success(translate="fund_card_provider.status.accepted")
+
+            div(ng-show="providerFund.state == 'declined'")
+                .tag.tag-danger(translate="fund_card_provider.status.reject")
+
+            div(ng-show="providerFund.state == 'abandoned'")
+                .tag.tag-default(translate="fund_card_provider.status.stopped")
+
+        .card-block.card-block-fund
+            .fund-img: img(ng-src="{{ fund.logo.sizes.thumbnail || fund.organization.logo.sizes.thumbnail || './assets/img/placeholders/organization-thumbnail.png' }}", alt="")
+            .fund-title(ng-if="fund.organization | hasPerm:['manage_funds']" ng-bind="fund.name" ui-sref="funds-show(fund)")
+            .fund-title(ng-if="!(fund.organization | hasPerm:['manage_funds'])" ng-bind="fund.name")
+            br
+            div(ng-bind="fund.organization.name").fund-organization
+        .card-block.card-block-listing
+            .card-block-listing-label(ng-bind="fund_card_provider.labels.categories")
+            span(ng-bind="fundCategories.join(', ')")
+            small(ng-show="fundCategories.length == 0" ng-bind="fund_card_provider.labels.nocategories").text-muted.small

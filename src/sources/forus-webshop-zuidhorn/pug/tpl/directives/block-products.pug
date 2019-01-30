@@ -1,0 +1,41 @@
+section.section.section-products#products: .wrapper
+    .section-title(translate="block_products.header.title")
+    .section-filters(ng-if="!sample")
+        .row.form
+            .col.col-md-4: .form-group
+                select(
+                    ng-options="category.id as category.name for category in productCategories" 
+                    ng-model="filters.product_category_id").form-control.form-control-fancy
+
+            .col.col-md-8: .form-group
+                input(
+                    type="text" 
+                    ng-model="filters.q"
+                    placeholder="{{ 'block_products.input.placeholder' | translate }}").form-control.form-control-fancy
+
+    .block.block-products(ng-if="products.data.length > 0")
+        .product-item(ng-repeat="product in products.data" ng-class="{discounted:product.old_price}")
+            a(ui-sref="products-show(product)").product-item-inner
+                .product-image: img(ng-src="{{ product.photo.sizes.small || './assets/img/placeholders/product-small.png' }}")
+                .product-name(ng-bind="product.name")
+                .product-discount
+                    | {{ 100 - (product.price / product.old_price) * 100 | to_fixed:0 }}% 
+                    br
+                    | {{ "block_products.labels.discount" | translate }}
+                .product-price
+                    small {{ "block_products.labels.old" | translate }} € {{ product.old_price | to_fixed:2 }}
+                    | {{ "block_products.labels.new" | translate }} € {{ product.price | to_fixed:2 }}
+
+    empty-block(
+        title= "{{ 'block_products.labels.title' | translate }}"
+        description="{{ 'block_products.labels.subtitle' | translate }}"
+        link="false" 
+        ng-if="products.data.length == 0")
+
+    paginator-loader(
+        ng-if="products.meta" 
+        meta="products.meta" 
+        filters="filters" 
+        on-load-more="onLoadMore(query)" 
+        on-reset="onReset(query)")
+    .block.block-show-more(ng-if="sample"): a(ui-sref="products" translate="block_products.buttons.more").button.button-primary

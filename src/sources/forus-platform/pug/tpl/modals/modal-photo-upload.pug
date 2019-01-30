@@ -1,0 +1,44 @@
+.modal
+    .modal-backdrop(ng-click="$ctrl.close()")
+    .modal-window
+        .modal-close.mdi.mdi-close(ng-click="$ctrl.close()")
+        .modal-body: .signup-layout
+            .modal-photo-upload
+                .photo-upload-crop
+                    .crop-control
+                        img(ng-src="{{ $ctrl.originalPhoto }}").crop-control-ratio
+                        ui-cropper(
+                            ng-if="$ctrl.originalPhoto"
+                            cropject="$ctrl.cropjectObj" 
+                            image="$ctrl.originalPhoto" 
+                            result-image="$ctrl.cropedPhoto"
+                            result-image-size="$ctrl.mediaConfig.large_size"
+                            area-type="rectangle"
+                            aspect-ratio="$ctrl.mediaConfig.aspect_ratio"
+                            on-change="$ctrl.onChange($ctrl.cropjectObj)"
+                            on-load-begin="$ctrl.onChange($ctrl.cropjectObj)"
+                            on-load-done="$ctrl.onChange($ctrl.cropjectObj)")
+                    .crop-control-preview
+                        .crop-control-orignal: img(ng-src="{{ $ctrl.previewUri }}") 
+                        .crop-control-thumbnails
+                            .crop-control-thumbnail(ng-if="$ctrl.thumbnailUri"): img(ng-src="{{ $ctrl.thumbnailUri }}")
+                            .crop-control-thumbnail(ng-if="$ctrl.thumbnailUri"): img(ng-src="{{ $ctrl.thumbnailUri }}")
+                .photo-upload-details
+                    .photo-upload-header
+                        .photo-upload-title Verplaats en wijzig grootte
+                        .photo-upload-subtitle U kunt de afbeelding naar uw voorkeur instellen, links ziet u de originele afbeelding en rechts een voorbeeld van hoe het op de webshop eruit komt te zien.
+                    .photo-upload-body
+                        .photo-upload-heading Verander afbeelding
+                        button(ng-click="$ctrl.changePhoto()").button.button-primary.button-wide 
+                            em.mdi.mdi-attachment
+                            translate(translate="UPLOAD AFBEELDING")
+                        .info-block.info-block-primary
+                            translate(translate="De afbeelding dient vierkant te zijn met een minimum afmeting van 400x400px.") 
+                            br
+                            translate(translate="Toegestaande formaten: .JPG, .PNG")
+                    .photo-upload-footer: .row
+                        .col.col-lg-6.col-xs-12: button(
+                            ng-click="$ctrl.cancel()" translate="ANNULEREN").button.button-default.button-wide
+                        .col.col-lg-6.col-xs-12: button(
+                            ng-click="$ctrl.apply()" translate="BEVESTIGEN").button.button-primary.button-wide
+

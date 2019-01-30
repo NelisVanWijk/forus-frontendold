@@ -1,0 +1,39 @@
+extends ../layout/layout
+block content
+    .header-splash: .splash
+    
+    header.section.section-header: .wrapper
+        include ../layout/includes/navbar
+    
+    section.section.section-profile: .wrapper
+        .section-title My Vouchers (2)
+        
+        .block.block-profile
+            include ../layout/blocks/profile-inner
+
+            .profile-content
+                .block.block-vouchers
+                    mixin voucher_item()
+                        a(href="#").voucher-item
+                            .voucher-image: img(src="./assets/img/placeholders/fund-thumbnail.png")
+                            .voucher-details
+                                .voucher-name Kindpakket
+                                .voucher-organization Gemeente Zuidhorn
+                                .voucher-value 9.731 ETH
+                            .voucher-overview
+                                .voucher-overview-item
+                                    .voucher-overview-label Transactions
+                                    .voucher-overview-value 4
+                                .voucher-overview-item
+                                    .voucher-overview-label Last transaction
+                                    .voucher-overview-value
+                                        | -2,76
+                                        small (Money transfer)
+                    
+                    +voucher_item()
+                    +voucher_item()
+                    +voucher_item()
+
+                include ../layout/blocks/empty
+
+    include ../layout/sections/contact-form 

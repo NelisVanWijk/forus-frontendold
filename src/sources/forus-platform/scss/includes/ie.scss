@@ -1,0 +1,99 @@
+.header-splash {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 0;
+
+  .splash {
+    background-image: url(../img/landing/splash-top.png);
+    background-position: 100% 0%;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 750px;
+    width: 100%;
+  }
+}
+
+.block{
+  &.block-old-ie{
+    width: 1200px;
+    margin: auto;
+    max-width: 100%;
+    position: relative;
+    z-index: 1;
+    padding: 50px 100px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    background-color: #fff;
+    border-radius: 10px;
+
+    .title{
+      font: 700 30px/50px $bf;
+    }
+
+    .description{
+      font: 400 15px/24px $bf;
+    }
+
+    .btn-block{
+      margin-top: 35px;
+
+      .button {
+        font: 700 14px/24px $bf;
+        color: #646f79;
+        cursor: pointer;
+        border: 1px solid transparent;
+        padding: 12px 25px;
+        -webkit-transition: color .4s, background .4s, border .4s, -webkit-box-shadow .4s;
+        transition: color .4s, background .4s, border .4s, -webkit-box-shadow .4s;
+        transition: color .4s, background .4s, box-shadow .4s, border .4s;
+        transition: color .4s, background .4s, box-shadow .4s, border .4s, -webkit-box-shadow .4s;
+        border-radius: 6px;
+        display: inline-block;
+        margin-right: 15px;
+        text-align: center;
+
+        &.button-upper {
+          color: #fff;
+          background: #305dfb;
+          border: 1px solid #305dfb;
+          -webkit-box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+          box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+          padding: 7px 25px;
+          text-transform: uppercase;
+
+          &:not(:last-of-type) {
+            margin-right: 25px;
+          }
+
+          img {
+            margin: 2px 15px 0 -15px;
+            float: left;
+            display: block;
+            -webkit-transition: .4s;
+            transition: .4s;
+          }
+
+          &:hover {
+
+            color: #fff;
+            background: #4c74ff;
+            -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+
+            img {
+              filter: none;
+            }
+
+          }
+        }
+      }
+    }
+  }
+}
+
+.oldie{
+  height: 100%;
+  padding-top: 90px;
+  display: none;
+}

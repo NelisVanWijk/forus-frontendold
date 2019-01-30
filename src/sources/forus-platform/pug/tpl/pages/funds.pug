@@ -1,0 +1,13 @@
+.app.app-container
+    menu
+    section.app.app-content
+        .card-heading 
+            span(translate="funds_pug.title")  
+            span(ng-bind="' (' + $ctrl.funds.length + ')'") 
+        div(
+            ng-if="$ctrl.funds.length > 0" 
+            ng-repeat="fund in $ctrl.funds" 
+            fund-card-sponsor fund="fund" level="$ctrl.fundLevel" organization="$ctrl.organization")
+        block-empty(
+            ng-if="$ctrl.funds.length == 0" 
+            text="'Sorry, no funds available.'" )

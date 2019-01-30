@@ -1,0 +1,25 @@
+form(ng-submit="$ctrl.form.submit()").block.block-office-edit-card
+    .card-section: .form.card-section-inner.flex
+        .card-col.card-col-2
+            .form-group.form-group-inline
+                label(translate="offices_edit.labels.address").form-label
+                input(ng-model="$ctrl.form.values.address" type="text" placeholder="{{ 'offices_edit.labels.address' | translate }}").form-control
+                .form-error(ng-repeat="error in $ctrl.form.errors.address" ng-bind="error")
+            .form-group.form-group-inline
+                label(translate="offices_edit.labels.phone").form-label
+                input(ng-model="$ctrl.form.values.phone" type="text" placeholder="{{ 'offices_edit.labels.phone' | translate }}").form-control
+                .form-error(ng-repeat="error in $ctrl.form.errors.phone" ng-bind="error")
+    
+        .card-col.card-col-4: .card-section-inner
+            .card-section: .row
+                .col.col-sm-7.col-xs-12: photo-selector(
+                    type="office_photo"
+                    thumbnail="$ctrl.media.sizes.thumbnail"
+                    select-photo="$ctrl.selectPhoto(file)")
+                .col.col-sm-5.col-xs-12: .info-block.info-block-primary
+                    | De afbeelding dient vierkant te zijn met een minimum afmeting van 400x400px. 
+                    br
+                    | Toegestaande formaten: .JPG, .PNG
+            .card-section
+                .card-title Openingstijden
+                schedule-control(ng-model="$ctrl.form.values.schedule")

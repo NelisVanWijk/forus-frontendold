@@ -1,0 +1,43 @@
+extends ../layout/layout-markup
+block content
+    mixin card(title)
+        .card
+            .card-section
+                .card-section-actions
+                    a(href="#").card-section-action
+                        em.mdi.mdi-close 
+                        | Decline
+                    a(href="#").card-section-action
+                        em.mdi.mdi-check 
+                        | Approve
+                    a(href="#").card-section-action
+                        em.mdi.mdi-pen 
+                        | Edit
+                    .tag.tag-warning Pending
+
+                h4 Dan
+                .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                    .card-block-listing-label Email
+                    span.text-primary-light ulgersmaweg@rminds.nl
+                .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                    .card-block-listing-label Business Address
+                    | Groningen, Ulgersmaweg 35
+                br
+                br
+                .button.button-primary
+                    em.mdi.mdi-plus-circle 
+                    | Add note
+
+            .card-section
+                .card-block.card-block-notes
+                    mixin note_item(icon, text, sign)
+                        .note-item
+                            img(src="./assets/img/note-icons/note-icon-" + icon + ".jpg").note-item-icon
+                            .note-item-text=text
+                            .note-item-sign=sign
+                    
+                    +note_item("quote", "Validated manually by Gemeente Zuidhorn.", "23.05.2018 20:18 AM")
+                    +note_item("quote", "Automatic validated by DigiD", "23.05.2018 20:18 AM")
+
+
+    +card("Hewlett-Packard")

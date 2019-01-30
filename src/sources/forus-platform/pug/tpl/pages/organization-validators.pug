@@ -1,0 +1,35 @@
+.app.app-container
+    menu
+    section.app.app-content
+        
+        .card(
+            ng-if="$ctrl.validators.length > 0")
+            .card-header: .card-title(
+                ng-bind="'Validators (' + $ctrl.validators.length + ')'")
+            .card-section
+                .card-block.card-block-table
+                    .table-wrapper
+                        table.table
+                            tr
+                                th {{ "organization_validators.labels.email" | translate }}
+                                th.text-right {{ "organization_validators.labels.actions" | translate }}
+
+                            tr(ng-repeat="validator in $ctrl.validators")
+                                td: span(ng-bind="validator.email").text-primary-light
+                                td.text-right
+                                    a(ui-sref="validators-edit(validator)").text-primary-light {{ "organization_validators.buttons.adjust" | translate }}
+                                    | &nbsp;
+                                    a(ng-click="$ctrl.deleteValidator($event, validator)" href="#").text-danger {{ "organization_validators.buttons.delete" | translate }}
+
+            .card-section.text-center
+                a(ui-sref="validators-create({organization_id: $root.activeOrganization.id})").button.button-default
+                    em.mdi.mdi-plus-circle  
+                    | Toevoegen
+                                
+        .card-heading(
+            ng-if="$ctrl.validators.length == 0"
+            ng-bind="'Validators (' + $ctrl.validators.length + ')'")
+        block-empty( 
+            ng-if="$ctrl.validators.length == 0"
+            text="'Je hebt nog geen validators toegevoegd.'" 
+            button="{text: 'Validator toevoegen', href: $ctrl.emptyBlockLink}")

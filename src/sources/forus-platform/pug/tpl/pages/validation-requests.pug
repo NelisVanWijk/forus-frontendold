@@ -1,0 +1,64 @@
+.app.app-container
+    menu
+    section.app.app-content
+        .card-heading {{ "validation_requests.labels.requests" | translate }} ({{ $ctrl.validatorRequestsByBsn.length }})
+
+        .card(ng-repeat="validatorRequest in $ctrl.validatorRequestsByBsn")
+            .card-section
+                .card-section-actions(ng-show="validatorRequest.nth.pending > 0")
+                    .tag.tag-warning {{ "validation_requests.status.hold" | translate }}
+                .card-title BSN: {{ validatorRequest.bsn }}
+
+            mixin keyvalue_item_horizontal(key, value)
+                .keyvalue-item.col.col-sm-3
+                    .keyvalue-key=key
+                    .keyvalue-value=value
+
+            .card-section.card-section-primary
+                .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+                    .row
+                        +keyvalue_item_horizontal("Gevalideerden", "{{ validatorRequest.nth.approved }}")
+                        +keyvalue_item_horizontal("Niet gevalideerden", "{{ validatorRequest.nth.declined }}")
+                        +keyvalue_item_horizontal("Openstaande validaties", "{{ validatorRequest.nth.pending }}")
+            .card-section.card-section-primary.text-center
+                button(ng-click="$ctrl.shownUsers[validatorRequest.bsn] = !$ctrl.shownUsers[validatorRequest.bsn]").button.button-primary
+                    em.mdi.mdi-format-list-bulleted 
+                    | {{ "validation_requests.buttons.show" | translate }}
+            .card-header(ng-show="$ctrl.shownUsers[validatorRequest.bsn]")
+                .arrow-box.border.bg-dim: .arrow
+                .card-title 
+                    .row 
+                        .col.col-sm-6 {{ "validation_requests.labels.records" | translate }}
+                        .col.col-sm-6.text-right
+                            button(ng-click="$ctrl.validateAll(validatorRequest)").button.button-primary
+                                em.mdi.mdi-check-circle
+                                | {{ "validation_requests.buttons.allaccept" | translate }}
+                            button(ng-click="$ctrl.declineAll(validatorRequest)").button.button-default
+                                em.mdi.mdi-close
+                                | {{ "validation_requests.buttons.alldecline" | translate }}
+            .card-section(ng-show="$ctrl.shownUsers[validatorRequest.bsn]")
+                .card-block.card-block-table
+                    .table-wrapper
+                        table.table
+                            tr
+                                th {{ "validation_requests.labels.type" | translate }}
+                                th {{ "validation_requests.labels.value" | translate }}
+                                th {{ "validation_requests.labels.date" | translate }}
+                                th.text-right Status
+                            tr(ng-repeat="request in validatorRequest.requests")
+                                td: a(ui-sref="validation-request(request)" ng-bind="request.record.name").text-primary
+                                td {{ request.record.value }}
+                                td {{ request.created_at }}
+                                td.text-right
+                                    .tag(
+                                        ng-class="{pending: 'tag-warning', declined: 'tag-danger', approved: 'tag-success'}[request.state]"
+                                        ng-bind="{pending: 'Pending', declined: 'Declined', approved: 'Approved'}[request.state]")
+            .card-section(ng-show="$ctrl.shownUsers[validatorRequest.bsn]")
+                .table-pagination
+                    .table-pagination-counter {{ validatorRequest.requests.length }} {{ "validation_requests.labels.results" | translate }}
+                    // .table-pagination-navigation
+                        button(disabled).button.button-default Prev
+                        button.button.button-default 1
+                        button.button.button-default 2
+                        button.button.button-primary 3
+                        button(disabled).button.button-default Next

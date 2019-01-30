@@ -1,0 +1,51 @@
+extends ../layout/layout-markup
+block content
+    .card(class=(state=='closed'?'card-outline':'')).form
+        .card-header: .card-title Transactions (8)
+        .card-section
+            .card-block.card-block-table
+                .table-wrapper
+                    table.table
+                        tr
+                            th AMOUNT
+                            th DESCRIPTION
+                            th CUSTOMER
+                            th DATE
+                            th 
+                        mixin row()
+                            tr
+                                td: a(href="./transaction.html").text-primary-light €19000.00
+                                td: a(href="./transaction.html") 
+                                    | Auction Payment -  
+                                    br
+                                    | ch_1BpcoqBQO0R3BKRwYEyl1jd9
+                                td: a(href="#").text-primary-light Harris s Vernick
+                                td 2018/01/29 14:37:08
+                                td: .hover-actions
+                                    em.mdi.mdi-dots-horizontal
+                                    .hover-actions-menu
+                                        .hover-actions-label ACTION
+                                        .hover-actions-item Refund charge
+                                        .hover-actions-item Copy charge ID to clipboard
+                                        .hover-actions-sep
+                                        .hover-actions-label CONNECTIONS
+                                        .hover-actions-item View payment details
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+        .card-section
+            .table-pagination
+                .table-pagination-counter 8 results
+                .table-pagination-navigation
+                    button(disabled).button.button-default Prev
+                    button.button.button-default 1
+                    button.button.button-default 2
+                    button.button.button-primary 3
+                    button(disabled).button.button-default Next

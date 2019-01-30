@@ -1,0 +1,36 @@
+.modal.modal-auth
+    .modal-backdrop(ng-click="$ctrl.close()")
+    .modal-content
+        .modal-close.mdi.mdi-close(ng-click="$ctrl.close()")
+
+        .modal-title {{ "popup_auth.labels.join" | translate }}
+        .modal-subtitle {{ "popup_auth.labels.mail" | translate }}
+
+        form.form(ng-submit="$ctrl.signUpForm.submit()")
+            .form-group
+                .form-label {{ "popup_auth.input.mail" | translate }}
+                input(
+                type="email"
+                ng-model="$ctrl.signUpForm.values.records.primary_email"
+                placeholder="{{ 'popup_auth.input.mail' | translate }}").form-control.form-control
+                .form-error(ng-repeat="error in $ctrl.signUpForm.errors['records.primary_email']" ng-bind="error")
+            .form-group
+                .form-label {{ "popup_auth.input.mail.confirmation" | translate }}
+                input(
+                type="email"
+                ng-model="$ctrl.signUpForm.values.records.primary_email_confirmation"
+                placeholder="{{ 'popup_auth.input.mail.confirmation' | translate }}").form-control.form-control
+                .form-error(ng-repeat="error in $ctrl.signUpForm.errors['records.primary_email_confirmation']" ng-bind="error")
+            //- .form-group
+                .form-label Pin code
+                input(ng-model="signUpForm.values.pin_code" type="text" placeholder="Pin Code").form-control
+                .form-error(ng-repeat="error in signUpForm.errors.pin_code" ng-bind="error")
+            .form-group
+                .form-label {{ "popup_auth.input.code" | translate }}
+                input(ng-model="$ctrl.signUpForm.values.code" type="text" placeholder="{{ 'popup_auth.input.code' | translate}}").form-control
+                .form-error(ng-repeat="error in $ctrl.signUpForm.errors.code" ng-bind="error")
+            .form-group
+            .form-group: button(type="submit").button.button-primary.button-wide {{ "popup_auth.buttons.submit" | translate }}
+
+        .modal-footer
+            .footer-text {{ "popup_auth.labels.warning" | translate }}

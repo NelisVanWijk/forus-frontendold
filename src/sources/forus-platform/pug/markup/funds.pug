@@ -1,0 +1,32 @@
+extends ../layout/layout-markup
+block content
+    .card-heading Funds (34)
+
+    mixin card(title, state)
+        .card(class=(state=='closed'?'card-outline':''))
+            .card-section
+                .card-section-actions
+                    if (state == 'active')
+                        .tag.tag-success Active
+                    if (state == 'paused')
+                        .tag.tag-warning Paused
+                    if (state == 'closed')
+                        .tag.tag-default Closed
+                        
+                .card-block.card-block-fund
+                    .fund-img: img(src="./assets/img/zuidhorn-logo.jpg", alt="")
+                    a(href="./fund.html").fund-title #{title}
+                    br
+                    a(href="#").fund-organization Gemeente Zuidhorn
+                .card-block.card-block-listing
+                    .card-block-listing-label Categories
+                    | Bikes, Computers
+            if (state != 'closed')
+                .card-section.card-section-primary
+                    a(href="#").button.button-primary.pull-right
+                        em.mdi.mdi-plus-circle  
+                        | Add Money
+
+    +card("Kindpakket 2018", "active")
+    +card("Kindpakket 2017", "paused")
+    +card("Kindpakket 2016", "closed")

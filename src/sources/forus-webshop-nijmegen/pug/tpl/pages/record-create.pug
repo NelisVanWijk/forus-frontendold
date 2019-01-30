@@ -1,0 +1,58 @@
+.header-splash: .splash.splash-d
+
+header.section.section-header: .wrapper
+    top-navbar
+
+section.section.section-profile: .wrapper
+    .section-title {{ "records.header.title" | translate }}
+    .block.block-profile
+        .profile-aside
+            profile-card
+
+        .profile-content
+            .block.block-record_create
+                .choose-category(ng-if="$ctrl.step == 1")
+                    .block-title {{ "records.header.buttons.choose.type" | translate }}
+                    .block-description {{ "records.header.buttons.choose.c_description" | translate }}
+
+                    .record_types-list
+                        div(
+                            ng-repeat="recordType in $ctrl.recordTypes" 
+                            ng-if="recordType.key != 'primary_email'"
+                            ng-click="$ctrl.form.values.type = recordType.key"
+                            ng-class="{active: $ctrl.form.values.type == recordType.key}").record_type-item: .record_type-item-inner
+                            .record_type-name(ng-bind="recordType.name")
+                            .record_type-radio: em.mdi.mdi-check
+
+                    .text-left
+                        button(
+                            ui-sref="records").button.button-dark {{ "records.header.buttons.cancel" | translate }}
+                        button(
+                            ng-if="$ctrl.form.values.type"
+                            ng-click="$ctrl.gotToStep(2)"
+                            ).button.button-primary {{ "records.header.buttons.next" | translate }}
+
+                form(ng-submit="$ctrl.form.submit()" ng-if="$ctrl.step == 2").choose-category
+                    .block-title {{ "records.header.buttons.choose.category" | translate }}
+                    .block-description {{ "records.header.buttons.choose.description" | translate }}
+
+                    .record_types-form.form
+                        .row
+                            .col.col-md-12
+                                .form-group
+                                    .form-label {{ "records.header.buttons.type" | translate }}
+                                    .form-control-checked: em.mdi.mdi-check-circle
+                                    input(type="text" ng-model="$ctrl.recordsByTypesKey[$ctrl.form.values.type].name" disabled).form-control
+                        .form-group
+                            .form-label.form-label-required {{ "records.header.buttons.text" | translate }}
+                            input(type="text" ng-model="$ctrl.form.values.value" placeholder="The value...").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.value" ng-bind="error")
+
+                    .text-left
+                        button(
+                            type="button" 
+                            ng-click="$ctrl.gotToStep(1)").button.button-dark {{ "records.header.buttons.back" | translate }}
+                        button(
+                            type="submit").button.button-primary {{ "records.header.buttons.confirm" | translate }}
+
+contact-form 

@@ -1,0 +1,50 @@
+.modal.modal-auth
+    .modal-backdrop(ng-click="$ctrl.close()")
+    //- Choose Sign In type
+    .modal-content(ng-show="$ctrl.showChoose")
+        .modal-close.mdi.mdi-close(ng-click="$ctrl.close()")
+
+        .modal-title {{ "popup_auth.header.title" | translate }}
+        .modal-subtitle {{ "popup_auth.header.subtitle" | translate }}
+
+        .block.block-auth-type
+            .auth_type-item: .auth_type-item-inner(ng-click="$ctrl.showQrForm()")
+                .auth_type-icon: img(src="./assets/img/icon-login-type/icon_login-type_qr.png")
+                .auth_type-name {{ "popup_auth.buttons.qrcode" | translate }}
+            .auth_type-item: .auth_type-item-inner(ng-click="$ctrl.showEmailForm()")
+                .auth_type-icon: img(src="./assets/img/icon-login-type/icon_login-type_email.png")
+                .auth_type-name {{ "popup_auth.buttons.mail" | translate }}
+
+        .modal-footer
+            .footer-text {{ "popup_auth.labels.timelimit" | translate }}
+
+    //- Sign In by qr-code
+    .modal-content(ng-show="$ctrl.showQrCodeBlock")
+        .modal-close.mdi.mdi-close(ng-click="$ctrl.close()")
+
+        .modal-title {{ "popup_auth.labels.join" | translate }}
+        .modal-subtitle {{ "popup_auth.labels.scancode" | translate }}
+
+        .block.block-auth-qr-code
+            .qr_code#auth_qrcode
+
+        .modal-footer
+            .footer-text {{ "popup_auth.labels.timelimit" | translate }}
+
+    //- Sign In by email
+    .modal-content(ng-show="$ctrl.showEmailBlock")
+        .modal-close.mdi.mdi-close(ng-click="$ctrl.close()")
+
+        .modal-title {{ "popup_auth.labels.join" | translate }}
+        .modal-subtitle {{ "popup_auth.labels.link" | translate }}
+
+        form.form(ng-submit="$ctrl.signInEmailForm.submit()")
+            .form-group
+                .form-label {{ "popup_auth.input.mail" | translate }}
+                input(ng-model="$ctrl.signInEmailForm.values.primary_email" type="email" placeholder="E-mail").form-control
+                .form-error(ng-repeat="error in $ctrl.signInEmailForm.errors.primary_email" ng-bind="error")
+            .form-group
+            .form-group: button(type="submit").button.button-primary.button-wide {{ "popup_auth.buttons.submit" | translate }}
+
+        .modal-footer
+            .footer-text {{ "popup_auth.labels.timelimit" | translate }}

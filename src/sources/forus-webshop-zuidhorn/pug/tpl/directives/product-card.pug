@@ -1,0 +1,9 @@
+.block.block-voucher-product
+    .product-card
+        .product-photo(style="background-image: url({{ productCard.photo.sizes.small || './assets/img/placeholders/product-small.png' }})")
+        .product-details
+            .product-name {{ productCard.name }}
+
+            .product-price
+                .product-price-new € {{ productCard.price | to_fixed:2 }} 
+                .product-price-old € {{ productCard.old_price | to_fixed:2 }}

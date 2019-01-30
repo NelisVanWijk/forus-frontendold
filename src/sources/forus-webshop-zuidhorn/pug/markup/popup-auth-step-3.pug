@@ -1,0 +1,43 @@
+extends ../layout/layout
+
+block vars
+    - var modal_shown=true
+    
+block content
+    header.section.section-header: .wrapper
+        include ../layout/includes/navbar
+
+    - for (var i = 0; i < 32; i++)
+        br
+
+    .popups
+        .popup.popup-auth
+            .popup-backdrop
+            .popup-content
+                .popup-close.mdi.mdi-close
+
+                .popup-title Aanmelden
+                .popup-subtitle Please enter your e-mail address in order to receive your login details.
+
+                .form
+                    .form-group
+                        .form-label Enter your email
+                        input(type="email" placeholder="E-mail").form-control.form-control
+                    .form-group
+                        .form-label Herhaal e-mail
+                        input(type="email" placeholder="Herhaal e-mail").form-control
+                    .form-group
+                    .form-group: button.button.button-primary.button-wide SUBMIT
+
+                .popup-footer
+                    .footer-text U kunt tot 14:55 uur (Nederlandse tijd) inloggen. Daarna verloopt uw sessie.
+                    .popup-footer-links
+                        a(href="#").popup-footer-link 
+                            span »
+                            | LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT
+                        a(href="#").popup-footer-link
+                            span »
+                            | EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA
+                        a(href="#").popup-footer-link
+                            span »
+                            | LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT.

@@ -1,0 +1,40 @@
+extends ../layout/layout-landing-markup
+block content
+    .header-splash: .splash
+    
+    header.section.section-header: .wrapper
+        include ../layout/includes/navbar
+        
+        .header-body
+            .header-content
+                .header-title Meld u aan als winkelier of dienstverlener
+                .header-description Bereik meer klanten, maak meer winst en draag bij aan een maatschappelijk doel.
+                .header-title Digitale identiteit
+                .header-description Om uw organisatie toe te voegen dient u eerst een digitale indentiteit aan te maken
+                a(href="#").button.button-primary Nieuwe Identiteit Aanmaken
+            .header-sprite(
+                style="background-image: url('./assets/img/landing/header-sprite-sponsor.png')")
+            .block.block-cards
+                .card-item: .card-item-inner
+                    .card-icon: img(src="./assets/img/landing/icon-cards/icon-card-money.png")
+                    .card-content
+                        .card-title 
+                            | Create your fund 
+                            //- em.mdi.mdi-arrow-right
+                        .card-description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                .card-item: .card-item-inner
+                    .card-icon: img(src="./assets/img/landing/icon-cards/icon-card-wallet.png")
+                    .card-content
+                        .card-title 
+                            | Donate 
+                            //- em.mdi.mdi-arrow-right
+                        .card-description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+
+    section.section.section-flow: .wrapper
+        .section-title Dogs have masters. Cats have staff.
+        .section-description A successful man is one who makes more money than his wife can spend. A successful woman is one who can find such a man.
+        img(src="./assets/img/landing/forus-flow-sponsor.png").section-scheme
+        .block.block-show-more: a(href="#").button.button-primary NIVEUWE AANMAKEN
+
+    include ../layout/sections/blogs
+    include ../layout/sections/contact-form 

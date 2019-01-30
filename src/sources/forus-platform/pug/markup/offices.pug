@@ -1,0 +1,80 @@
+extends ../layout/layout-markup
+block content
+    mixin card(title)
+        .card
+            .card-section
+                .card-section-actions
+                    button.button.button-default
+                        em.mdi.mdi-pen  
+                        | Bewerk
+                    button.button.button-primary
+                        em.mdi.mdi-plus-circle  
+                        | Voeg een nieuwe vestiging toe
+                        
+                .card-block.card-block-provider
+                    .provider-img: img(src="./assets/img/organization-logo.jpg", alt="")
+                    a(href="./fund.html").provider-title #{title}
+                    br
+                    .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                        .card-block-listing-label Email
+                        span.text-primary-light ulgersmaweg@rminds.nl
+                    .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                        .card-block-listing-label Business Address
+                        | Groningen, Ulgersmaweg 35
+                .card-block.card-block-listing
+                    .card-block-listing-label Categories
+                    | Bikes, Computers
+
+            mixin keyvalue_item_horizontal(key, value)
+                .keyvalue-item
+                    .keyvalue-key=key
+                    .keyvalue-value=value
+
+            .card-section.card-section-primary
+                .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+                    .row
+                        .col.col-sm-9
+                            +keyvalue_item_horizontal("KVK", "45667773")
+                            +keyvalue_item_horizontal("BTW", "NL3213214556B01")
+                            +keyvalue_item_horizontal("IBAN", "NL10INGB3455664430")
+
+    mixin card_office(title)
+        .card
+            .card-section
+                .card-section-actions
+                        
+                .card-block.card-block-provider
+                    .provider-img: img(src="./assets/img/placeholders/office-thumbnail.png", alt="")
+                    a(href="./fund.html").provider-title #{title}
+                    br
+                    .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                        .card-block-listing-label Email
+                        span.text-primary-light ulgersmaweg@rminds.nl
+                    .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                        .card-block-listing-label Telefoonnummer
+                        | Geen data
+
+            mixin keyvalue_item_horizontal(key, value)
+                .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant.card-block-listing-no-pad
+                    .card-block-listing-label=key
+                    | #{value}
+            .card-section.card-section-primary
+                .row
+                    .col.col-xs-12
+                        small Openingstijden:
+                    .col.col-sm-9
+                        +keyvalue_item_horizontal("MA:", "09:00-17:00")
+                        +keyvalue_item_horizontal("Di:", "09:00-17:00")
+                        +keyvalue_item_horizontal("Wo:", "09:00-17:00")
+                        +keyvalue_item_horizontal("Do:", "09:00-17:00")
+                        +keyvalue_item_horizontal("Vr:", "09:00-17:00")
+                    .col.col-sm-3
+                        button.button.button-primary
+                            em.mdi.mdi-map-marker  
+                            | Bekijk op de kaart
+
+    +card("Rocket Minds")
+
+    .card-heading Vestigingen (2)
+    +card_office("Appelhof, 43, 9408BE, Assen, Nederland")
+    +card_office("Appelhof, 43, 9408BE, London, United Kingdom")

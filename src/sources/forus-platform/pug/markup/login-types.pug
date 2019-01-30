@@ -1,0 +1,20 @@
+extends ../layout/layout-markup
+block content
+    .block.block-choose-organization
+        .organization-heading Kies een organisatie om in te loggen
+        a(href="#").organization-item
+            .organization-item-inner
+                .organization-logo: img(src="./assets/img/placeholders/organization-thumbnail.png")
+            .organization-name Zonder organisatie
+        a(href="#").organization-item
+            .organization-item-inner
+                .organization-logo: img(src="./assets/img/zuidhorn-logo.jpg")
+            .organization-name Zuidhorn Gemeente
+        a(href="#").organization-item
+            .organization-item-inner
+                .organization-logo: img(src="./assets/img/organization-logo.jpg")
+            .organization-name QNH Consulting
+        a(href="#").organization-item
+            .organization-item-inner
+                .organization-logo.organization-logo-mdi: .mdi.mdi-plus
+            .organization-name Organisatie toevoegen

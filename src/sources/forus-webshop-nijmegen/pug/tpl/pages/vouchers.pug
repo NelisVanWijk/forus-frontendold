@@ -1,0 +1,21 @@
+.header-splash: .splash.splash-d
+
+header.section.section-header: .wrapper
+    top-navbar
+
+section.section.section-profile: .wrapper
+    .section-title  {{ "vouchers.header.title" | translate }} ({{ $ctrl.vouchers.length }})
+    
+    .block.block-profile
+        //- profile-card
+
+        .profile-content
+            .block.block-vouchers(ng-if="$ctrl.vouchers.length > 0")
+                voucher-card(ng-repeat="voucher in $ctrl.vouchers" voucher="voucher")
+                
+            empty-block(
+                title="Geen vouchers"
+                description="Momenteel heeft u geen vouchers"
+                ng-if="$ctrl.vouchers.length == 0")
+
+contact-form 

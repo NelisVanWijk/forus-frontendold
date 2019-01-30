@@ -1,0 +1,82 @@
+extends ../layout/layout-markup
+block content
+    .card-heading People validation list (3)
+
+    mixin card(title)
+        .card
+            .card-section
+                .card-section-actions
+                    .tag.tag-warning Pending
+                h4 Dan
+
+                .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                    .card-block-listing-label Telefoonnummer
+                    | 0615261612
+                .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                    .card-block-listing-label Email
+                    span.text-primary-light ulgersmaweg@rminds.nl
+                .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                    .card-block-listing-label Voornaam
+                    | Jamal
+                .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                    .card-block-listing-label Achternaam
+                    | Vleij
+
+            mixin keyvalue_item_horizontal(key, value)
+                .keyvalue-item.col.col-sm-3
+                    .keyvalue-key=key
+                    .keyvalue-value=value
+
+            .card-section.card-section-primary
+                .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+                    .row
+                        +keyvalue_item_horizontal("Validated records", "20")
+                        +keyvalue_item_horizontal("Not validated records", "15")
+                        +keyvalue_item_horizontal("Pending validations", "18")
+            .card-section.card-section-primary.text-center
+                a(href="#").button.button-primary
+                    em.mdi.mdi-format-list-bulleted 
+                    | See records
+            .card-header
+                .arrow-box.border.bg-dim: .arrow
+                .card-title 
+                    .row 
+                        .col.col-sm-6 Records
+                        .col.col-sm-6.text-right
+                            button.button.button-primary
+                                em.mdi.mdi-check-circle
+                                | Validate all
+                            button.button.button-default
+                                em.mdi.mdi-close
+                                | Decline all
+            .card-section
+                .card-block.card-block-table
+                    .table-wrapper
+                        table.table
+                            tr
+                                th Type
+                                th Value
+                                th Datum
+                                th.text-right Status
+                            mixin row(type, value)
+                                tr
+                                    td=type
+                                    td=value
+                                    td 2018/01/29 14:37:08
+                                    td.text-right: .tag.tag-warning Pending
+                            +row('Naam', 'Jamal')
+                            +row('Naam', 'Jamalchick')
+            .card-section
+                .table-pagination
+                    .table-pagination-counter 8 results
+                    .table-pagination-navigation
+                        button(disabled).button.button-default Prev
+                        button.button.button-default 1
+                        button.button.button-default 2
+                        button.button.button-primary 3
+                        button(disabled).button.button-default Next
+
+
+    +card("Hewlett-Packard")
+    +card("Kindpakket 2017")
+    +card("Kindpakket 2016")

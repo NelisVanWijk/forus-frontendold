@@ -1,0 +1,30 @@
+extends ../layout/layout-markup
+block content
+    .modal
+        .modal-backdrop
+        .modal-window
+            .modal-header  
+                | Add budget
+                a(href="#").mdi.mdi-close.close
+            .modal-body.form
+                .modal-section
+                    .modal-funds-added
+                        p
+                            | Thank you for adding funds to:
+                            br
+                            span.text-primary Kindpakket 2018
+                        
+                        .funds-amount
+                            | You chose to add:
+                            .funds-amount-sum € 200,-
+
+                        p
+                            | Please transfer the amount to: 
+                            span.text-primary NL83 BUNQ 3456 3344 32
+                            br
+                            | and mention code 
+                            span.text-primary 5274 
+                            | in the description
+            .modal-footer.text-center
+                button.button.button-default Annuleren
+                button.button.button-primary Bevestigen

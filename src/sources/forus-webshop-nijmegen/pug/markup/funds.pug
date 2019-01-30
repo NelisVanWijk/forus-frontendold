@@ -1,0 +1,52 @@
+extends ../layout/layout
+block content
+    .header-splash: .splash.splash-c
+
+    header.section.section-header: .wrapper
+        include ../layout/includes/navbar
+    
+    section.section.section-funds: .wrapper
+        .section-title Fondsen
+        
+        .block.block-funds
+            mixin fund_item()
+                .fund-item
+                    .fund-image
+                        img(src="./assets/img/placeholders/fund-thumbnail.png")
+                    .fund-details
+                        .fund-name 
+                            | Kindpakket 2018 
+                            span.label.label-success Actief
+                        .fund-organization Gemeente Zuidhorn
+                        .fund-categories
+                            .fund-categories-label CATEGORIES
+                            .fund-categories-list Bikes, Computers
+                        a.button.button-primary(href="#") APPLY
+
+                    .fund-criterias
+                        .fund-criterias-label Criteria’s (4)
+                        .fund-criteria-item
+                            .fund-criteria-item-label Locatie
+                            .fund-criteria-item-value Zuidhorn Gemeente
+                        .fund-criteria-item
+                            .fund-criteria-item-label Kinderen
+                            .fund-criteria-item-value 1
+                        .fund-criteria-item
+                            .fund-criteria-item-label Leeftijd kind
+                            .fund-criteria-item-value < 18 jaar oud
+                        .fund-criteria-item
+                            .fund-criteria-item-label Inkomensgrens
+                            .fund-criteria-item-value < € 1118.46
+            
+            +fund_item()
+            +fund_item()
+            +fund_item()
+            +fund_item()
+            +fund_item()
+            +fund_item()
+            +fund_item()
+            
+            .block.block-show-more: a(href="#").button.button-primary SHOW MORE
+
+
+    include ../layout/sections/contact-form 

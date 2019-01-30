@@ -1,0 +1,13 @@
+section.section.section-blogs: .wrapper
+        .block.block-blogs
+            mixin blog_item(nth)
+                .blog-item: a(href="#").blog-item-inner
+                    .blog-image: img(src="./assets/img/landing/blog-image-" + nth + ".jpg")
+                    .blog-name The only thing worse than being blind is having sight but no vision.
+                    .blog-read-more 
+                        | Read more 
+                        em.mdi.mdi-arrow-right
+            +blog_item(1)
+            +blog_item(2)
+            +blog_item(3)
+            .block.block-show-more: .wrapper: a(href="#").button.button-primary SHOW MORE

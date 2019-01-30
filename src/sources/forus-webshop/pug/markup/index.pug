@@ -1,0 +1,106 @@
+extends ../layout/layout
+block content
+    .header-splash: .splash
+    header.section.section-header.section-header-landing: .wrapper
+        .heade-sprite
+        include ../layout/includes/navbar
+
+        .header-content
+            .header-title Zuidhorn. Kindpakket
+            .header-description Welkom op de website van het kindpakket Zuidhorn. Het kindpakket is een jaarlijks ondersteunende regeling voor kinderen in de gemeente Zuidhorn.
+            a(href="#").button.button-primary LEES MEER OVER HOE HET SYSTEEM WERKT
+
+    include ../layout/sections/products 
+
+    section.section.section-map: .wrapper
+        .block.block-map
+            .block-content
+                .block-title Lorem ipsum dolor sit amet
+                .block-description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                a(href="#").button.button-primary VIEW MAP
+    
+    section.section.section-steps: .wrapper
+        .section-splash
+        .section-sprite
+        .section-title Hoe het systeem werkt
+        .steps
+            .step-item: .step-item-content
+                h4 Stap #1
+                p U heeft een een brief ontvangen van de Gemeente. In deze brief staat een activatiecode. Deze hebt u nodig voor stap 2.
+            .step-item: .step-item-content
+                h4 Stap #2
+                p Op de website waar u zich nu bevindt klikt u, boven aan de pagina, op de groene knop en logt u in met de activatiecode.
+            .step-item: .step-item-content
+                h4 Stap #3
+                p U ontvangt een mail een QR-code (nodig voor stap 5) en een link naar overzichtspagina van het kindpakket.
+            .step-item: .step-item-content
+                h4 Stap #4
+                p Op de overzichtspagina staan de winkels waar u met de QR-Code terecht kunt. Print de QR-Code uit, of zorg dat deze als plaatje op uw telefoon staat. De Qr-Code kunt u steeds opnieuw gebruiken.
+            .step-item: .step-item-content
+                h4 Stap #3
+                p U ontvangt een mail een QR-code (nodig voor stap 5) en een link naar overzichtspagina van het kindpakket.
+
+            .step-item
+    
+    section.section.section-blogs: .wrapper
+        .section-title Our Blog
+        
+        .block.block-blogs
+            mixin blog_item(nth)
+                .blog-item: a(href="#").blog-item-inner
+                    .blog-image: img(src="./assets/img/blog-image-" + nth + ".jpg")
+                    .blog-name The only thing worse than being blind is having sight but no vision.
+                    .blog-read-more 
+                        | Read more 
+                        em.mdi.mdi-arrow-right
+            +blog_item(1)
+            +blog_item(2)
+            +blog_item(3)
+        
+        .block.block-show-more: .wrapper: a(href="#").button.button-primary SHOW MORE
+    
+    section.section.section-faq: .wrapper
+        .section-splash
+        .section-title Veel gestelde vragen
+        .faq(collapse)
+            mixin faq_item(title, content, active)
+                .faq-item(class=active?'active':'' collapse-item)
+                    .faq-item-header(collapse-header)
+                        | #{title}
+                        .faq-item-chevron-down.mdi.mdi-chevron-down
+                        .faq-item-chevron-up.mdi.mdi-chevron-up
+                    .faq-item-content(collapse-content)=content
+
+            +faq_item(
+                "Ik weet niet hoe ik moet inloggen; hoe de activatiecode werkt.",
+                "In de brief staat uw activatiecode. Die code vult u in op de website onder de knop activatie-code. Daana u ontvangt u een e-mail met uw QR-code")
+
+            +faq_item(
+                "Ik ben mijn QR-code kwijt. Wat moet ik doen?",
+                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+            +faq_item(
+                "Hoe kan ik zien hoe hoog mijn budget nog is?",
+                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+            +faq_item(
+                "Kan ik iets wat ik gekocht heb ruilen/retour brengen?",
+                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+            +faq_item(
+                "Moet ik mijn budget in 1x besteden?",
+                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+            +faq_item(
+                "Kan ik iets kopen bij een andere winkelier die niet op de website staat?",
+                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+            +faq_item(
+                "Ik heb nog een kind gekregen. Kom ik in aanmerking voor een hoger budget?",
+                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+            +faq_item(
+                "Hoe kom ik in aanmerking voor het kindpakket?",
+                "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+    include ../layout/sections/contact-form 

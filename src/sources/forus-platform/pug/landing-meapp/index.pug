@@ -1,0 +1,84 @@
+extends ../layout/layout-landing
+block content
+    .header-splash: .splash
+    
+    header.section.section-header: .wrapper
+        .block.block-navbar(menu_scroll_toggle)
+            a(href="{{ $root.appConfigs.frontends.webshop }}").navbar-logo
+                img(ng-src="./assets/img/landing/{{ $root.appConfigs.client_key == 'nijmegen' ? 'nijmegen' : 'forus' }}-logo-normal.svg")
+                img(ng-src="./assets/img/landing/{{ $root.appConfigs.client_key == 'nijmegen' ? 'nijmegen' : 'forus' }}-logo-hover.svg").hover
+            nav.navbar-list
+                a(href="{{ $root.appConfigs.frontends.url_sponsor }}").navbar-item {{ "meapp_index.navbar.municipality" | translate }}
+                a(href="{{ $root.appConfigs.frontends.url_provider }}").navbar-item {{ "meapp_index.navbar.provider" | translate }}
+                //a(href="{{ $root.appConfigs.frontends.url_validator }}").navbar-item VALIDATOR
+                a(href="{{ $root.appConfigs.frontends.url_app }}").navbar-item.active {{ "meapp_index.navbar.me" | translate }}
+                a(href="{{ $root.appConfigs.frontends.url_webshop }}").navbar-item {{ "meapp_index.navbar.shop" | translate }}
+            //- .block.block-auth
+                .auth-in(ng-if="$root.auth_user")
+                    .button.button-default
+                        em.mdi.mdi-account
+                        //- img(src="./assets/img/icon-btn/icon-btn-user.svg")
+                        | {{ $root.auth_user.primary_email }}
+                .auth-out(ng-if="!$root.auth_user")
+                    .button.button-default(ng-click="$root.popups.auth.open('choose')")
+                        em.mdi.mdi-account
+                        //- img(src="./assets/img/icon-btn/icon-btn-user.svg")
+                        | {{ "meapp_index.buttons.join" | translate }}
+                
+        .header-body.header-body-sprite-fill
+            .header-sprite(
+                style="background-image: url('./assets/img/landing/header-sprite-meapp.png')")
+            .header-content
+                .header-title {{ "meapp_index.header.title" | translate }}
+                .header-description 
+                    | {{ "meapp_index.header.description" | translate }}
+                .header-download-apps
+                    a(href="https://play.google.com/store/apps/details?id=io.forus.me").app-item.app-item-android
+                        | {{ "meapp_index.download.android" | translate }}
+                        em.mdi.mdi-arrow-right
+                    a(href="https://itunes.apple.com/nl/app/me-forus/id1422610676").app-item.app-item-ios
+                        | {{ "meapp_index.download.ios" | translate }}
+                        em.mdi.mdi-arrow-right
+
+    section.section.section-flow.responsive: .wrapper
+        .section-title {{ "meapp_index.functions.header.title" | translate }}
+        .scheme
+            img(src="./assets/img/landing/forus-flow-meapp.png").scheme-img
+            .scheme-points-preset
+                .scheme-point
+                    img(src="./assets/img/landing/meapp-flow/screen-1.png").scheme-point-image
+                    .scheme-point-text
+                        h4 {{ "meapp_index.functions.profile" | translate }}
+                        p {{ "meapp_index.functions.pin" | translate }}
+                .scheme-point
+                    img(src="./assets/img/landing/meapp-flow/screen-2.png").scheme-point-image
+                    .scheme-point-text
+                        h4 {{ "meapp_index.functions.vouchers" | translate }}
+                        p {{ "meapp_index.functions.criterion" | translate }}
+                .scheme-point
+                    img(src="./assets/img/landing/meapp-flow/screen-3.png").scheme-point-image
+                    .scheme-point-text
+                        h4 {{ "meapp_index.functions.apply" | translate }}
+                        p {{ "meapp_index.functions.webshop" | translate }}
+                .scheme-point 
+                    img(src="./assets/img/landing/meapp-flow/screen-4.png").scheme-point-image
+                    .scheme-point-text
+                        h4 {{ "meapp_index.functions.profileb" | translate }}
+                        p {{ "meapp_index.functions.app" | translate }}
+        //.block.block-show-more: a(href="#").button.button-primary PROFIEL AANMAKEN
+    
+    //section.section.section-blogs: .wrapper
+        .block.block-blogs
+            mixin blog_item(nth)
+                .blog-item: a(href="#").blog-item-inner
+                    .blog-image: img(src="./assets/img/landing/blog-image-" + nth + ".jpg")
+                    .blog-name The only thing worse than being blind is having sight but no vision.
+                    .blog-read-more 
+                        | Read more 
+                        em.mdi.mdi-arrow-right
+            +blog_item(1)
+            +blog_item(2)
+            +blog_item(3)
+            .block.block-show-more: .wrapper: a(href="#").button.button-primary SHOW MORE
+
+    //landing-contact-form 

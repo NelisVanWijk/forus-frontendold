@@ -1,0 +1,45 @@
+extends ../layout/layout-markup
+block content
+    .card-heading Providers (5)
+
+    mixin card(title)
+        .card
+            .card-section
+                .card-section-actions
+                        
+                .card-block.card-block-provider
+                    .provider-img: img(src="./assets/img/zuidhorn-logo.jpg", alt="")
+                    a(href="./fund.html").provider-title #{title}
+                    br
+                    .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                        .card-block-listing-label Email
+                        span.text-primary-light ulgersmaweg@rminds.nl
+                    .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                        .card-block-listing-label Business Address
+                        | Groningen, Ulgersmaweg 35
+                .card-block.card-block-listing
+                    .card-block-listing-label Categories
+                    | Bikes, Computers
+
+            mixin keyvalue_item_horizontal(key, value)
+                .keyvalue-item
+                    .keyvalue-key=key
+                    .keyvalue-value=value
+
+            .card-section.card-section-primary
+                .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+                    +keyvalue_item_horizontal("KVK", "45667773")
+                    +keyvalue_item_horizontal("BTW", "NL3213214556B01")
+                    +keyvalue_item_horizontal("IBAN", "NL10INGB3455664430")
+                    .pull-right
+                        a(href="#").button.button-default
+                            em.mdi.mdi-close 
+                            | Decline
+                        a(href="#").button.button-primary
+                            em.mdi.mdi-check 
+                            | Approve
+
+
+    +card("Hewlett-Packard")
+    +card("Kindpakket 2017")
+    +card("Kindpakket 2016")

@@ -1,0 +1,42 @@
+.header-splash: .splash.splash-d
+
+header.section.section-header: .wrapper
+    top-navbar
+
+section.section.section-apply_fund: .wrapper
+    .section-title {{ "fund_apply.header.title" | translate }}
+    
+    .block.block-apply_fund
+        .apply_fund-aside
+            .apply_fund-card
+                .fund-image: img(ng-src="{{ $ctrl.fund.logo.sizes.thumbnail || $ctrl.fund.organization.logo.sizes.thumbnail || './assets/img/placeholders/fund-thumbnail.png' }}")
+                .fund-details
+                    .fund-name 
+                        | {{ $ctrl.fund.name }} 
+                        // span(ng-show="$ctrl.fund.state == 'active'").label.label-success Actief
+                    .fund-organization {{ $ctrl.fund.organization.name }} 
+                .fund-criterias
+                    .fund-criterias-label {{ "fund_apply.header.criteria" | translate }}
+                    mixin cirteria_item(label, value)
+                        .fund-criteria-item
+                            .fund-criteria-item-label=label
+                            .fund-criteria-item-value=value
+                    +cirteria_item("Locatie", "Zuidhorn Gemeente")
+                    +cirteria_item("Kinderen", "1")
+                    +cirteria_item("Leeftijd", "< 18 jaar oud")
+                    +cirteria_item("Inkomensgrens", "< € 1118.46")
+
+            .apply_fund-menu
+                button(ng-if="$ctrl.countInvalid == 0" ng-click="$ctrl.applyFund()").button.button-primary.button-wide {{ "fund_apply.buttons.join" | translate }}
+        .apply_fund-content
+            .block.block-fund_criteria
+                fund-criterion(
+                    ng-repeat="criterion in $ctrl.fund.criteria" 
+                    fund="$ctrl.fund" 
+                    criterion="criterion" 
+                    record-type="$ctrl.recordsByTypesKey[criterion.record_type_key]" 
+                    records="$ctrl.recordsByKey[criterion.record_type_key]" 
+                    updated="$ctrl.checkStates")
+
+
+contact-form

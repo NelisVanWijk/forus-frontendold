@@ -1,0 +1,32 @@
+section.section.section-products#products: .wrapper
+    .section-title.text-center Aanbieding
+    .section-filters
+        .row.form
+            .col.col-md-4: .form-group
+                select.form-control.form-control-fancy
+                    option(value="") Selecteer categorie...
+
+            .col.col-md-8: .form-group
+                input(type="text" placeholder="Zoek naar product").form-control.form-control-fancy
+    
+    .block.block-products
+        mixin product_item(name, discounted)
+            .product-item(class=discounted?'discounted':''): a(href="#").product-item-inner
+                .product-image: img(src="./assets/img/placeholders/product-small.png")
+                .product-name=name
+                .product-discount
+                    | 58% 
+                    br
+                    | KORTING!
+                .product-price
+                    small VAN € 59,95
+                    br
+                    | VOOR € 24,95
+        +product_item("Gecertificeerde Meditor Plus", true)
+        +product_item("Gecertificeerde Meditor Plus Lorem Ipsum", true)
+        +product_item("Gecertificeerde Meditor Plus Lorem ", false)
+        +product_item("Gecertificeerde Meditor Plus", true)
+        +product_item("Gecertificeerde Meditor Plus Lorem ", false)
+        +product_item("Gecertificeerde Meditor Plus Lorem Ipsum", true)
+
+        .block.block-show-more: .wrapper: a(href="#").button.button-primary SHOW MORE

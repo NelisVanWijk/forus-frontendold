@@ -1,0 +1,9 @@
+.block.block-schedule-editor
+    .schedule-item(ng-repeat="(day_key, day_val) in week_days"): .form-group
+        label.form-label(ng-bind="day_val")
+        select(
+            ng-options="key as time for (key, time) in day_times" 
+            ng-model="ngModel[day_key].start_time").form-control
+        select(
+            ng-options="key as time for (key, time) in day_times" 
+            ng-model="ngModel[day_key].end_time").form-control

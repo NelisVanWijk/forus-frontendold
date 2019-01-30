@@ -1,0 +1,38 @@
+extends ../layout/layout
+block content
+    .header-splash: .splash.splash-d
+    
+    header.section.section-header: .wrapper
+        include ../layout/includes/navbar
+    
+    section.section.section-profile: .wrapper
+        .section-title My Vouchers (2)
+        
+        .block.block-profile
+            include ../layout/blocks/profile-inner
+
+            .profile-content
+                .block.block-validations
+                    .validation-record-details
+                        .record-type Fiest Name
+                        .record-value John
+                        .record-validation-count
+                            strong 3
+                            | validaties
+                        button.button.button-outline.button-primary-outline.button-wide Send to validation
+
+                    .validation-card
+                        .validation-header Validations
+                        .validation-body
+                            mixin validation_item(name, date)
+                                .validation-item
+                                    .validation-image: img(src="./assets/img/placeholders/fund-thumbnail.png", alt="")
+                                    .validation-name=name
+                                    .validation-date=date
+                            
+                            +validation_item("Gemeente Zuidhorn", "22.02.2022")
+                            +validation_item("Gemeente Zuidhorn", "22.02.2022")
+
+                include ../layout/blocks/empty
+
+    include ../layout/sections/contact-form 

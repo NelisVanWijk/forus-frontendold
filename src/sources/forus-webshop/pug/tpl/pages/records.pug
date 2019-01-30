@@ -1,0 +1,39 @@
+.header-splash: .splash.splash-d
+
+header.section.section-header: .wrapper
+    top-navbar
+
+section.section.section-profile: .wrapper
+    .section-title {{ "records.header.title" | translate }} ({{ $ctrl.records.length }})
+    
+    .block.block-profile
+        .profile-aside
+            profile-card
+
+        .profile-content
+            .block.block-records
+                .record-item(ng-repeat="record in $ctrl.records")
+                    .record-details
+                        .record-type {{ $ctrl.recordsByTypesKey[record.key].name }}
+                        .record-value {{ record.value }}
+                    .record-validations(ng-if="$root.appConfigs.features.records.validate")
+                        a(
+                            ng-if="record.validations.length > 0" 
+                            ui-sref="record-validations(record)").record-validation-count
+                            strong {{ record.validations.length }}
+                            | {{ "records.labels.count" | translate }}
+                        a(
+                            ui-sref="record-validate(record)").record-validation-request
+                            em.mdi.mdi-check
+                            | {{ "records.buttons.validate" | translate }}
+            
+                .text-right(ng-if="$root.appConfigs.features.records.create"): a(ui-sref="record-create").button.button-primary 
+                    em.mdi.mdi-plus
+                    | {{ "records.buttons.create" | translate }}
+
+            empty-block(
+                title="Geen eigenschappen"
+                description="U hebt geen eigenschappen"
+                ng-if="$ctrl.records.length == 0")
+
+contact-form 

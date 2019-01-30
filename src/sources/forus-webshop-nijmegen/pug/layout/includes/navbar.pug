@@ -1,0 +1,53 @@
+.block.block-navbar
+    a(href="./index.html").navbar-logo.hide-sm
+        img(src="./assets/img/forus-logo-normal.svg")
+        img(src="./assets/img/forus-logo-hover.svg").hover
+    nav.navbar-list
+        a(ui-sref="funds").navbar-item FONDSEN
+        a(scroll-to="products").navbar-item PRODUCTEN
+    .block.block-auth
+        .auth-in
+            .auth-user
+                .auth-user-email info@forus.io
+                .auth-user-type Sponsor
+                .auth-user-avatar
+                    img(src="./assets/img/identity-avatar.svg")
+                    nav.auth-user-menu
+                        .triangle
+                        .inner
+                            a(href="#").auth-user-menu-item
+                                img(src="./assets/img/icon-menu/icon-menu-my-profile.svg")
+                                | Mijn profiel
+                            a(href="#").auth-user-menu-item
+                                img(src="./assets/img/icon-menu/icon-menu-my-vouchers.svg")
+                                | Mijn vouchers
+                            a(href="#").auth-user-menu-item
+                                img(src="./assets/img/icon-menu/icon-menu-my-records.svg")
+                                | Mijn eigenschappen
+                            .auth-user-menu-separator
+                            a(href="#").auth-user-menu-item
+                                img(src="./assets/img/icon-menu/icon-menu-sign-out.svg")
+                                | Uitloggen
+    //- .block.block-auth.sm-pull-left
+        .lang-selector
+            .lang-label 
+                em.mdi.mdi-chevron-down
+                | Language
+            .lang-active English
+            .lang-list
+                .lang-list-item English
+                .lang-list-item Russian
+                .lang-list-item Romanian
+    .block.block-auth.block-auth-border.hide-sm
+        .auth-code  
+            .button.button-default
+                em.mdi.mdi-ticket-confirmation
+                | Activatiecode
+
+        //- .auth-out
+            .button.button-default
+                em.mdi.mdi-ticket-confirmation
+                | Activatiecode
+            .button.button-default
+                em.mdi.mdi-account
+                | Login

@@ -1,0 +1,9 @@
+.paginator-loader
+    .paginator-actions
+        button(
+            ng-class="meta.current_page == meta.last_page ? 'disabled' : ''"
+            ng-click="loadMore()").button.button-primary Load more
+    div(ng-if="meta.current_page && meta.last_page").paginator-progress
+        span(ng-bind="meta.current_page * meta.per_page + ' '")  
+        | from 
+        span(ng-bind="meta.last_page * meta.per_page")

@@ -1,0 +1,85 @@
+extends ../layout/layout
+block content
+    .header-splash: .splash.splash-d
+    
+    header.section.section-header: .wrapper
+        include ../layout/includes/navbar
+    
+    section.section.section-profile: .wrapper
+        .section-title My Vouchers (2)
+        
+        .block.block-profile.no-aside
+            include ../layout/blocks/profile-inner
+
+            .profile-content
+                .block.block-record_create
+                    .choose-category
+                        .block-title Choose Category
+                        .block-description Select the category under which the new record type should be added.
+
+                        .categories-list
+                            mixin record_category_item(name, icon, active)
+                                .categories-item(class=active?'active':''): .categories-item-inner
+                                    .categories-radio
+                                    .categories-image: img(src="./assets/img/icon-record_categories/" + icon + ".png")
+                                    .categories-name=name
+
+                            +record_category_item("Persoonlijk", "persoonlijk", true)
+                            +record_category_item("Medical", "medical")
+                            +record_category_item("Zakelijk", "zakelijk")
+                            +record_category_item("Relaties", "relaties")
+                            +record_category_item("Certificaten", "certificaten")
+                            +record_category_item("Anderen", "anderen")
+
+                        .text-left
+                            button.button.button-dark CANCEL
+                            button.button.button-primary NEXT
+
+                .block.block-record_create
+                    .choose-category
+                        .block-title Choose Category
+                        .block-description Select the category under which the new record type should be added.
+
+                        .record_types-list
+                            mixin record_types_item(name, active)
+                                a(href="#" class=active?'active':'').record_type-item: .record_type-item-inner
+                                    .record_type-name=name
+                                    .record_type-radio: em.mdi.mdi-check
+
+                            +record_types_item("E-mail", true)
+                            +record_types_item("First name")
+                            +record_types_item("Last name")
+                            +record_types_item("Children")
+
+                        .text-left
+                            button.button.button-dark BACK
+                            button.button.button-primary NEXT
+
+                .block.block-record_create
+                    .choose-category
+                        .block-title Choose Category
+                        .block-description Select the category under which the new record type should be added.
+
+                        .record_types-form.form
+                            .row
+                                .col.col-md-6
+                                    .form-group
+                                        .form-label CATEGORY
+                                        .form-control-checked: em.mdi.mdi-check-circle
+                                        input(type="text" value="Persoonlijk" disabled).form-control
+                                .col.col-md-6
+                                    .form-group
+                                        .form-label RECORD TYPE
+                                        .form-control-checked: em.mdi.mdi-check-circle
+                                        input(type="text" value="Persoonlijk" disabled).form-control
+                            .form-group
+                                .form-label.form-label-required TEXT
+                                input(type="text" placeholder="The value...").form-control
+
+                        .text-left
+                            button.button.button-dark BACK
+                            button.button.button-primary SUBMIT
+
+                include ../layout/blocks/empty
+
+    include ../layout/sections/contact-form 

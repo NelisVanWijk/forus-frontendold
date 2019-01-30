@@ -1,0 +1,44 @@
+extends ../layout/layout-markup
+block content
+    .card(class=(state=='closed'?'card-outline':'')).form
+        .card-header: .card-title Add organization
+        .card-section.card-section-primary
+            .row 
+                .col.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label &nbsp;
+                        .form-offset
+                            .block.block-photo-selector
+                                .photo-img: img(src="./assets/img/placeholders/organization-thumbnail.png", alt="")
+                                .photo-label Logo
+                                button.button.button-primary
+                                    em.mdi.mdi-attachment
+                                    | Verander afbeelding
+        .card-section.card-section-primary
+            .row 
+                .col.col-sm-8.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label Bedrijfsnaam
+                        input(type="text" placeholder="Bedrijfsnaam").form-control
+                    .form-group.form-group-inline
+                        label.form-label IBAN
+                        input(type="text" placeholder="IBAN").form-control
+                    .form-group.form-group-inline
+                        label.form-label E-mail
+                        input(type="text" placeholder="E-mail").form-control
+                    .form-group.form-group-inline
+                        label.form-label Telefoonnummer
+                        input(type="text" placeholder="Telefoonnummer").form-control
+        .card-section.card-section-primary
+            .row 
+                .col.col-sm-8.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label KvK-nummer
+                        input(type="text" placeholder="KvK-nummer").form-control
+                    .form-group.form-group-inline
+                        label.form-label BTW-nummer
+                        input(type="text" placeholder="IBAN").form-control
+        .card-section.card-section-primary
+            .text-center
+                button.button.button-default Annuleren
+                button.button.button-primary Bevestig

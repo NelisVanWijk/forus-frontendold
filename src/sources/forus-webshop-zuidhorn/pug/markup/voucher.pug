@@ -1,0 +1,64 @@
+extends ../layout/layout
+block content
+    .header-splash: .splash.splash-c
+
+    header.section.section-header.section-header-voucher: .wrapper
+        include ../layout/includes/navbar
+         
+        .header-body
+            .header-content
+                .block.block-product.block-product-sm
+                    .product-card
+                        .product-details
+                            .product-photo(style="background-image: url('./assets/img/placeholders/product-large.png')")
+                                img(src="./assets/img/placeholders/product-large.png", alt="")
+                            .product-name
+                                | Giant X-Ray 2 
+                                span.label.label-success Active
+                            .product-categories Bikes, Computers
+                            
+                            .product-funds
+                                .product-fund-label FUNDS
+                                .product-fund-list Kindpakket 2017, Kindpakket 2018
+
+                            .product-price
+                                .product-price-new € 24,95
+                                .product-price-old € 59,95
+
+                            .product-expire
+                                .expire-label EXPIRATION DATE
+                                .expire-value 25.05.2019
+                            
+                            .product-details-link
+                                | View details
+                                .mdi.mdi-arrow-right
+                        .product-footer
+                            .product-provider-label PROVIDER INFORMATION
+                            .product-provider-value Lidl Groiningen
+                            .product-provider-details
+                                | Address: Zuidhorn 48, 9745 AE Groiningen
+                                br
+                                | Telephone: +31 20 709 5039
+                            br
+                            .product-provider-value Lidl Groiningen
+                            .product-provider-details
+                                | Address: Zuidhorn 48, 9745 AE Groiningen
+                                br
+                                | Telephone: +31 20 709 5039
+            .header-content
+                .block.block-voucher
+                    .voucher-details
+                        .voucher-title Kindpakket
+                        .voucher-subtitle Valid 2 days
+                        .voucher-value € 456,66
+                    .voucher-qr-code: .voucher-qr-code_inner: img(src="./assets/img/qr-code.svg")
+    
+        .block.block-show-more
+            a(href="#").button.button-primary EMAIL TO ME
+    
+    section.section.section-voucher-details: .wrapper
+        include ../layout/blocks/transactions
+        include ../layout/blocks/map_card
+
+    include ../layout/sections/products-related 
+    include ../layout/sections/contact-form 

@@ -1,0 +1,26 @@
+.modal
+    .modal-backdrop(ng-click="$ctrl.close()")
+    .modal-window: form.form(ng-submit="$ctrl.form.submit()")
+        a(ng-click="$ctrl.close()").mdi.mdi-close.modal-close
+        .modal-header(ng-if="$ctrl.employee" translate="Medewerker aanpassen")
+        .modal-header(ng-if="!$ctrl.employee" translate="Medewerker toevoegen")
+        .modal-body.form
+            .modal-section: .row: .col.col-lg-8.col-lg-offset-2.col-sm-12
+                .form-group(ng-if="!$ctrl.modal.scope.employee")
+                    label.form-label E-mailadres
+                    input(type="text" ng-model="$ctrl.form.values.email").form-control
+                    .form-error(ng-repeat="error in $ctrl.form.errors.email" ng-bind="error")
+                .form-group(ng-if="!$ctrl.employee")
+                    label.form-label Rollen
+                    .flex-row
+                        .flex-item.flex-item-2(ng-repeat="role in $ctrl.modal.scope.roles")
+                            label(ng-click="$ctrl.toggleOption(role.id)" for="product_{{ role.id }}").checkbox.checkbox-narrow
+                                input(type="checkbox" ng-checked="$ctrl.isChecked(role.id)")
+                                .checkbox-label 
+                                    .checkbox-box: .mdi.mdi-check
+                                    span(ng-bind="role.name")
+                    .form-error(ng-repeat="error in $ctrl.form.errors.roles" ng-bind="error")
+
+        .modal-footer.text-center
+            button.button.button-default(type="button" translate="modal_funds_add.buttons.close" ng-click="$ctrl.close()")
+            button.button.button-primary(type="submit" translate="Bevestig")

@@ -1,0 +1,50 @@
+.popup.popup-shops_map(ng-show="popup.show")
+    .popup-backdrop(ng-click="popup.close()")
+
+    // Choose Sign In type
+    .popup-content
+        .popup-close.mdi.mdi-close(ng-click="popup.close()")
+
+        .block.block-shops_map
+            .shop_map-header
+                .shop_map-title {{ "popup_offices.header.title_first_part" | translate }} {{ providersCount }} {{ "popup_offices.header.title_last_part" | translate }}
+                .shop_map-subtitle(translate="popup_offices.header.subtitle")
+                .shop_map-categories(ng-class="productCategories.length > per_page ? 'has-pagination' : ''")
+                    .shop_map-prev(ng-click="prevCategoriesPage()" ng-class="cur_page == 1 ? 'disabled' : ''"): .mdi.mdi-chevron-left
+                    .shop_map-next(ng-click="nextCategoriesPage()" ng-class="isLast() ? 'disabled' : ''"): .mdi.mdi-chevron-right
+                    .shop_map-category-item(
+                        ng-repeat="category in getCategories(cur_page, per_page)"
+                        ng-class="{active: selectedCategories.indexOf(category.id) !== -1}")
+                        .shop_map-category-item-inner(
+                            ng-click="selectCategory(category)")
+                            .shop_map-category-radio
+                            .shop_map-category-icon: img(
+                                ng-src="{{ 'assets/img/icon-product_categories/icon-product_categories-' + category.key + '.png' }}")
+                            .shop_map-category-name {{ category.name }}
+                            .shop_map-category-arrow
+            .shop_map-sidebar: .nano: .nano-content
+                .shops
+                    .shop-item(
+                        ng-repeat="office in shownOffices" 
+                        ng-class="{active: office.id == selectedOffice}" 
+                        ng-click="selectOffice(office)")
+                        .shop-details
+                            .shop-image: img(ng-src="{{ office.photo.sizes.thumbnail || '/assets/img/placeholders/office-thumbnail.png' }}")
+                            .shop-name {{ office.organization.name }}
+                            .row
+                                .col.col-md-6
+                                    .shop-details-label {{ "popup_offices.labels.mail" | translate }}
+                                    .shop-details-value {{ office.email || office.organization.email || 'Geen data' }}
+                                .col.col-md-6
+                                    .shop-details-label {{ "popup_offices.labels.address" | translate }}
+                                    .shop-details-value {{ office.address || 'Geen data' }}
+                        .shop-schedule
+                            .shop-schedule-label {{ "popup_offices.labels.hours" | translate }}
+                            .shop-schedule-value 
+                                span(ng-repeat="schedule in office.schedule" ng-show="schedule.start_time || schedule.end_time")
+                                    strong {{ weekDays[schedule.week_day] }}: 
+                                    | {{ schedule.start_time || 'Geen data' }} - {{ schedule.end_time || 'Geen data' }}
+                                
+                                span(ng-if="office.schedule.length == 0")
+                                    | {{ "popup_offices.labels.none" | translate }}
+            .shop_map-content: google-map(offices="shownOffices" selected-office="selectedOffice")

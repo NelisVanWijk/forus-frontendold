@@ -1,0 +1,48 @@
+- var src_prefix = (qdt_c.platform.env_data.html5ModeEnabled?env_data.html5Mode.basePath:'');
+- var client_key = (qdt_c.platform.env_data.client_key);
+
+head
+    meta(charset="UTF-8")
+    title(ng-bind="$root.pageTitle") Forus
+
+    //- disable resize on mobiles
+    meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+
+    //- fonts
+    link(href="https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,500,700" rel="stylesheet")
+
+    //- material design icons (by google)
+    if (qdt_c.platform.libs.mdi)
+        link(rel="stylesheet" href=src_prefix + "assets/dist/mdi/css/materialdesignicons.min.css")
+
+    //- bootstrap 3
+    if (qdt_c.platform.libs.bootstrap_3)
+        link(rel="stylesheet" href=src_prefix + "assets/dist/bootstrap/css/bootstrap.min.css")
+
+    //- angular csp (cloack)
+    if (qdt_c.platform.libs.angular)
+        link(rel="stylesheet" href=src_prefix + "assets/dist/angular/angular-csp.css")
+
+
+    link(rel="stylesheet" href=src_prefix + "assets/dist/angular-datepicker/angular-datepicker.min.css")
+    link(rel="stylesheet" href=src_prefix + "assets/dist/ui-cropper/ui-cropper.css")
+
+    //- custom style
+    if(client_key == 'nijmegen')
+        link(rel="stylesheet" href=src_prefix + "assets/css/style-nijmegen.min.css")
+    else
+        link(rel="stylesheet" href=src_prefix + "assets/css/style.min.css")
+
+    <!--[if lte IE 9]>
+        style.
+            html[ng-cloak] {
+                display: block!important;
+            }
+            ui-view, .ie-hide{
+                display: none!important;
+            }
+
+            .oldie{
+                display: block!important;
+            }
+    <![endif]-->

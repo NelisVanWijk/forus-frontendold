@@ -1,0 +1,43 @@
+.app.app-container
+    menu
+    section.app.app-content
+
+        .card(ng-if="$ctrl.transactions.length > 0" class=(state=='closed'?'card-outline':'')).form
+            .card-header: .card-title {{ "transactions.header.title" | translate }} ({{ $ctrl.transactions.length }})
+            .card-section
+                .card-block.card-block-table
+                    .table-wrapper
+                        table.table
+                            tr
+                                th {{ "transactions.labels.price" | translate }}
+                                th {{ "transactions.labels.date" | translate }}
+                                th {{ "transactions.labels.fund" | translate }}
+                                th {{ "transactions.labels.provider" | translate }}
+                                th {{ "transactions.labels.status" | translate }}
+                            tr(
+                                ng-repeat="transaction in $ctrl.transactions" 
+                                ng-click="$ctrl.showTransaction(transaction)").pointer
+                                td: a.text-primary-light €{{ transaction.amount }}
+                                td(ng-bind="transaction.created_at_locale")
+                                td(ng-bind="transaction.fund.name")
+                                td(ng-bind="transaction.organization.name")
+                                td(ng-bind="$ctrl.states[transaction.state]")
+            //- .card-section
+                .table-pagination
+                    .table-pagination-counter {{ "transactions.labels.results" | translate }}
+                    .table-pagination-navigation
+                        button(disabled).button.button-default {{ "transactions.buttons.previous" | translate }}
+                        button.button.button-default {{ "transactions.paginator.one" | translate }}
+                        button.button.button-default {{ "transactions.paginator.two" | translate }}
+                        button.button.button-primary {{ "transactions.paginator.three" | translate }}
+                        button(disabled).button.button-default {{ "transactions.buttons.next" | translate }}
+
+                    
+            .card-section: .table-pagination
+                .table-pagination-counter(ng-bind="$ctrl.transactions.length + ' results'")
+                button(ng-click="$ctrl.exportList()").button.button-primary.pull-right
+                    em.mdi.mdi-download  
+                    | {{ "transactions.buttons.export" | translate }}
+        block-empty(
+            ng-if="$ctrl.transactions.length == 0" 
+            text="'Geen transacties.'")

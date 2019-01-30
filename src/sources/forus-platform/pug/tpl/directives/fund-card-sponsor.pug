@@ -1,0 +1,86 @@
+.card(ng-class="{'card-outline' : fund.state == 'closed'}")
+    .card-section
+        .card-section-actions            
+            button(
+                ng-show="level == 'fundsAvailable' && fund.state != 'closed'"
+                ng-click="providerApplyFund(fund)").button.button-primary 
+                em.mdi.mdi-plus-circle
+                translate(translate="fund_card_sponsor.buttons.join")
+
+            div(ng-if="fundOrg | hasPerm:'manage_funds'")
+                div(ng-if="level != 'fundsAvailable'")
+                    div(ng-show="fund.state == 'active'")
+                        span(ng-if="level=='fundShow'" ng-click="changeState('closed')").card-section-action
+                            em.mdi.mdi-close
+                            translate(translate="fund_card_sponsor.buttons.close")
+                        span(ng-if="level=='fundShow'" ng-click="changeState('paused')").card-section-action
+                            em.mdi.mdi-pause
+                            translate(translate="fund_card_sponsor.buttons.pause")
+
+                        .tag.tag-success(translate="fund_card_sponsor.status.active")
+
+                    div(ng-show="fund.state == 'paused'")
+                        span(ng-if="level=='fundShow'" ng-click="changeState('closed')").card-section-action
+                            em.mdi.mdi-close
+                            translate(translate="fund_card_sponsor.buttons.close")
+                        span(ng-if="level=='fundShow'" ng-click="changeState('active')").card-section-action
+                            em.mdi.mdi-play
+                            translate(translate="fund_card_sponsor.buttons.restart")
+
+                        .tag.tag-warning(translate="fund_card_sponsor.status.paused")
+
+                span(ng-if="fund.state == 'closed'")
+                    span(ng-if="level=='fundShow'" ng-click="changeState('paused')").card-section-action
+                        em.mdi.mdi-pause 
+                        translate(translate="fund_card_sponsor.buttons.pause")
+                    span(ng-if="level=='fundShow'" ng-click="changeState('active')").card-section-action
+                        em.mdi.mdi-play
+                        translate(translate="fund_card_sponsor.buttons.restart")
+
+                    .tag.tag-default(translate="fund_card_sponsor.status.closed")
+
+        .card-block.card-block-fund
+            .fund-img: img(ng-src="{{ fund.logo.sizes.thumbnail || './assets/img/placeholders/fund-thumbnail.png' }}", alt="")
+            a(ui-sref="funds-show(fund)" ng-bind="fund.name").fund-title
+            br
+            div(ng-bind="fundOrg.name").fund-organization
+        .card-block.card-block-listing
+            .card-block-listing-label(translate="fund_card_sponsor.labels.categories") 
+            translate(ng-bind="fundCategories.join(', ')")
+            small(ng-show="fundCategories.length == 0" translate="fund_card_sponsor.labels.nocategories").text-muted.small
+
+    mixin keyvalue_item_horizontal(key, value)
+        .keyvalue-item
+            .keyvalue-key #{key}
+            .keyvalue-value(ng-bind=value)
+
+    .card-section.card-section-warning(ng-if="level == 'fundShow' && (fundOrg | hasPerm:'view_finances')")
+        .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+            +keyvalue_item_horizontal("Leveranciers", "fund.providers_count")
+            +keyvalue_item_horizontal("Validatoren", "fund.validators_count")
+
+    mixin edit_buttons()
+        button(ui-sref="funds-edit(fund)").button.button-default
+            em.mdi.mdi-settings
+            translate(translate='fund_card_sponsor.labels.setting')
+
+        button(ng-if="fund.key && fund.state != 'closed'" ng-click="topUpModal()").button.button-primary
+            em.mdi.mdi-plus-circle  
+            translate(translate='fund_card_sponsor.buttons.add')
+
+    mixin stats()
+        .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+            +keyvalue_item_horizontal("Totaal budget", "'€ ' + fund.budget.total + ',-'")
+            +keyvalue_item_horizontal("Gebruikt", "'€ ' + fund.budget.used + ',-'")
+
+    .hidden-md.card-section.card-section-primary(
+        ng-show="level != 'fundsAvailable' && (fundOrg | hasPerm:['view_finances','manage_funds']:false)"): .row
+        .col.col-lg-6.md-12(
+            ng-if="fundOrg | hasPerm:'view_finances'"): +stats()
+        .col.md-12(
+            ng-if="fundOrg | hasPerm:'manage_funds'" 
+            ng-class="(fundOrg | hasPerm:'view_finances') ? 'col-lg-6' : 'col-lg-12'").text-right: +edit_buttons()
+
+    .visible-md
+        .card-section.card-section-primary(ng-show="level != 'fundsAvailable' && (fundOrg | hasPerm:'view_finances')"): +stats()
+        .card-section.card-section-primary(ng-show="level != 'fundsAvailable' && (fundOrg | hasPerm:'manage_funds')"): +edit_buttons()

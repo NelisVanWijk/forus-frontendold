@@ -1,0 +1,14 @@
+.wrapper
+    .text-center
+        button(
+            ng-if="!$root.auth_user" 
+            ng-click="$ctrl.requestAuthToken()" translate="home.buttons.login").button.button-primary
+        button(
+            ng-if="$root.auth_user" 
+            ui-sref="csv-validation" translate="home.buttons.login").button.button-primary
+    div(ng-show="$ctrl.showModal").modal
+        .modal-backdrop(ng-click="$ctrl.closeModal()")
+        .modal-window
+            .modal-header(translate="home.buttons.login")
+            .modal-body.form: .modal-section: .qrcode: #qrcode
+            .modal-footer.text-center: button(ng-click="$ctrl.closeModal()" translate="home.buttons.cancel").button.button-primary

@@ -1,0 +1,74 @@
+.header-splash: .splash
+
+header.section.section-header: .wrapper
+    landing-navbar
+    
+    .header-body
+        .header-content
+            .header-title {{ "home_provider.header.title_nijmegen" | translate }}
+            .header-description {{ "home_provider.header.subtitle_nijmegen" | translate }}
+        //.header-sprite(
+            style="background-image: url('./assets/img/landing/vouchers-sprite.svg')")
+        .block.block-cards
+            .card-item: .card-item-inner
+                .card-icon: img(src="./assets/img/landing/icon-cards/icon-card-money.png")
+                .card-content
+                    .card-title Uitgifte
+                    .card-description De uitgifte van de Meedoen-regeling gaat via een webshop, de inwoners krijgen een waardebon in de vorm van een QR-Code. De inwoner komt met deze QR-Code naar uw organisatie om in aanmerking te komen voor het aanbod wat u levert.
+            .card-item: .card-item-inner
+                .card-icon: img(src="./assets/img/landing/icon-cards/icon-card-wallet.png")
+                .card-content
+                    .card-title Doe mee
+                    .card-description Deelnemers van de Meedoen-regeling kunnen dan bij uw organisatie bijvoorbeeld komen sporten of een cursus volgen. De kosten voor de deelnemers worden uitbetaald door de gemeente.
+
+
+section.section.section-flow: .wrapper
+    .section-title {{ "home_provider.guide.title_nijmegen" | translate }}
+    .section-description {{ "home_provider.guide.description_nijmegen" | translate }}
+    //img(src="./assets/img/landing/forus-flow-provider.png").section-scheme
+    .block.block-show-more: a(href="../provider/#!/sign-up").button.button-primary {{ "home_provider.guide.button_nijmegen" | translate }}
+
+
+section.section.section-faq: .wrapper
+    .section-splash
+    .section-title Veel gestelde vragen
+    .faq(collapse)
+        mixin faq_item(title, content, active)
+            .faq-item(class=active?'active':'' collapse-item)
+                .faq-item-header(collapse-header)
+                    | #{title}
+                    .faq-item-chevron-down.mdi.mdi-chevron-down
+                    .faq-item-chevron-up.mdi.mdi-chevron-up
+                .faq-item-content(collapse-content)=content
+
+        +faq_item(
+            "Wat zijn de technische vereisten om mee te doen?",
+            "Een smartphone op de locatie van uw organisatie. Android verreist: 4.3 en hoger. iOS vereist: 10.0 en hoger. Een computer met een willekeurige internet browser. Internet Explorer: 10 of hoger")
+
+        +faq_item(
+            "Hoe gaat het met uitbetalen?",
+            "Als eerste scan de QR-code van de inwoner. Ten tweede vul het bedrag van de betaling in en eventueel een omschrijving. Als laatste bevestig de betaling in de app. Het geld wordt binnen drie werkdagen op de rekening bijgeschreven.")
+
+        +faq_item(
+            "Wat voor organisatie moet ik zijn om mee te doen?",
+            "Uw organisatie heeft culturele, educatieve of sportieve activiteiten. Bijvoorbeeld abonnementen, sportlessen, workshops en cursussen. Het is niet de bedoeling dat deelnemers met het Meedoenbedrag kleding, materiaal, eten en drinken bij uw organisatie kopen. Maar als dit bij uw activiteit hoort, kan in overleg een uitzondering worden gemaakt")
+
+        +faq_item(
+            "Hoe kan ik mijn transacties in zien?",
+            "Naast de mobiele applicatie kunt u ook gebruik maken van de gebruikersomgeving voor organisaties. Hier kunt u het profiel van de organisatie beheren, transacties bijhouden en aanbiedingen op de webshop plaatsen. Het gebruik maken van de gebruikersomgeving is optioneel.")
+            
+//- section.section.section-blogs: .wrapper
+    .block.block-blogs
+        mixin blog_item(nth)
+            .blog-item: a(href="#").blog-item-inner
+                .blog-image: img(src="./assets/img/landing/blog-image-" + nth + ".jpg")
+                .blog-name The only thing worse than being blind is having sight but no vision.
+                .blog-read-more 
+                    | Read more 
+                    em.mdi.mdi-arrow-right
+        +blog_item(1)
+        +blog_item(2)
+        +blog_item(3)
+        .block.block-show-more: .wrapper: a(href="#").button.button-primary SHOW MORE
+
+//- landing-contact-form

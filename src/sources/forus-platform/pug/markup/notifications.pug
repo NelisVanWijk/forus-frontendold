@@ -1,0 +1,45 @@
+extends ../layout/layout-markup
+block content
+    .card
+        .card-header
+            .row
+                .col.col-sm-8: .card-title Notificaties
+                .col.col-sm-4.form: input(placeholder="Search").form-control
+            
+        .card-section
+            .card-block.card-block-notes
+                mixin note_item(icon, text, sign)
+                    .note-item
+                        img(src="./assets/img/note-icons/note-icon-" + icon + ".jpg").note-item-icon
+                        .note-item-text=text
+                        .note-item-sign=sign
+                        .hover-actions
+                            em.mdi.mdi-dots-horizontal
+                            .hover-actions-menu
+                                .hover-actions-label ACTION
+                                .hover-actions-item Refund charge
+                                .hover-actions-item Copy charge ID to clipboard
+                                .hover-actions-sep
+                                .hover-actions-label CONNECTIONS
+                                .hover-actions-item View payment details
+                
+                +note_item("quote", "Payment succeeded.", "May 14, 11:47 AM by info@fineartroom.nl")
+                +note_item("quote", "Payment declined by customer's bank\nThe bank returned the decline code do...", "May 14, 11:47 AM by info@fineartroom.nl")
+                +note_item("quote", "Stripe risk evaluation: normal", "Jan 23, 12:26 AM")
+                +note_item("quote", "Lorem ipsum dolor sit amet, consectet...", "Jan 23, 12:26 AM")
+                +note_item("quote", "Payment succeeded.", "May 14, 11:47 AM by info@fineartroom.nl")
+                +note_item("quote", "Payment declined by customer's bank\nThe bank returned the decline code do...", "May 14, 11:47 AM by info@fineartroom.nl")
+                +note_item("quote", "Stripe risk evaluation: normal", "Jan 23, 12:26 AM")
+                +note_item("quote", "Lorem ipsum dolor sit amet, consectet...", "Jan 23, 12:26 AM")
+                +note_item("quote", "Payment succeeded.", "May 14, 11:47 AM by info@fineartroom.nl")
+                +note_item("quote", "Payment declined by customer's bank\nThe bank returned the decline code do...", "May 14, 11:47 AM by info@fineartroom.nl")
+
+        .card-section
+            .table-pagination
+                .table-pagination-counter 10 results
+                .table-pagination-navigation
+                    button(disabled).button.button-default Prev
+                    button.button.button-default 1
+                    button.button.button-default 2
+                    button.button.button-primary 3
+                    button(disabled).button.button-default Next

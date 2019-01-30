@@ -1,0 +1,6 @@
+.block.block-photo-selector
+    .photo-img: img(ng-src="{{ thumbnail || './assets/img/placeholders/image-thumbnail.png' }}", alt="")
+    .photo-label(translate="photo_selector.labels.image")
+    a(href="#" ng-click="selectFile($event)").button.button-primary
+        em.mdi.mdi-attachment
+        translate(translate="photo_selector.buttons.change")

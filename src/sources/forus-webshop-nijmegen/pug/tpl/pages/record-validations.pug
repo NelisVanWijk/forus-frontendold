@@ -1,0 +1,37 @@
+.header-splash: .splash.splash-d
+
+header.section.section-header: .wrapper
+    top-navbar
+
+section.section.section-profile: .wrapper
+    .section-title {{ "records_validations.header.title" | translate }} ({{ $ctrl.records.length }})
+    
+    .block.block-profile
+        .profile-aside
+            profile-card
+
+        .profile-content
+            .block.block-validations
+                .validation-record-details
+                    .record-type(ng-bind="$ctrl.recordsByTypesKey[$ctrl.record.key].name")
+                    .record-value(ng-bind="$ctrl.record.value")
+                    .record-validation-count
+                        strong {{ $ctrl.record.validations.length }}
+                        | {{ "records_validations.header.count" | translate }}
+                    a(ui-sref="record-validate($ctrl.record)").button.button-outline.button-primary-outline.button-wide 
+                        | {{ "records_validations.header.send" | translate }}
+
+                .validation-card
+                    .validation-header {{ "recrods_validate.header.validations" | translate }}
+                    .validation-body
+                        .validation-item(ng-repeat="validation in $ctrl.record.validations")
+                            .validation-image: img(src="./assets/img/placeholders/fund-thumbnail.png", alt="")
+                            .validation-name(ng-bind="validation.identity_address")
+                            .validation-date(ng-bind="validation.updated_at")
+
+            empty-block(
+                title="Geen validaties"
+                description="Je hebt geen validaties"
+                ng-if="$ctrl.record.validations.length == 0")
+
+contact-form 

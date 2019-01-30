@@ -1,0 +1,57 @@
+extends ../layout/layout-markup
+block content
+    .card(class=(state=='closed'?'card-outline':'')).form
+        .card-header: .card-title Bewerk vestiging
+        .card-section.card-section-primary
+            .row 
+                .col.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label &nbsp;
+                        .form-offset
+                            .block.block-photo-selector
+                                .photo-img: img(src="./assets/img/placeholders/office-thumbnail.png", alt="")
+                                .photo-label Logo
+                                button.button.button-primary
+                                    em.mdi.mdi-attachment
+                                    | Verander afbeelding
+        .card-section.card-section-primary
+            .row 
+                .col.col-sm-8.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label Adres
+                        input(type="text" placeholder="Adres").form-control
+                    .form-group.form-group-inline
+                        label.form-label E-mail
+                        input(type="text" placeholder="E-mail").form-control
+                    .form-group.form-group-inline
+                        label.form-label Telefoonnummer
+                        input(type="text" placeholder="Telefoonnummer" value="01.06.2018").form-control
+        .card-section.card-section-primary
+            .row 
+                .col.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label &nbsp;
+                        .form-offset
+                            .card-title Openingstijden
+                            .block.block-schedule-editor
+                                mixin _date(date)
+                                    .schedule-item: .form-group
+                                        label.form-label=date
+                                        select(placeholder="Adres").form-control
+                                            option 08:00
+                                            option 09:00
+                                        select(placeholder="Adres").form-control
+                                            option 08:00
+                                            option 09:00
+
+                                +_date('Ma')
+                                +_date('Di')
+                                +_date('Wo')
+                                +_date('Do')
+                                +_date('Vr')
+                                +_date('Za')
+                                +_date('Zo')
+        .card-section.card-section-primary
+            .text-center
+                button.button.button-default Annuleren
+                button.button.button-primary Bevestigen

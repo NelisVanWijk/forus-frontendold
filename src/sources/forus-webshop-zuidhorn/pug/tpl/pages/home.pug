@@ -1,0 +1,139 @@
+.header-splash: .splash
+
+header.section.section-header.section-header-landing: .wrapper
+    top-navbar
+
+    .header-content
+        .header-title {{ "home.header.zuidhorn.title" | translate }}
+        .header-description(ng-bind="'home.header.zuidhorn.subtitle' | translate")
+        a(scroll-to="#steps" translate="home.header.zuidhorn.button").button.button-primary 
+
+block-products(
+    ng-if="$root.appConfigs.features.products.list"
+    sample="true" 
+    products="$ctrl.products" 
+    product-categories="$ctrl.productCategories")
+
+section.section.section-map: .wrapper
+    .block.block-map
+        .block-content
+            .block-title {{ "home.map.zuidhorn.title" | translate }}
+            .block-description {{ "home.map.zuidhorn.subtitle" | translate }} 
+            button(ng-click="$root.popups.offices.open()").button.button-primary {{ "home.map.button" |translate }}
+    
+section.section.section-steps#steps: .wrapper
+    .section-splash
+    .section-sprite
+    .section-title {{ "home.guide.zuidhorn.title" | translate }}
+    .steps
+        .step-item: .step-item-content
+            h4 {{ "home.guide.zuidhorn.stepone" | translate }}
+            p {{ "home.guide.zuidhorn.one" | translate }}
+        .step-item: .step-item-content
+            h4 {{ "home.guide.zuidhorn.steptwo" | translate }}
+            p {{ "home.guide.zuidhorn.two" | translate }}
+        .step-item: .step-item-content
+            h4 {{ "home.guide.zuidhorn.stepthree" | translate }}
+            p {{ "home.guide.zuidhorn.three" | translate }}
+        .step-item: .step-item-content
+            h4 {{ "home.guide.zuidhorn.stepfour" | translate }}
+            p {{ "home.guide.zuidhorn.four" | translate }}
+        .step-item: .step-item-content
+            h4 {{ "home.guide.zuidhorn.stepfive" | translate }}
+            p {{ "home.guide.zuidhorn.five" | translate }}
+
+        .step-item
+
+section.section.section-blogs(ng-if="$root.appConfigs.features.blog"): .wrapper
+    .section-title {{ "home.blog.zuidhorn.title" | translate }}
+    
+    .block.block-blogs
+        mixin blog_item(nth)
+            .blog-item: a(href="#").blog-item-inner
+                .blog-image: img(src="./assets/img/blog-image-" + nth + ".jpg")
+                .blog-name {{ "home.blog.zuidhorn.name" | translate }}
+                .blog-read-more 
+                    | {{ "home.blog.more" | translate }}
+                    em.mdi.mdi-arrow-right
+        +blog_item(1)
+        +blog_item(2)
+        +blog_item(3)
+    .block.block-show-more: a(href="#").button.button-primary {{ "home.blog.button" | translate }}
+    
+section.section.section-faq: .wrapper
+    .section-splash
+    .section-title {{ "home.faq.zuidhorn.title" | translate }}
+    .faq(collapse)
+        mixin faq_item(title, content, active)
+            .faq-item(class=active?'active':'' collapse-item)
+                .faq-item-header(collapse-header)
+                    | #{title}
+                    .faq-item-chevron-down.mdi.mdi-chevron-down
+                    .faq-item-chevron-up.mdi.mdi-chevron-up
+                .faq-item-content(collapse-content)=content
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_one' | translate }}",
+            "{{ 'home.faq.zuidhorn.one' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_two' | translate }}",
+            "{{ 'home.faq.zuidhorn.two' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_three' | translate }}",
+            "{{ 'home.faq.zuidhorn.three' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_four' | translate }}",
+            "{{ 'home.faq.zuidhorn.four' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_five' | translate }}",
+            "{{ 'home.faq.zuidhorn.five' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_six' | translate }}",
+            "{{ 'home.faq.zuidhorn.six' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_seven' | translate }}",
+            "{{ 'home.faq.zuidhorn.seven' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_eight' | translate }}",
+            "{{ 'home.faq.zuidhorn.eight' | translate }}")
+            
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_nine' | translate }}",
+            "{{ 'home.faq.zuidhorn.nine' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_ten' | translate }}",
+            "{{ 'home.faq.zuidhorn.ten' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_eleven' | translate }}",
+            "{{ 'home.faq.zuidhorn.eleven' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_twelve' | translate }}",
+            "{{ 'home.faq.zuidhorn.twelve' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_thirteen' | translate }}",
+            "{{ 'home.faq.zuidhorn.thirteen' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_fourteen' | translate }}",
+            "{{ 'home.faq.fourteen' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_fifteen' | translate }}",
+            "{{ 'home.faq.zuidhorn.fifteen' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.zuidhorn.faq_sixteen' | translate }}",
+            "{{ 'home.faq.zuidhorn.sixteen' | translate }}")    
+
+contact-form 

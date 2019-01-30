@@ -1,0 +1,23 @@
+extends ../layout/layout-markup
+block content
+    .modal
+        .modal-backdrop
+        .modal-window
+            .modal-header  
+                | Add budget
+                a(href="#").mdi.mdi-close.close
+            .modal-body.form
+                .modal-section
+                    .form-group.form-group-inline
+                        label.form-label Amount to add
+                        input(type="number" placeholder="Amount to add").form-control
+                    .form-group.form-group-inline
+                        label.form-label Description
+                        textarea(placeholder="Description").form-control
+                .modal-section
+                    .modal-info
+                        em.mdi.mdi-information
+                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
+            .modal-footer.text-center
+                button.button.button-default Annuleren
+                button.button.button-primary Bevestigen

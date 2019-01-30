@@ -1,0 +1,39 @@
+.app.app-container
+    menu
+    section.app.app-content
+        .card: form(ng-submit="$ctrl.form.submit()").form
+            .card-header: .card-title {{ "offices_edit.header.title" | translate }}
+            .card-section.card-section-primary
+                .row 
+                    .col.col-xs-12
+                        .form-group.form-group-inline
+                            label.form-label &nbsp;
+                            .form-offset
+                                photo-selector(
+                                    type="office_photo"
+                                    thumbnail="$ctrl.media.sizes.thumbnail"
+                                    select-photo="$ctrl.selectPhoto(file)")
+            .card-section.card-section-primary
+                .row 
+                    .col.col-lg-9.col-md-12
+                        .form-group.form-group-inline
+                            label.form-label {{ "offices_edit.labels.address" | translate }}
+                            input(ng-model="$ctrl.form.values.address" type="text" placeholder="{{ 'offices_edit.labels.address' | translate }}").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.address" ng-bind="error")
+                        .form-group.form-group-inline
+                            label.form-label {{ "offices_edit.labels.phone" | translate }}
+                            input(ng-model="$ctrl.form.values.phone" type="text" placeholder="{{ 'offices_edit.labels.phone' | translate }}").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.phone" ng-bind="error")
+            .card-section.card-section-primary
+                .row 
+                    .col.col-xs-12
+                        .form-group.form-group-inline
+                            label.form-label &nbsp;
+                            .form-offset
+                                .card-title {{ "offices_edit.labels.hours" | translate }}
+                                schedule-control(ng-model="$ctrl.form.values.schedule")
+
+            .card-section.card-section-primary
+                .text-center
+                    button(type="button" ng-click="$ctrl.cancel()").button.button-default {{ "offices_edit.buttons.cancel" | translate }}
+                    button(type="submit").button.button-primary {{ "offices_edit.buttons.confirm" | translate }}

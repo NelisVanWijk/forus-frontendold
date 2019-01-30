@@ -1,0 +1,17 @@
+aside.app.app-sidebar
+    .sidebar-nav
+        mixin nav_item(name, url, icon, active)
+            a(href=url class=(active ? 'active' : '')).sidebar-nav-item
+                .sidebar-nav-item-arrow: .mdi.mdi-menu-right
+                .sidebar-nav-item-icon 
+                    img(src="./assets/img/menu/icon-" + icon + ".svg")
+                    img(src="./assets/img/menu/icon-" + icon + "-hover.svg").hover
+                    img(src="./assets/img/menu/icon-" + icon + "-active.svg").active
+                | #{name}
+        
+        +nav_item("Funds", './funds.html', "clock", true)
+        +nav_item("My Funds", './funds-my.html', "my_funds")
+        +nav_item("Transactions", './transactions.html', "transactions")
+        +nav_item("Add budget", './funds-add.html', "plus")
+        +nav_item("Financial Dashboard", './financial-dashboard.html', "financial_dashboard")
+        +nav_item("Providers", './providers.html', "people")

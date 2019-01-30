@@ -1,0 +1,55 @@
+extends ../layout/layout-markup
+block content
+    .card-heading Funds (34)
+
+    mixin card(title, state)
+        .card(class=(state=='closed'?'card-outline':''))
+            .card-section
+                .card-section-actions
+                    if (state == 'active')
+                        .tag.tag-success Active
+                    if (state == 'paused')
+                        .tag.tag-warning Paused
+                    if (state == 'closed')
+                        .tag.tag-default Closed
+                        
+                .card-block.card-block-fund
+                    .fund-img: img(src="./assets/img/zuidhorn-logo.jpg", alt="")
+                    a(href="./fund.html").fund-title #{title}
+                    br
+                    a(href="#").fund-organization Gemeente Zuidhorn
+                .card-block.card-block-listing
+                    .card-block-listing-label Categories
+                    | Bikes, Computers
+
+            mixin keyvalue_item_horizontal(key, value)
+                .keyvalue-item
+                    .keyvalue-key=key
+                    .keyvalue-value=value
+                    
+            .card-section
+                .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+                    .row
+                        .col.col-sm-6
+                            +keyvalue_item_horizontal("Lorem ipsum", "€ 10.000,-")
+            .card-section.card-section-primary
+                .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+                    .row
+                        .col.col-sm-8
+                            +keyvalue_item_horizontal("Total Budget", "€ 60.000,-")
+                            +keyvalue_item_horizontal("Validated", "€ 23.452,-")
+                            +keyvalue_item_horizontal("Used", "€ 10.234,32-")
+                        
+                        if (state != 'closed')
+                            .col.col-sm-4.text-right
+                                a(href="#").button.button-default
+                                    em.mdi.mdi-settings  
+                                    | Settings
+
+                                a(href="#").button.button-primary
+                                    em.mdi.mdi-plus-circle  
+                                    | Add Money
+
+    +card("Kindpakket 2018", "active")
+    +card("Kindpakket 2017", "paused")
+    +card("Kindpakket 2016", "closed")

@@ -1,0 +1,42 @@
+section(ng-if="$root.appConfigs.features.contactForm").section.section-contact_form: .wrapper 
+    .block.block-contact_form
+        .contact-title {{ "contact.header.title" | translate }}
+        .contact-form: .form.row
+            .col.col-md-5
+                .contact-logo: img(src="./assets/img/forus-logo-normal.svg")
+                .contact-details
+                    .contact-label {{ "contact.header.subtitle" | translate }}
+                    .contact-address 
+                        | {{ "contact.labels.adress" | translate }}
+                        br
+                        | {{ "contact.labels.phone" | translate }}
+                    .contact-email {{ "contact.labels.mail" | translate }}
+                    br
+
+                    .contact-label {{ "contact.labels.follow" | translate }}
+                    .contact-socials
+                        a(href="#").contact-social: .mdi.mdi-facebook
+                        a(href="#").contact-social: .mdi.mdi-twitter
+                        a(href="#").contact-social: .mdi.mdi-linkedin-box
+                        a(href="#").contact-social: .mdi.mdi-google-plus
+
+            .col.col-md-7
+                .form-group
+                    .form-label.form-label-required {{ "contact.labels.name" | translate }}
+                    input(type="text" placeholder="").form-control
+                .form-group
+                    .form-label.form-label-required {{ "contact.labels.usermail" | translate }}
+                    input(type="text" placeholder="").form-control
+                .row
+                    .col.col-md-6: .form-group
+                        .form-label.form-label-required {{ "contact.labels.userphone" | translate }}
+                        input(type="text" placeholder="").form-control
+                    .col.col-md-6: .form-group
+                        .form-label.form-label-required {{ "contact.labels.organisation" | translate }}
+                        input(type="text" placeholder="").form-control
+                .form-group
+                    .form-label.form-label-required {{ "contact.labels.message" | translate }}
+                    textarea(placeholder="").form-control
+                .form-group
+                .form-group
+                    button.button.button-primary {{ "contact.labels.buttons" | translate }}

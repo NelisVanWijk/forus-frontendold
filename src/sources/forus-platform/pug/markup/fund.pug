@@ -1,0 +1,71 @@
+extends ../layout/layout-markup
+block content
+    .card
+        .card-section
+            .card-section-actions
+                a(href="#").card-section-action
+                    em.mdi.mdi-close
+                    | Close
+                a(href="#").card-section-action
+                    em.mdi.mdi-play
+                    | Resume
+                .tag.tag-warning Paused
+
+            .card-block.card-block-fund
+                .fund-img: img(src="./assets/img/zuidhorn-logo.jpg", alt="")
+                a(href="#").fund-title Kindpakket 2018
+                br
+                a(href="#").fund-organization Gemeente Zuidhorn
+            .card-block.card-block-listing
+                .card-block-listing-label Categories
+                | Bikes, Computers
+
+        mixin keyvalue_item_horizontal(key, value)
+            .keyvalue-item.col.col-sm-2
+                .keyvalue-key=key
+                .keyvalue-value=value
+
+        .card-section
+            .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+                .row
+                    +keyvalue_item_horizontal("Lorem ipsum", "€ 10.000,-")
+        .card-section.card-section-warning
+            .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+                .row
+                    +keyvalue_item_horizontal("Providers", "15")
+                    +keyvalue_item_horizontal("Validators", "2")
+        .card-section.card-section-primary
+            .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+                .row
+                    +keyvalue_item_horizontal("Total Budget", "€ 60.000,-")
+                    +keyvalue_item_horizontal("Validated", "€ 23.452,-")
+                    +keyvalue_item_horizontal("Used", "€ 10.234,32-")
+                    
+                    .col.col-sm-6.text-right
+                        a(href="#").button.button-default
+                            em.mdi.mdi-settings  
+                            | Settings
+
+                        a(href="#").button.button-primary
+                            em.mdi.mdi-plus-circle  
+                            | Add Money
+
+    .card
+        .card-header: .card-title Criteria's (3)
+        .card-section
+            .card-block.card-block-keyvalue
+                mixin keyvalue_item(key, value, links = [])
+                    .keyvalue-item
+                        .keyvalue-key=key
+                        .keyvalue-value
+                            | #{value}
+                            each link, key in links 
+                                a(href=link.href).keyvalue-link
+                                    em.mdi(class=('mdi-' + link.mdi))
+                                    | #{link.text}
+                
+                +keyvalue_item("Location", "Zuidhorn Municipality")
+                +keyvalue_item("Kids #", "1")
+                +keyvalue_item("Kid age", "> 18 jaar oud")
+                +keyvalue_item("Inkomsten", "> € 1118.46")
+                

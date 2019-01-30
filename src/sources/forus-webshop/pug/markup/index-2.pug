@@ -1,0 +1,60 @@
+extends ../layout/layout
+block content
+    .header-splash: .splash.splash-c
+    
+    header.section.section-header.section-header-landing-2: .wrapper
+        include ../layout/includes/navbar
+        
+        .header-body
+            .header-content
+                .header-title Meld u aan als winkelier of dienstverlener
+                .header-description Bereik meer klanten, maak meer winst en draag bij aan een maatschappelijk doel.
+                .header-title Digitale identiteit
+                .header-description Om uw organisatie toe te voegen dient u eerst een digitale indentiteit aan te maken
+                a(href="#").button.button-primary Nieuwe Identiteit Aanmaken
+            .header-content
+                .block.block-voucher
+                    .voucher-title Kindpakket
+                    .voucher-subtitle Valid 2 days
+                    .voucher-value € 456,66
+                    .voucher-qr-code: .voucher-qr-code_inner: img(src="./assets/img/qr-code.svg")
+            .block.block-cards
+                .card-item: .card-item-inner
+                    .card-icon: img(src="./assets/img/icon-cards/icon-card-money.png")
+                    .card-content
+                        .card-title 
+                            | Create your fund 
+                            em.mdi.mdi-arrow-right
+                        .card-description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                .card-item: .card-item-inner
+                    .card-icon: img(src="./assets/img/icon-cards/icon-card-wallet.png")
+                    .card-content
+                        .card-title 
+                            | Donate 
+                            em.mdi.mdi-arrow-right
+                        .card-description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+
+    section.section.section-flow: .wrapper
+        .section-title Dogs have masters. Cats have staff.
+        .section-description A successful man is one who makes more money than his wife can spend. A successful woman is one who can find such a man.
+        img(src="./assets/img/forus-flow.png").section-scheme
+        .block.block-show-more: a(href="#").button.button-primary NIVEUWE AANMAKEN
+
+    
+    section.section.section-blogs: .wrapper
+        .section-title Our Blog
+        
+        .block.block-blogs
+            mixin blog_item(nth)
+                .blog-item: a(href="#").blog-item-inner
+                    .blog-image: img(src="./assets/img/blog-image-" + nth + ".jpg")
+                    .blog-name The only thing worse than being blind is having sight but no vision.
+                    .blog-read-more 
+                        | Read more 
+                        em.mdi.mdi-arrow-right
+            +blog_item(1)
+            +blog_item(2)
+            +blog_item(3)
+            .block.block-show-more: .wrapper: a(href="#").button.button-primary SHOW MORE
+
+    include ../layout/sections/contact-form 

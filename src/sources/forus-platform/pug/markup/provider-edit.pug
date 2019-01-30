@@ -1,0 +1,50 @@
+extends ../layout/layout-markup
+block content
+    .card(class=(state=='closed'?'card-outline':'')).form
+        .card-header: .card-title Bewerk Profiel
+        .card-section.card-section-primary
+            .row 
+                .col.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label &nbsp;
+                        .form-offset
+                            .block.block-photo-selector
+                                .photo-img: img(src="./assets/img/placeholders/organization-thumbnail.png", alt="")
+                                .photo-label Logo
+                                button.button.button-primary
+                                    em.mdi.mdi-attachment
+                                    | Verander afbeelding
+        .card-section.card-section-primary
+            .row 
+                .col.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label Bedrijfsnaam
+                        input(type="text" placeholder="Bedrijfsnaam").form-control
+                    .form-group.form-group-inline
+                        label.form-label IBAN Name
+                        input(type="text" placeholder="IBAN Name").form-control
+                    .form-group.form-group-inline
+                        label.form-label E-mail
+                        input(type="text" placeholder="E-mail" value="01.06.2018").form-control
+                    .form-group.form-group-inline
+                        label.form-label Telefoonnummer
+                        input(type="text" placeholder="Telefoonnummer" value="01.06.2018").form-control
+        .card-section.card-section-primary
+            .row 
+                .col.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label Product categories
+                        input(type="text" placeholder="KvK-nummer").form-control
+                    .form-group.form-group-inline
+                        label.form-label &nbsp;
+                        .form-offset
+                            .tag.tag-primary.tag-square 
+                                | Product categories
+                                a(href="#").mdi.mdi-close
+                            .tag.tag-primary.tag-square 
+                                | Fiets
+                                a(href="#").mdi.mdi-close
+        .card-section.card-section-primary
+            .text-center
+                button.button.button-default Annuleren
+                button.button.button-primary Apply

@@ -1,0 +1,34 @@
+.criteria-item(ng-class="{active: criterion.state == 'valid'}")
+    .criteria-header 
+        | {{ recordType.name }}: 
+        | {{ criterion.operation != '=' ? criterion.operation : '' }} 
+        | {{ criterion.value }}
+    .criteria-body
+        .criteria-section(ng-repeat="record in records")
+            .criteria-details
+                .criteria-label(ng-bind="recordType.name")
+                .criteria-value(ng-bind="record.value")
+                if (type == 'empty')
+                    .criteria-value-empty {{ "fund_criterion.labels.location" | translate }}
+            .criteria-validations
+                a(ng-if="record.state == 'validate'" ui-sref="record-validate(record)").criteria-validation-validate
+                    em.mdi.mdi-alert
+                    | {{ "fund_criterion.buttons.validate" | translate }}
+                div(ng-if="record.state == 'invalid'").criteria-validation-invalid
+                    em.mdi.mdi-alert
+                    | {{ "fund_criterion.status.invalid" | translate }}
+                div(ng-if="record.state == 'valid'").criteria-validation-valid
+                    em.mdi.mdi-check
+                    | {{ "fund_criterion.status.valid" | translate }}
+                a(ng-if="record.state == 'addRecord'" ui-sref="record-create").criteria-validation-add
+                    em.mdi.mdi-plus
+                    | {{ "fund_criterion.buttons.add" | translate }}
+        
+        .criteria-section(ng-if="records.length == 0")
+            .criteria-details
+                .criteria-label(ng-bind="recordType.name")
+                .criteria-value-empty {{ "fund_criterion.labels.value" | translate }}
+            .criteria-validations
+                a(ui-sref="record-create").criteria-validation-add
+                    em.mdi.mdi-plus
+                    | {{ "fund_criterion.buttons.add" | translate }}

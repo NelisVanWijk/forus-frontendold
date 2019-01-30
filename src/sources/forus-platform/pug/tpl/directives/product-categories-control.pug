@@ -1,0 +1,26 @@
+.product-categories-control
+    .form-group.form-group-inline
+        .form-label IK BIED AAN
+        .form-offset
+            .flex-row
+                div(ng-repeat="(type_key, type) in types").flex-item.flex-item-grow
+                    label(for="radio_product_type_{{ type_key }}" ng-click="filterOptions(type_key)").radio
+                        input(
+                            name="selectedType"
+                            type="radio"
+                            ng-checked="selectedType == type_key"
+                            id="radio_product_type_{{ type_key }}")
+                        .radio-label 
+                            .radio-circle
+                            span(translate="{{type}}")
+
+            .control-frame(ng-if="filteredOptions.length == 0") Empty 
+
+            .control-frame(ng-if="filteredOptions.length > 0")
+                .flex-row
+                    .flex-item.flex-item-2(ng-repeat="option in filteredOptions")
+                        label(ng-click="toggleOption(option.id)" for="product_{{ option.id }}").checkbox.checkbox-narrow
+                            input(type="checkbox" ng-checked="isChecked(option.id)")
+                            .checkbox-label 
+                                .checkbox-box: .mdi.mdi-check
+                                | {{ option.name }}

@@ -1,0 +1,72 @@
+extends ../layout/layout
+block content
+    .header-splash: .splash.splash-d
+    
+    header.section.section-header: .wrapper
+        include ../layout/includes/navbar
+    
+    section.section.section-apply_fund: .wrapper
+        .section-title Mee doen met fonds
+        
+        .block.block-apply_fund
+            .apply_fund-aside
+                .apply_fund-card
+                    .fund-image: img(src="./assets/img/placeholders/fund-thumbnail.png", alt="")
+                    .fund-details
+                        .fund-name 
+                            | Kindpakket 2018
+                            .label.label-success Actief
+                        .fund-organization Gemeente Zuidhorn
+                    .fund-criterias
+                        .fund-criterias-label Criteria’s (4)
+                        mixin cirteria_item(label, value)
+                            .fund-criteria-item
+                                .fund-criteria-item-label=label
+                                .fund-criteria-item-value=value
+                        +cirteria_item("Locatie", "Zuidhorn Gemeente")
+                        +cirteria_item("Kinderen", "1")
+                        +cirteria_item("Leeftijd kind", "< 18 jaar oud")
+                        +cirteria_item("Inkomensgren", "< € 1118.46")
+
+                .apply_fund-menu
+                    button.button.button-primary.button-wide SUBMIT
+
+            .apply_fund-content
+                .block.block-fund_criteria
+                    mixin criteria_item(title, type, count_sections)
+                        .criteria-item(class=type=='valid'?'active':'')
+                            .criteria-header=title
+                            .criteria-body
+                                mixin section()
+                                    .criteria-section
+                                        .criteria-details
+                                            .criteria-label Municipality
+
+                                            if (type != 'empty')
+                                                .criteria-value Zuidhorn
+                                            if (type == 'empty')
+                                                .criteria-value-empty Zuidhorn
+                                        .criteria-validations
+                                            if (type == 'validate')
+                                                a(href="#").criteria-validation-validate
+                                                    em.mdi.mdi-alert
+                                                    | Validate
+                                            if (type == 'empty')
+                                                a(href="#").criteria-validation-add
+                                                    em.mdi.mdi-plus
+                                                    | Add record
+                                            if (type == 'valid')
+                                                .criteria-validation-valid
+                                                    em.mdi.mdi-check
+                                                    | Valid
+                                - for(var i = count_sections || 1; i > 0; i--)
+                                    +section()
+
+                    
+                    +criteria_item("MUNICIPALITY: ZUIDHORN", "empty")
+                    +criteria_item("Age: > 18 jaar", "validate", 2)
+                    +criteria_item("Age: > 18 jaar", "valid")
+                
+                .block.block-show-more: a(href="#").button.button-primary APPLY
+
+    include ../layout/sections/contact-form 

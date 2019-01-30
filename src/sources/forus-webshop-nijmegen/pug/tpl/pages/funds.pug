@@ -1,0 +1,40 @@
+.header-splash: .splash
+
+header.section.section-header: .wrapper
+    top-navbar
+
+section.section.section-funds: .wrapper
+    .section-title {{ "funds.header.title" | translate }}
+    
+    .block.block-funds
+        .fund-item(ng-repeat="fund in $ctrl.funds")
+            .fund-image
+                img(ng-src="{{ fund.logo.sizes.thumbnail || fund.organization.logo.sizes.thumbnail || './assets/img/placeholders/fund-thumbnail.png' }}")
+            .fund-details
+                .fund-name {{ fund.name }} 
+                    span(ng-show="funds.status == 'active'").label.label-primary.label-square {{ "funds.status.active" | translate }}
+                .fund-organization(ng-bind="fund.organization.name") 
+                .fund-categories
+                    .fund-categories-label {{ "funds.labels.categorie" | translate }}
+                    .fund-categories-list(ng-bind="fund.categories")
+                a(ng-if="$root.auth_user && fund.voucherCanBeUsed" ui-sref="fund-apply(fund)").button.button-primary {{ "funds.buttons.join" | translate }}
+
+            .fund-criterias
+                .fund-criterias-label {{ "funds.labels.criteria" | translate }}
+                .fund-criteria-item
+                    .fund-criteria-item-label {{ "funds.labels.location" | translate }}
+                    .fund-criteria-item-value {{ "funds.labels.office" | translate }}
+                .fund-criteria-item
+                    .fund-criteria-item-label {{ "funds.labels.children" | translate }}
+                    .fund-criteria-item-value {{ "funds.labels.count" | translate }}
+                .fund-criteria-item
+                    .fund-criteria-item-label {{ "funds.labels.agelimit" | translate }}
+                    .fund-criteria-item-value {{ "funds.labels.age" | translate }}
+                .fund-criteria-item
+                    .fund-criteria-item-label {{ "funds.labels.income" | translate }}
+                    .fund-criteria-item-value {{ "funds.labels.amount" | translate }}
+        
+        // .block.block-show-more: a(href="#").button.button-primary {{ "funds.buttons.more" | translate }}
+
+
+contact-form 

@@ -1,0 +1,21 @@
+.app.app-container
+    menu
+    section.app.app-content
+        //information-block(text="'products.cannot_delete'" type="'danger'")
+        .card-heading
+            | {{ "products.offers" | translate }}
+            a(ng-click="$ctrl.addProduct()").link
+                em.mdi.mdi-plus-circle 
+                | {{ "products.add" | translate }}
+                |
+                span(ng-if="$ctrl.maxProductCount > 0") ({{ $ctrl.products.length }}/{{ $ctrl.maxProductCount }})
+
+        product-card(
+            ng-if="$ctrl.products.length > 0" 
+            ng-repeat="product in $ctrl.products" 
+            product="product" 
+            level="list")
+        block-empty(
+            ng-if="$ctrl.products.length == 0" 
+            text="'Er zijn momenteel geen aanbiedingen.'" 
+            button="{text: 'Aanbieding toevoegen', href: $ctrl.emptyBlockLink}")

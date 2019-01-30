@@ -1,0 +1,10 @@
+block vars
+    -var modal_shown=false
+doctype
+html(lang="en")
+    include includes/head
+    body(class=modal_shown?'modal-shown':'')
+        include includes/dev-pages
+        block content
+        include includes/footer-markup
+        include includes/scripts

@@ -1,0 +1,17 @@
+.card-section.card-section-fund
+    .card-section-actions
+        button(
+        ng-click="providerApplyFund(fund)" ng-show="!fund.applied").button.button-primary
+            | {{ "fund_card_available_provider.buttons.join" | translate }}
+        div(ng-show="fund.applied")
+            .tag.tag-warning {{ "fund_card_provider_finances.status.hold" | translate }}
+
+    .card-block.card-block-fund
+        .fund-img: img(ng-src="{{ fund.logo.sizes.thumbnail || './assets/img/placeholders/organization-thumbnail.png' }}", alt="")
+        .fund-title(ng-bind="fund.name")
+        br
+        div(ng-bind="fund.organization.name").fund-organization
+    .card-block.card-block-listing
+        .card-block-listing-label {{ "fund_card_available_provider.labels.categories" | translate }}
+        | {{ fundCategories.join(', ') }}
+        small(ng-show="fundCategories.length == 0").text-muted.small {{ "fund_card_available_provider.labels.nocategories" | translate }}

@@ -1,0 +1,17 @@
+.modal
+    .modal-backdrop(ng-click="$ctrl.cancel()")
+    .modal-content.modal-notification(ng-class="$ctrl.class")
+        .modal-close.mdi.mdi-close(ng-click="$ctrl.cancel()")
+        .modal-section
+            .text-center
+                .modal-icon(ng-if="$ctrl.icon")
+                    img(ng-src="{{ $ctrl.icon }}")
+                .title(ng-bind-html="$ctrl.title")
+                .description(ng-if="$ctrl.description" ng-bind-html="$ctrl.description")
+                .text-center(ng-if="$ctrl.subdescription")
+                    .subdescription(ng-bind-html="$ctrl.subdescription")
+
+        .modal-footer.text-center.no-border
+            button.button.button-dark(ng-if="$ctrl.showCloseBtn" ng-click="$ctrl.close()" translate="modal.buttons.close")
+            button.button.button-dark(ng-if="$ctrl.showCancelBtn" ng-click="$ctrl.cancel()" translate="modal.buttons.cancel")
+            button.button.button-primary(ng-if="$ctrl.showConfirmBtn" ng-click="$ctrl.confirm()" translate="modal.buttons.confirm")

@@ -1,0 +1,19 @@
+.app.app-container
+    menu
+    section.app.app-content
+        .card-heading 
+            span(translate="funds_my.title")  
+            span(ng-bind="' (' + $ctrl.funds.length + ')'") 
+        div(
+            ng-if="$ctrl.funds.length > 0" 
+            ng-repeat="fund in $ctrl.funds" 
+            fund-card-sponsor fund="fund" level="$ctrl.fundLevel" organization="$ctrl.organization")
+        
+        div(ng-if="$ctrl.funds.length == 0")
+            block-empty(
+                ng-if="($root.activeOrganization | hasPerm:'manage_funds')"
+                text="'Je hebt momenteel geen fondsen.'" 
+                button="{text: 'Fonds toevoegen', href: $ctrl.emptyBlockLink}")
+            block-empty(
+                ng-if="!($root.activeOrganization | hasPerm:'manage_funds')"
+                text="'Je hebt momenteel geen fondsen.'" )

@@ -1,0 +1,35 @@
+extends ../layout/layout
+block content
+    .header-splash: .splash.splash-d
+    
+    header.section.section-header: .wrapper
+        include ../layout/includes/navbar
+    
+    section.section.section-profile: .wrapper
+        .section-title My Vouchers (2)
+        
+        .block.block-profile
+            include ../layout/blocks/profile-inner
+
+            .profile-content
+                .block.block-record_categories
+                    mixin record_category_item(title, subtitle, icon)
+                        a(href="#").record_category-item
+                            .category-title=title
+                            .category-subtitle=subtitle
+                            .category-icon: img(src="./assets/img/icon-record_categories/" + icon + ".png")
+                    
+                    +record_category_item("Persoonlijk", "8 eigenschappen", "persoonlijk")
+                    +record_category_item("Medical", "12 eigenschappen", "medical")
+                    +record_category_item("Zakelijk", "6 eigenschappen", "zakelijk")
+                    +record_category_item("Relaties", "6 eigenschappen", "relaties")
+                    +record_category_item("Certificaten", "6 eigenschappen", "certificaten")
+                    +record_category_item("Anderen", "6 eigenschappen", "anderen")
+                
+                    .text-right: a(href="#").button.button-primary 
+                        em.mdi.mdi-plus
+                        | CREATE RECORD
+
+                include ../layout/blocks/empty
+
+    include ../layout/sections/contact-form 

@@ -1,0 +1,20 @@
+aside.app.app-sidebar
+    .sidebar-nav
+        mixin nav_item_icon(icon)
+            .sidebar-nav-item-icon 
+                img(src="./assets/img/menu/icon-" + icon + ".svg")
+                img(src="./assets/img/menu/icon-" + icon + "-hover.svg").hover
+                img(src="./assets/img/menu/icon-" + icon + "-active.svg").active
+
+        mixin nav_item(name, icon, sref, srefParams, ngif)
+            a(
+                ui-sref=(sref + (srefParams ? ("(" + srefParams + ")") : '')) 
+                ui-sref-active="active"
+                ng-if=ngif
+                ).sidebar-nav-item
+                .sidebar-nav-item-arrow: .mdi.mdi-menu-right
+                +nav_item_icon(icon)
+                | #{name} 
+        
+        +nav_item("Aanvragers valideren", "file_csv", 'csv-validation', false, 'true')
+        +nav_item("Openstaande aanvragen", "clock", 'validation-requests', false, '$root.appConfigs.features.validationRequests')

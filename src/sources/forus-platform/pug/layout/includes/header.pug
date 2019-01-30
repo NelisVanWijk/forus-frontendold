@@ -1,0 +1,44 @@
+header.app.app-header
+    .wrapper
+        a(ui-sref="home").header-logo: img(ng-src="./assets/img/logos/logo-{{ $root.appConfigs.client_key }}.png").header-logo-img
+
+        .header-auth(ng-if="$root.auth_user")
+            .auth-user
+                .auth-user-name {{ $root.auth_user.primary_email }}
+                .auth-user-role(
+                    ng-bind="{provider: 'Aanbieder', sponsor: 'Gemeente', validator: 'Gemeente'}[appConfigs.panel_type]")
+                img(ng-src="{{ './assets/img/placeholders/organization-thumbnail.png'}} ").auth-user-img
+                .auth-user-menu
+                    //- a(href="#").auth-user-menu-item
+                        em.mdi.mdi-account
+                        | My profile
+                    a(ui-sref="organizations-edit($root.activeOrganization)" ng-if="$root.activeOrganization | hasPerm:'manage_organization'").auth-user-menu-item
+                        em.mdi.mdi-settings
+                        | Organisatie
+                    .auth-user-menu-sep(ng-if="$root.activeOrganization.id")
+                    a(ng-click="$root.signOut()").auth-user-menu-item
+                        em.mdi.mdi-logout
+                        | Uitloggen
+
+        //- .notifications(ng-if="$root.auth_user")
+            .notifications-icon.mdi.mdi-bell
+            .notifications-menu: .notifications-menu-inner
+                .arrow-box: .arrow
+                .notifications-menu-header 
+                    | Notifications
+                    .notifications-menu-header-link 
+                        | View all
+                        em.mdi.mdi-arrow-right 
+                .notifications-menu-body.nano
+                    .nano-content
+                        mixin notification_item(icon, text, date)
+                            .notifications-menu-item
+                                img(src="./assets/img/note-icons/note-icon-" + icon + ".jpg").notifications-menu-item-icon
+                                .notifications-menu-item-text=text
+                                .notifications-menu-item-date=date
+                        
+                        +notification_item('quote', 'Payment succeeded', 'Jan 23, 12:26 AM')
+                        +notification_item('quote', 'Payment declined by customer\'s bank The bank returned the decline code do...', 'Jan 23, 12:26 AM')
+                        +notification_item('quote', 'Stripe risk evaluation: normal', 'Jan 23, 12:26 AM')
+                        +notification_item('quote', 'Lorem ipsum dolor sit amet, consectet...', 'Jan 23, 12:26 AM')
+                        +notification_item('quote', 'Lorem ipsum dolor sit amet, consectet...', 'Jan 23, 12:26 AM')

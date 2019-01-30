@@ -1,0 +1,55 @@
+.app.app-container
+    menu
+    section.app.app-content
+        .card: form(ng-submit="$ctrl.form.submit()").form
+            .card-header: .card-title {{ "organization_edit.header.title" | translate }}
+            .card-section.card-section-primary
+                .row 
+                    .col.col-xs-12
+                        .form-group.form-group-inline
+                            label.form-label &nbsp;
+                            .form-offset
+                                photo-selector(
+                                    type="organization_logo"
+                                    thumbnail="$ctrl.media.sizes.thumbnail"
+                                    select-photo="$ctrl.selectPhoto(file)")
+            .card-section.card-section-primary
+                .row 
+                    .col.col-lg-9.col-md-12
+                        .form-group.form-group-inline
+                            label.form-label {{ "organization_edit.labels.name" | translate }}
+                            input(ng-model="$ctrl.form.values.name" type="text" placeholder="Bedrijfsnaam").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.name" ng-bind="error")
+                        .form-group.form-group-inline
+                            label.form-label {{ "organization_edit.labels.bank" | translate }}
+                            input(ng-model="$ctrl.form.values.iban" type="text" placeholder="IBAN-nummer").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.iban" ng-bind="error")
+                        .form-group.form-group-inline
+                            label.form-label {{ "organization_edit.labels.mail" | translate }}
+                            input(ng-model="$ctrl.form.values.email" type="text" placeholder="E-mailadres").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.email" ng-bind="error")
+                        .form-group.form-group-inline
+                            label.form-label {{ "organization_edit.labels.phone" | translate }}
+                            input(ng-model="$ctrl.form.values.phone" type="text" placeholder="Telefoonnummer").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.phone" ng-bind="error")
+            .card-section.card-section-primary
+                .row 
+                    .col.col-lg-9.col-md-12
+                        product-categories-control(
+                            ng-model="$ctrl.form.values.product_categories" 
+                            options="$ctrl.productCategories")
+            .card-section.card-section-primary
+                .row 
+                    .col.col-lg-9.col-md-12
+                        .form-group.form-group-inline
+                            label.form-label {{ "organization_edit.labels.kvk" | translate }}
+                            input(ng-model="$ctrl.form.values.kvk" type="text" placeholder="KvK-nummer").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.kvk" ng-bind="error")
+                        .form-group.form-group-inline
+                            label.form-label {{ "organization_edit.labels.tax" | translate }}
+                            input(ng-model="$ctrl.form.values.btw" type="text" placeholder="BTW-nummer").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.btw" ng-bind="error")
+            .card-section.card-section-primary
+                .text-center
+                    button(type="button" ng-click="$ctrl.cancel()").button.button-default {{ "organization_edit.buttons.cancel" | translate }}
+                    button(type="submit").button.button-primary {{ "organization_edit.buttons.create" | translate }}

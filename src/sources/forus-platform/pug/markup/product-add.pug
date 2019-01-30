@@ -1,0 +1,38 @@
+extends ../layout/layout-markup
+block content
+    .card(class=(state=='closed'?'card-outline':'')).form
+        .card-header: .card-title Add product
+        .card-section.card-section-primary
+            .row 
+                .col.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label &nbsp;
+                        .form-offset
+                            .block.block-photo-selector
+                                .photo-img: img(src="./assets/img/placeholders/product-thumbnail.png", alt="")
+                                .photo-label Photo
+                                button.button.button-primary
+                                    em.mdi.mdi-attachment
+                                    | Verander afbeelding
+        .card-section.card-section-primary
+            .row 
+                .col.col-sm-8.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label Product name
+                        input(type="text" placeholder="Product name").form-control
+                    .form-group.form-group-inline
+                        label.form-label Product description
+                        input(type="text" placeholder="Product description").form-control
+                    .form-group.form-group-inline
+                        label.form-label Price
+                        input(type="text" placeholder="Price").form-control
+                    .form-group.form-group-inline
+                        label.form-label Old price
+                        input(type="text" placeholder="Old price").form-control
+                    .form-group.form-group-inline
+                        label.form-label Total available
+                        input(type="text" placeholder="Total available").form-control
+        .card-section.card-section-primary
+            .text-center
+                button.button.button-default Annuleren
+                button.button.button-primary Bevestig

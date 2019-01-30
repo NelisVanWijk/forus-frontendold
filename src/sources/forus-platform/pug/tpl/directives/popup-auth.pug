@@ -1,0 +1,180 @@
+.popup.popup-auth(ng-show="popup.show")
+    .popup-backdrop(ng-click="popup.close()")
+
+    //- Choose Sign In type
+    .popup-content(ng-show="popup.screen == 'choose'")
+        .popup-close.mdi.mdi-close(ng-click="popup.close()")
+
+        .popup-title {{ "popup_auth.header.title" | translate }}
+        .popup-subtitle {{ "popup_auth.header.subtitle" | translate }}
+
+        .block.block-auth-type
+            .auth_type-item: .auth_type-item-inner(ng-click="popup.screen = 'sign_in-qr'")
+                .auth_type-icon: img(src="./assets/img/icon-login-type/icon_login-type_qr.png")
+                .auth_type-name {{ "popup_auth.buttons.qrcode" | translate }}
+            .auth_type-item: .auth_type-item-inner(ng-click="popup.screen = 'sign_in-email'")
+                .auth_type-icon: img(src="./assets/img/icon-login-type/icon_login-type_email.png")
+                .auth_type-name {{ "popup_auth.buttons.mail" | translate }}
+
+        .popup-footer
+        //    .footer-text {{ "popup_auth.labels.timelimit" | translate }}
+            //- .popup-footer-links
+                a(href="#").popup-footer-link 
+                    span »
+                    | LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT
+                a(href="#").popup-footer-link
+                    span »
+                    | EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA
+                a(href="#").popup-footer-link
+                    span »
+                    | LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT.
+
+    //- Sign In by qr-code
+    .popup-content(ng-show="popup.screen == 'sign_in-qr'")
+        .popup-close.mdi.mdi-close(ng-click="popup.close()")
+
+        .popup-title {{ "popup_auth.labels.join" | translate }}
+        .popup-subtitle {{ "popup_auth.labels.scancode" | translate }}
+
+        .block.block-auth-qr-code
+            //- .qr_code: img(src="./assets/img/qr-code.svg")
+            .qr_code#auth_qrcode
+
+        .popup-footer
+        //    .footer-text {{ "popup_auth.labels.timelimit" | translate }}
+            //- .popup-footer-links
+                a(href="#").popup-footer-link 
+                    span »
+                    | LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT
+                a(href="#").popup-footer-link
+                    span »
+                    | EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA
+                a(href="#").popup-footer-link
+                    span »
+                    | LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT.
+
+    //- Sign In by email
+    .popup-content(ng-show="popup.screen == 'sign_in-email'")
+        .popup-close.mdi.mdi-close(ng-click="popup.close()")
+
+        .popup-title {{ "popup_auth.labels.join" | translate }}
+        .popup-subtitle {{ "popup_auth.labels.link" | translate }}
+
+        form.form(ng-submit="signInEmailForm.submit()")
+            .form-group
+                .form-label {{ "popup_auth.input.mail" | translate }}
+                input(ng-model="signInEmailForm.values.primary_email" type="email" placeholder="E-mail").form-control
+                .form-error(ng-repeat="error in signInEmailForm.errors.primary_email" ng-bind="error")
+            .form-group
+            .form-group: button(type="submit").button.button-primary.button-wide {{ "popup_auth.buttons.submit" | translate }}
+
+        .popup-footer
+        //    .footer-text {{ "popup_auth.labels.timelimit" | translate }}
+            //- .popup-footer-links
+                a(href="#").popup-footer-link 
+                    span »
+                    | LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT
+                a(href="#").popup-footer-link
+                    span »
+                    | EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA
+                a(href="#").popup-footer-link
+                    span »
+                    | LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT.
+    
+    //- Sign In email sent
+    .popup-content(ng-show="popup.screen == 'sign_in-email-sent'")
+        .popup-title {{ "popup_auth.labels.join" | translate }}
+
+        .form-group
+            .popup-subtitle.text-primary
+                br
+                br
+                | {{ "popup_auth.notifications.link" | translate }}
+                br
+                br
+        .form-group.text-center: button(ng-click="popup.close()").button.button-primary {{ "popup_auth.buttons.submit" | translate }}
+
+    //- Sign Up by code
+    .popup-content(ng-show="popup.screen == 'sign_up-code'")
+        .popup-close.mdi.mdi-close(ng-click="popup.close()")
+
+        .popup-title {{ "popup_auth.labels.join" | translate }}
+        .popup-subtitle {{ "popup_auth.labels.mail" | translate }}
+
+        form.form(ng-submit="signUpForm.submit()")
+            .form-group
+                .form-label {{ "popup_auth.input.mail" | translate }}
+                input(ng-model="signUpForm.values.records.primary_email" type="email" placeholder="E-mail").form-control.form-control
+                .form-error(ng-repeat="error in signUpForm.errors['records.primary_email']" ng-bind="error")
+            //- .form-group
+                .form-label Pin code
+                input(ng-model="signUpForm.values.pin_code" type="text" placeholder="Pin Code").form-control
+                .form-error(ng-repeat="error in signUpForm.errors.pin_code" ng-bind="error")
+            .form-group
+                .form-label {{ "popup_auth.input.code" | translate }}
+                input(ng-model="signUpForm.values.code" type="text" placeholder="{{ 'popup_auth.input.code' | translate}}").form-control
+                .form-error(ng-repeat="error in signUpForm.errors.code" ng-bind="error")
+            .form-group
+            .form-group: button(type="submit").button.button-primary.button-wide {{ "popup_auth.buttons.submit" | translate }}
+
+        .popup-footer
+        //    .footer-text {{ "popup_auth.labels.warning" | translate }}
+            //- .popup-footer-links
+                a(href="#").popup-footer-link 
+                    span »
+                    | LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT
+                a(href="#").popup-footer-link
+                    span »
+                    | EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA
+                a(href="#").popup-footer-link
+                    span »
+                    | LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT.
+
+    //- Activate code
+    .popup-content(ng-show="popup.screen == 'activate-code'")
+        .popup-close.mdi.mdi-close(ng-click="popup.close()")
+
+        .popup-title {{ "popup_auth.labels.join" | translate }}
+        .popup-subtitle {{ "popup_auth.labels.code" | translate }}
+
+        form.form(ng-submit="activateCodeForm.submit()")
+            .form-group
+                .form-label {{ "popup_auth.input.code" | translate }}
+                input(ng-model="activateCodeForm.values.code" type="text" placeholder="Activation code").form-control
+                .form-error(ng-if="activateCodeForm.errors.code") {{ "popup_auth.notifications.invalid" | translate }}
+            .form-group
+            .form-group: button(type="submit").button.button-primary.button-wide {{ "popup_auth.buttons.submit" | translate }}
+
+        .popup-footer
+        //    .footer-text {{ "popup_auth.labels.timelimit" | translate }}
+            //- .popup-footer-links
+                a(href="#").popup-footer-link 
+                    span »
+                    | LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT
+                a(href="#").popup-footer-link
+                    span »
+                    | EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA
+                a(href="#").popup-footer-link
+                    span »
+                    | LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT.
+
+    .popup-content(ng-show="popup.screen == 'authorize-pin_code'")
+        .popup-close.mdi.mdi-close(ng-click="popup.close()")
+
+        .popup-title {{ "popup_auth.labels.join" | translate }}
+        .popup-subtitle {{ "popup_auth.labels.mobilecode" | translate }}
+
+        form.form(ng-submit="authorizePincodeForm.submit()")
+            .form-group
+                div(ng-if="authorizePincodeForm" pincode-control ng-model="authorizePincodeForm.values.auth_code")
+                .text-center.form-error(ng-repeat="error in authorizePincodeForm.errors.auth_code track by $index" ng-bind="error")
+                br
+            .form-group: button(type="submit").button.button-primary.button-wide {{ "popup_auth.buttons.submit" | translate }}
+
+    .popup-content(ng-show="popup.screen == 'authorize-pin_code-done'")
+        .popup-close.mdi.mdi-close(ng-click="popup.close()")
+
+        .popup-title {{ "popup_auth.labels.join" | translate }}
+        .popup-subtitle {{ "popup_auth.notifications.confirmation" | translate }}
+
+        .text-center: button(ng-click="popup.close()").button.button-primary {{ "popup_auth.notifications.confirmation" | translate }}

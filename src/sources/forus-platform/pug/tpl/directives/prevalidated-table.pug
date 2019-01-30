@@ -1,0 +1,29 @@
+div
+    .card(
+        ng-if="prevalidations").form
+        .card-header: .row
+            .col.col-sm-8.col-xs-12: .card-title(translate="prevalidated_table.header.title")
+            .col.col-sm-4.col-xs-12: .form: input(ng-model="filter.q" type="text" placeholder="Zoeken").form-control
+        .card-section: .card-block.card-block-table: .table-wrapper
+            table.table
+                tr
+                    th(translate="prevalidated_table.labels.code")
+                    th(ng-repeat="record in prevalidations.data[0].records" ng-if="record.key.indexOf('_eligible') == -1" ng-bind="typesByKey[record.key]")
+                    th.text-right(translate="prevalidated_table.status.active")
+                tr(ng-repeat="row in prevalidations.data")
+                    td(ng-bind="row.uid")
+                    td(ng-repeat="record in row.records"  ng-if="record.key.indexOf('_eligible') == -1" ng-bind="record.value")
+                    td.text-right: .tag.tag-sm(
+                        ng-class="[row.state == 'pending' ? 'tag-default' : 'tag-success']"
+                        ng-bind="row.state == 'pending' ? 'Nee' : 'Ja'")
+
+        .card-section(ng-show="prevalidations.meta.last_page > 1")
+            paginator(meta="prevalidations.meta" filters="filter" count-buttons="5" on-page-change="onPageChange(query)")
+        
+        // .card-section(ng-show="prevalidations.meta.last_page > 1")
+            paginator-loader(meta="prevalidations.meta" filters="filter" on-reset="onReset(query)" on-load-more="onLoadMore(query)")
+
+        .card-section: .table-pagination
+            button(ng-click="exportList()").button.button-primary.pull-right
+                em.mdi.mdi-download  
+                span(translate="prevalidated_table.buttons.export")

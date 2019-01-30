@@ -1,0 +1,11 @@
+block vars
+    -var modal_shown=false
+doctype
+html(lang="en")
+    include includes/head
+    body(class=modal_shown?'modal-shown':'')
+        include includes/dev-pages
+        .landing-root
+            block content
+            include includes/footer-landing
+            include includes/scripts

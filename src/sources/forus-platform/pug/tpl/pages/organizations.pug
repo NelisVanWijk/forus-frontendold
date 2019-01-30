@@ -1,0 +1,16 @@
+.wrapper(ng-show="$ctrl.showOrganizations"): .block.block-choose-organization
+    .organization-heading {{ "organizations.header.title" | translate }}
+    a(ui-sref="funds" ng-show="$root.appConfigs.panel_type == 'sponsor'").organization-item
+        .organization-item-inner
+            .organization-logo: img(src="./assets/img/placeholders/organization-thumbnail.png")
+        .organization-name {{ "organizations.labels.without" | translate }}
+
+    div(ng-click="$ctrl.chooseOrganization(organization)" ng-repeat="organization in $ctrl.organizations").organization-item
+        .organization-item-inner
+            .organization-logo: img(ng-src="{{ organization.logo.sizes.thumbnail || './assets/img/placeholders/organization-thumbnail.png' }}")
+        .organization-name(ng-bind="organization.name")
+
+    div(ui-sref="organizations-create").organization-item
+        .organization-item-inner
+            .organization-logo.organization-logo-mdi: .mdi.mdi-plus
+        .organization-name {{ "organizations.buttons.add" | translate }}

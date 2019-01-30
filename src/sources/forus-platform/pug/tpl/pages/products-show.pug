@@ -1,0 +1,54 @@
+.app.app-container
+    menu
+    section.app.app-content
+        product-card(product="$ctrl.product" level="show")
+        
+        // .card
+            .card-header: .card-title {{ "product_show.header.title" | translate }}
+            .card-section
+                .card-block.card-block-table
+                    .table-wrapper
+                        table.table
+                            tr
+                                th {{ "product_show.labels.price" | translate }}
+                                th {{ "product_show.labels.description" | translate }}
+                                th {{ "product_show.labels.customer" | translate }}
+                                th {{ "product_show.labels.date" | translate }}
+                                th 
+                            mixin row()
+                                tr
+                                    td: a(href="./transaction.html").text-primary-light €19000.00
+                                    td: a(href="./transaction.html") 
+                                        | Auction Payment -  
+                                        br
+                                        | ch_1BpcoqBQO0R3BKRwYEyl1jd9
+                                    td: a(href="#").text-primary-light Harris s Vernick
+                                    td 2018/01/29 14:37:08
+                                    td: .hover-actions
+                                        em.mdi.mdi-dots-horizontal
+                                        .hover-actions-menu
+                                            .hover-actions-label {{ "product_show.labels.action" | translate }}
+                                            .hover-actions-item {{ "product_show.labels.refund" | translate }}
+                                            .hover-actions-item {{ "product_show.labels.chargeid" | translate }}
+                                            .hover-actions-sep
+                                            .hover-actions-label {{ "product_show.labels.connections" | translate }}
+                                            .hover-actions-item {{ "product_show.labels.details" | translate }}
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+            .card-section
+                .table-pagination
+                    .table-pagination-counter {{ "product_show.labels.results" | translate }}
+                    .table-pagination-navigation
+                        button(disabled).button.button-default {{ "product_show.buttons.previous" | translate }}
+                        button.button.button-default {{ "product_show.paginator.one" | translate }}
+                        button.button.button-default {{ "product_show.paginator.two" | translate }}
+                        button.button.button-primary {{ "product_show.paginator.three" | translate }}
+                        button(disabled).button.button-default {{ "product_show.buttons.next" | translate }}

@@ -1,0 +1,18 @@
+.block.block-navbar
+    a(href="./index.html").navbar-logo
+        img(src="./assets/img/landing/forus-logo-normal.svg")
+        img(src="./assets/img/landing/forus-logo-hover.svg").hover
+    nav.navbar-list
+        a(href="#").navbar-item GEMEENTE
+        a(href="#").navbar-item AANBIEDER
+        a(href="#").navbar-item ME
+    .block.block-auth
+        //- .auth-in(ng-if="$root.auth_user")
+            .button.button-default(ui-sref="organizations")
+                em.mdi.mdi-account
+                | Panel
+        
+        .auth-out(ng-if="!$root.auth_user")
+            .button.button-default(ng-click="$root.popups.auth.open('choose')")
+                em.mdi.mdi-account
+                | Login

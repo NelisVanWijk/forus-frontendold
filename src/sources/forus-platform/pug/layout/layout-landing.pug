@@ -1,0 +1,10 @@
+block vars
+    -var modal_shown=false
+doctype
+html(lang="en")
+    include includes/head
+    body(ng-cloak ng-controller="BaseController" class=modal_shown?'modal-shown':'')
+        .landing-root
+            block content
+            include includes/footer-landing
+            include includes/scripts

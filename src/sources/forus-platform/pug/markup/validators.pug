@@ -1,0 +1,50 @@
+extends ../layout/layout-markup
+block content
+    .card(class=(state=='closed'?'card-outline':'')).form
+        .card-header: .row
+            .col.col-sm-6
+                .card-title 
+                    | Validators (8)
+            .col.col-sm-3
+                .card-title: button.button.button-primary.pull-right
+                    .em.mdi.mdi-plus-circle
+                    | Add new validator
+            .col.col-sm-3.form
+                input(type="text" placeholder="Search").form-control
+        .card-section
+            .card-block.card-block-table
+                .table-wrapper
+                    table.table
+                        tr
+                            th E-mail
+                            th Address
+                            th Group
+                            th.text-right Actions
+                        mixin row()
+                            tr
+                                td: a(href="./validator.html").text-primary-light dan.ghimpu.gmail.com
+                                td: a(href="./transaction.html") 0x34565345m4kn4mjn54j
+                                td Lorem ipsum
+                                td.text-right
+                                    a(href="#").text-primary Deactivate 
+                                    | &nbsp;
+                                    a(href="#").text-danger Delete
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+        .card-section
+            .table-pagination
+                .table-pagination-counter 8 results
+                .table-pagination-navigation
+                    button(disabled).button.button-default Prev
+                    button.button.button-default 1
+                    button.button.button-default 2
+                    button.button.button-primary 3
+                    button(disabled).button.button-default Next

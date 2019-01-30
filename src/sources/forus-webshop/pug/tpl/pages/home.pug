@@ -1,0 +1,140 @@
+.header-splash: .splash
+
+header.section.section-header.section-header-landing: .wrapper
+    .heade-sprite
+    top-navbar
+
+    .header-content
+        .header-title {{ "home.header.forus.title" | translate }}
+        .header-description(ng-bind="'home.header.forus.subtitle' | translate")
+        a(scroll-to="#steps" translate="home.header.forus.button").button.button-primary 
+
+block-products(
+    ng-if="$root.appConfigs.features.products.list"
+    sample="true" 
+    products="$ctrl.products" 
+    product-categories="$ctrl.productCategories")
+
+section.section.section-map: .wrapper
+    .block.block-map
+        .block-content
+            .block-title {{ "home.map.title" | translate }}
+            .block-description(ng-bind="'home.map.subtitle' | translate")
+            button(ng-click="$ctrl.showPopupOffices()" translate="home.map.button").button.button-primary
+
+section.section.section-steps#steps: .wrapper
+    .section-splash
+    .section-sprite
+    .section-title {{ "home.guide.forus.title" | translate }}
+    .steps
+        .step-item: .step-item-content
+            h4 {{ "home.guide.forus.stepone" | translate }}
+            p {{ "home.guide.forus.one" | translate }}
+        .step-item: .step-item-content
+            h4 {{ "home.guide.forus.steptwo" | translate }}
+            p {{ "home.guide.forus.two" | translate }}
+        .step-item: .step-item-content
+            h4 {{ "home.guide.forus.stepthree" | translate }}
+            p {{ "home.guide.forus.three" | translate }}
+        .step-item: .step-item-content
+            h4 {{ "home.guide.forus.stepfour" | translate }}
+            p {{ "home.guide.forus.four" | translate }}
+        .step-item: .step-item-content
+            h4 {{ "home.guide.forus.stepfive" | translate }}
+            p {{ "home.guide.forus.five" | translate }}
+
+        .step-item
+
+section.section.section-blogs(ng-if="$root.appConfigs.features.blog"): .wrapper
+    .section-title {{ "home.blog.forus.title" | translate }}
+    
+    .block.block-blogs
+        mixin blog_item(nth)
+            .blog-item: a(href="#").blog-item-inner
+                .blog-image: img(src="./assets/img/blog-image-" + nth + ".jpg")
+                .blog-name {{ "home.blog.forus.name" | translate }}
+                .blog-read-more 
+                    | {{ "home.blog.more" | translate }}
+                    em.mdi.mdi-arrow-right
+        +blog_item(1)
+        +blog_item(2)
+        +blog_item(3)
+    .block.block-show-more: a(href="#").button.button-primary {{ "home.blog.button" | translate }}
+    
+section.section.section-faq: .wrapper
+    .section-splash
+    .section-title {{ "home.faq.forus.title" | translate }}
+    .faq(collapse)
+        mixin faq_item(title, content, active)
+            .faq-item(class=active?'active':'' collapse-item)
+                .faq-item-header(collapse-header)
+                    | #{title}
+                    .faq-item-chevron-down.mdi.mdi-chevron-down
+                    .faq-item-chevron-up.mdi.mdi-chevron-up
+                .faq-item-content(collapse-content)=content
+
+        +faq_item(
+            "{{ 'home.faq.forus.faq_one' | translate }}",
+            "{{ 'home.faq.forus.one' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.forus.faq_two' | translate }}",
+            "{{ 'home.faq.forus.two' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.forus.faq_three' | translate }}",
+            "{{ 'home.faq.forus.three' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.forus.faq_four' | translate }}",
+            "{{ 'home.faq.forus.four' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.forus.faq_five' | translate }}",
+            "{{ 'home.faq.forus.five' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.forus.faq_six' | translate }}",
+            "{{ 'home.faq.forus.six' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.forus.faq_seven' | translate }}",
+            "{{ 'home.faq.forus.seven' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.forus.faq_eight' | translate }}",
+            "{{ 'home.faq.forus.eight' | translate }}")
+            
+        +faq_item(
+            "{{ 'home.faq.forus.faq_nine' | translate }}",
+            "{{ 'home.faq.forus.nine' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.forus.faq_ten' | translate }}",
+            "{{ 'home.faq.forus.ten' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.forus.faq_eleven' | translate }}",
+            "{{ 'home.faq.forus.eleven' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.forus.faq_twelve' | translate }}",
+            "{{ 'home.faq.forus.twelve' | translate }}")
+
+        +faq_item(
+            "{{ 'home.faq.forus.faq_thirteen' | translate }}",
+            "{{ 'home.faq.forus.thirteen' | translate }}")
+
+        //+faq_item(
+            "{{ 'home.faq.forus.faq_fourteen' | translate }}",
+            "{{ 'home.faq.forus.fourteen' | translate }}")
+
+        //+faq_item(
+            "{{ 'home.faq.forus.faq_fifteen' | translate }}",
+            "{{ 'home.faq.forus.fifteen' | translate }}")
+
+        //+faq_item(
+            "{{ 'home.faq.forus.faq_sixteen' | translate }}",
+            "{{ 'home.faq.forus.sixteen' | translate }}") 
+
+contact-form 

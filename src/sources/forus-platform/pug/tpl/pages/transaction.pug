@@ -1,0 +1,58 @@
+.app.app-container
+    menu
+    section.app.app-content
+        .card
+            .card-section
+                p
+                    strong €{{ $ctrl.transaction.amount | to_fixed:2 }}
+                    strong.text-primary.pull-right {{ "financial_dashboard_transaction.labels.payment" | translate }}
+                //- button.button.button-primary
+                    em.mdi.mdi-plus-circle 
+                    | Add note
+
+            //- .card-section.card-section-primary
+                .card-block.card-block-notes
+                    .note-form.form
+                        img(src="./assets/img/note-icons/note-icon-quote.jpg").note-item-icon
+                        textarea(rows="4").form-control
+                        .note-form-actions
+                            .note-form-desc
+                                .note-item-text @mentio &nbsp;&nbsp;&nbsp; *bold** &nbsp;&nbsp;&nbsp; _italic_
+                                .note-item-sign May 14, 11:47 AM by info@fineartroom.nl
+                            .note-form-buttons
+                                button.button.button-default Annuleren
+                                button.button.button-primary Save changes
+
+            .card-section(ng-if="$ctrl.transaction.notes.length != 0")
+                .card-block.card-block-notes
+                    .note-item(ng-repeat='note in $ctrl.transaction.notes')
+                        img(ng-src="/assets/img/note-icons/note-icon-{{ note.icon }}.jpg").note-item-icon
+                        .note-item-text(ng-bind="note.message")
+                        .note-item-sign(ng-bind="note.created_at_locale")
+                        //- .hover-actions
+                            em.mdi.mdi-dots-horizontal
+                            .hover-actions-menu
+                                .hover-actions-label ACTION
+                                .hover-actions-item Refund charge
+                                .hover-actions-item Copy charge ID to clipboard
+                                .hover-actions-sep
+                                .hover-actions-label CONNECTIONS
+                                .hover-actions-item View payment details
+
+        .card
+            .card-header: .card-title {{ "financial_dashboard_transaction.labels.details" | translate }}
+            .card-section
+                .card-block.card-block-keyvalue
+                    .keyvalue-item
+                        .keyvalue-key {{ "financial_dashboard_transaction.labels.id" | translate }}
+                        .keyvalue-value {{ $ctrl.transaction.payment_id }}
+                    .keyvalue-item
+                        .keyvalue-key {{ "financial_dashboard_transaction.labels.statement" | translate }}
+                        .keyvalue-value {{ $ctrl.transaction.organization.name }}
+                    .keyvalue-item
+                        .keyvalue-key {{ "financial_dashboard_transaction.labels.bunq" | translate }}
+                        .keyvalue-value {{ "financial_dashboard_transaction.labels.fee" | translate }}
+                    .keyvalue-item
+                        .keyvalue-key {{ "financial_dashboard_transaction.labels.date" | translate }}
+                        .keyvalue-value {{ $ctrl.transaction.created_at_locale }}
+                    

@@ -1,0 +1,24 @@
+.app.app-container
+    menu
+    section.app.app-content
+        .card
+            .card-header: .card-title(
+                ng-bind="'Medewerkers (' + $ctrl.employees.length + ')'")
+            .card-section(ng-if="$ctrl.employees.length > 0"): .card-block.card-block-table: .table-wrapper: table.table
+                tr
+                    th(translate="organization_employees.labels.email")
+                    th(translate="organization_employees.labels.roles")
+                    th(translate="organization_employees.labels.actions").text-right
+
+                tr(ng-repeat="employee in $ctrl.employees")
+                    td(ng-bind="employee.email").text-primary-light
+                    td(ng-bind="employee.rolesList").ellipsis
+                    td.text-right
+                        a(ng-click="$ctrl.editEmployee(employee)" translate="organization_employees.buttons.adjust").text-primary-light
+                        | &nbsp;
+                        a(ng-click="$ctrl.deleteEmployee(employee)" translate="organization_employees.buttons.delete").text-danger
+
+            .card-section.text-center
+                button(ng-click="$ctrl.createEmployee()").button.button-default
+                    em.mdi.mdi-plus-circle 
+                    span(translate="organization_employees.buttons.add")

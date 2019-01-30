@@ -1,0 +1,53 @@
+.app.app-container
+    menu
+    section.app.app-content
+        .card: form(ng-submit="$ctrl.form.submit()").form
+            .card-header: .card-title {{ "funds_edit.header.title" | translate }}
+            .card-section.card-section-primary
+                .row 
+                    .col.col-xs-12
+                        .form-group.form-group-inline
+                            label.form-label.hidden-md &nbsp;
+                            .form-offset
+                                photo-selector(
+                                    type="fund_logo"
+                                    thumbnail="$ctrl.media.sizes.thumbnail"
+                                    select-photo="$ctrl.selectPhoto(file)")
+            .card-section.card-section-primary
+                .row 
+                    .col.col-lg-9.col-md-12
+                        .form-group.form-group-inline
+                            label.form-label {{ "funds_edit.labels.name" | translate }}
+                            input(ng-model="$ctrl.form.values.name" type="text" placeholder="Naam").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.name" ng-bind="error")
+                        .form-group.form-group-inline
+                            label.form-label {{ "funds_edit.labels.status" | translate }}
+                            select(
+                                ng-options="state.value as state.name for state in $ctrl.fundStates" 
+                                ng-model="$ctrl.form.values.state"
+                                placeholder="Status").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.state" ng-bind="error")
+            .card-section.card-section-primary
+                .row 
+                    .col.col-lg-9.col-md-12
+                        .form-group.form-group-inline
+                            label.form-label {{ "funds_edit.labels.start" | translate }}
+                            datepicker(date-format="yyyy-MM-dd" datepicker-mobile="").form-control
+                                input(ng-model="$ctrl.form.values.start_date" type="text" placeholder="dd.mm.jjjj").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.start_date" ng-bind="error")
+                        .form-group.form-group-inline
+                            label.form-label {{ "funds_edit.labels.end" | translate }}
+                            datepicker(date-format="yyyy-MM-dd" datepicker-mobile="").form-control
+                                input(ng-model="$ctrl.form.values.end_date" type="text" placeholder="dd.mm.jjjj").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.end_date" ng-bind="error")
+
+            .card-section.card-section-primary
+                .row 
+                    .col.col-lg-9.col-md-12
+                        product-categories-control(
+                            ng-model="$ctrl.form.values.product_categories" 
+                            options="$ctrl.productCategories")
+            .card-section.card-section-primary
+                .text-center
+                    button(type="button" ng-click="$ctrl.cancel()").button.button-default {{ "funds_edit.buttons.cancel" | translate }}
+                    button(type="submit").button.button-primary {{ "funds_edit.buttons.confirm" | translate }}

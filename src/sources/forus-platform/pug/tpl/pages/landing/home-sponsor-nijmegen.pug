@@ -1,0 +1,87 @@
+//.header-splash: .splash
+    
+header.section.section-header: .wrapper
+    landing-navbar
+    
+    .header-body
+        .header-content
+            .header-title Gemeente Nijmegen. Meedoen regeling.
+            .header-description Dit is het start scherm om jezelf aan te melden op het gemeentelijke dashboard.
+        //.header-sprite(style="background-image: url('./assets/img/landing/header-sprite-sponsor.png')")
+        //.block.block-cards
+            .card-item: .card-item-inner
+                .card-icon: img(src="./assets/img/landing/icon-cards/icon-card-money.png")
+                .card-content
+                    .card-title(translate="home_sponsor.subject.title")
+                    .card-description(translate="home_sponsor.header.description")
+            .card-item: .card-item-inner
+                .card-icon: img(src="./assets/img/landing/icon-cards/icon-card-wallet.png")
+                .card-content
+                    .card-title(translate="home_sponsor.subject.paragraph")
+                    .card-description(translate="home_sponsor.subject.paragraphtwo")
+
+//section.section.section-flow: .wrapper
+    .section-title(translate="home_sponsor.guide.title")
+    .section-description(translate="home_sponsor.guide.join")
+    img(src="./assets/img/landing/forus-flow-sponsor.png").section-scheme
+    .block.block-show-more: a(href="../sponsor/#!/sign-up" translate="home_sponsor.guide.button").button.button-primary
+
+//section.section.section-faq: .wrapper
+    .section-splash
+    .section-title Veel gestelde vragen
+    .faq(collapse)
+        mixin faq_item(title, content, active)
+            .faq-item(class=active?'active':'' collapse-item)
+                .faq-item-header(collapse-header)
+                    | #{title}
+                    .faq-item-chevron-down.mdi.mdi-chevron-down
+                    .faq-item-chevron-up.mdi.mdi-chevron-up
+                .faq-item-content(collapse-content)=content
+
+        +faq_item(
+            "Ik weet niet hoe ik moet inloggen; hoe de activatiecode werkt.",
+            "In de brief staat uw activatiecode. Die code vult u in op de website onder de knop activatie-code. Daana u ontvangt u een e-mail met uw QR-code")
+
+        +faq_item(
+            "Ik ben mijn QR-code kwijt. Wat moet ik doen?",
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+        +faq_item(
+            "Hoe kan ik zien hoe hoog mijn budget nog is?",
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+        +faq_item(
+            "Kan ik iets wat ik gekocht heb ruilen/retour brengen?",
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+        +faq_item(
+            "Moet ik mijn budget in 1x besteden?",
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+        +faq_item(
+            "Kan ik iets kopen bij een andere winkelier die niet op de website staat?",
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+        +faq_item(
+            "Ik heb nog een kind gekregen. Kom ik in aanmerking voor een hoger budget?",
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+        +faq_item(
+            "Hoe kom ik in aanmerking voor het kindpakket?",
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum deleniti natus quibusdam non? Alias sed, voluptatum distinctio dolorum itaque natus vero fugiat. Odit sed quas blanditiis natus? Et quibusdam harum rem ut!")
+
+//- section.section.section-blogs: .wrapper
+    .block.block-blogs
+        mixin blog_item(nth)
+            .blog-item: a(href="#").blog-item-inner
+                .blog-image: img(src="./assets/img/landing/blog-image-" + nth + ".jpg")
+                .blog-name The only thing worse than being blind is having sight but no vision.
+                .blog-read-more 
+                    | Read more 
+                    em.mdi.mdi-arrow-right
+        +blog_item(1)
+        +blog_item(2)
+        +blog_item(3)
+        .block.block-show-more: .wrapper: a(href="#").button.button-primary SHOW MORE
+
+//- landing-contact-form

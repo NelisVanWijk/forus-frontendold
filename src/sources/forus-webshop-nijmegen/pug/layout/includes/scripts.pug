@@ -1,0 +1,45 @@
+- var src_prefix = (qdt_c.platform.env_data.html5ModeEnabled?env_data.html5Mode.basePath:'');
+
+//- add qdt config object to javascript
+script.
+    var env_data = !{JSON.stringify(qdt_c.platform.env_data)};
+
+script(src=src_prefix + "assets/dist/babel-polyfill/polyfill.min.js")
+
+//- jquery
+if (qdt_c.platform.libs.jquery)
+    script(src=src_prefix + "assets/dist/jquery/jquery.min.js")
+
+//- underscore
+if (qdt_c.platform.libs.underscore)
+    script(src=src_prefix + "assets/dist/underscore/underscore-min.js")
+
+//- underscore.string
+if (qdt_c.platform.libs['underscore.string'])
+    script(src=src_prefix + "assets/dist/underscore.string/underscore.string.min.js")
+
+//- bootstrap 3
+if (qdt_c.platform.libs.bootstrap_3)
+    script(src=src_prefix + "assets/dist/bootstrap/js/bootstrap.min.js")
+
+//- angular
+if (qdt_c.platform.libs.angular)
+    script(src=src_prefix + "assets/dist/angular/angular.min.js")
+    script(src=src_prefix + "assets/dist/angular-datepicker/angular-datepicker.min.js")
+    script(src=src_prefix + "assets/dist/angular-translate/angular-translate.min.js")
+    script(src=src_prefix + "assets/dist/angular-sanitize/angular-sanitize.min.js")
+    script(src=src_prefix + "assets/dist/angular-cookies/angular-cookies.min.js")
+    script(src=src_prefix + "assets/dist/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js")
+    script(src=src_prefix + "assets/dist/angular-translate-storage-local/angular-translate-storage-local.min.js")
+    script(src=src_prefix + "assets/dist/uirouter/angular-ui-router.min.js")
+
+script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnxHUfMITcOpEZBqjz2iLS1wZNvf_bCzo&language=nl")
+
+script(src=src_prefix + "./assets/dist/nanoscroller/js/jquery.nanoscroller.js")
+
+script(src=src_prefix + "assets/dist/qrcodejs/qrcode.js")
+script(src=src_prefix + "assets/dist/papaparse/papaparse.min.js")
+script(src=src_prefix + "assets/dist/file-saver/FileSaver.min.js")
+
+//- custom script
+script(src=src_prefix + "assets/js/app.js")

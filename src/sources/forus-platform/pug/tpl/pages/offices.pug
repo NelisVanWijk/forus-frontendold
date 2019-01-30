@@ -1,0 +1,83 @@
+.app.app-container
+    menu
+    section.app.app-content
+        .card
+            .card-section
+                .card-section-actions
+                    a(ng-if="$ctrl.organization | hasPerm:'manage_organization'" ui-sref="organizations-edit($ctrl.organization)").button.button-default
+                        em.mdi.mdi-pen
+                        span(translate="offices.buttons.adjust")
+                    a(ng-if="$ctrl.organization | hasPerm:'manage_offices'" ui-sref="offices-create({organization_id: $ctrl.organization.id})").button.button-primary
+                        em.mdi.mdi-plus-circle 
+                        span(translate="offices.buttons.add")
+                
+                .card-block.card-block-provider
+                    .provider-img: img(
+                        ng-src="{{ $ctrl.organization.logo.sizes.thumbnail || './assets/img/placeholders/organization-thumbnail.png' }}")
+                    a(
+                        ui-sref="organizations-edit($ctrl.organization)" 
+                        ng-bind="$ctrl.organization.name").provider-title
+                    br
+                    .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                        .card-block-listing-label(translate="offices.labels.mail")
+                        span.text-primary-light(ng-bind="$ctrl.organization.email")
+                .card-block.card-block-listing
+                    .card-block-listing-label(translate="offices.labels.categories")
+                    span(ng-bind="$ctrl.fundCategories.join(', ')")
+                    small(ng-show="$ctrl.fundCategories.length == 0").text-muted.small No categories
+
+            mixin keyvalue_item_horizontal(key, value)
+                .keyvalue-item
+                    .keyvalue-key(ng-bind=key)
+                    .keyvalue-value(
+                        ng-class="{'text-muted':!" + value + "}"
+                        ng-bind=(value + " ? " + value + " : " + "'Geen data'"))
+
+            .card-section.card-section-primary
+                .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+                    +keyvalue_item_horizontal("'KVK'", "$ctrl.organization.kvk")
+                    +keyvalue_item_horizontal("'BTW'", "$ctrl.organization.btw")
+                    +keyvalue_item_horizontal("'IBAN'", "$ctrl.organization.iban")
+                    
+        .card-heading(ng-if="$ctrl.offices") 
+            span(translate="offices.labels.offices") 
+            span(ng-bind="'(' + $ctrl.offices.length + ')'") 
+
+        .card(ng-if="$ctrl.offices" ng-repeat="office in $ctrl.offices")
+            .card-section
+                .card-section-actions
+                    a(ui-sref="offices-edit(office)").button.button-default
+                        em.mdi.mdi-pen  
+                        span(translate="offices.buttons.adjust")
+                    a(
+                        ng-if="office.lat && office.lon"
+                        href="https://www.google.com/maps/place/{{ office.lat }},{{ office.lon }}" 
+                        target="_blank").button.button-primary
+                        em.mdi.mdi-map-marker  
+                        span(translate="offices.buttons.map")
+                        
+                .card-block.card-block-provider
+                    .provider-img: img(ng-src="{{ office.photo.sizes.thumbnail || './assets/img/placeholders/office-thumbnail.png' }}")
+                    a(ui-sref="offices-edit(office)" ng-bind="office.address").provider-title
+                    br
+                    .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                        .card-block-listing-label(translate="offices.labels.phone")
+                        span.text-primary-light(ng-show="office.phone" ng-bind="office.phone")
+                        span(ng-show="!office.phone" translate="offices.labels.none").text-muted
+
+            .card-section.card-section-primary
+                .row
+                    .col.col-xs-12: small(translate="offices.labels.hours")
+                    .col.col-xs-12: div(
+                        ng-repeat="(weekDayKey, weekDay) in $ctrl.weekDays"
+                        ng-show="office.schedule[weekDayKey].start_time || office.schedule[weekDayKey].end_time"
+                        ).card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant.card-block-listing-no-pad
+                        .card-block-listing-label(ng-bind="weekDay")
+                        span(ng-bind="office.schedule[weekDayKey].start_time || 'Geen data'") 
+                        | - 
+                        span(ng-bind="office.schedule[weekDayKey].end_time || 'Geen data'")
+        
+        block-empty(
+            ng-if="$ctrl.offices.length == 0" 
+            text="'Je hebt momenteel geen vestigingen.'" 
+            button="{text: 'Vestiging toevoegen', href: $ctrl.emptyBlockLink}")

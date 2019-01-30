@@ -1,0 +1,24 @@
+.app.app-container
+    menu
+    section.app.app-content
+        .card-heading(ng-bind="'csv_validation.header.title' | translate")
+        .block.block-choose-organization(ng-if="$ctrl.funds.length > 0")
+            div(
+                ng-repeat="fund in $ctrl.fund ? [$ctrl.fund] : $ctrl.funds" 
+                ui-sref="csv-validation({fund_id: fund.id})").organization-item
+                .organization-item-inner
+                    .organization-logo: img(ng-src="{{ fund.logo.sizes.thumbnail || './assets/img/placeholders/fund-thumbnail.png' }}")
+                .organization-name(ng-bind="fund.name")
+                .organization-categories(ng-bind="fund.fundCategories")
+
+            div(
+                ng-if="$ctrl.fund"
+                ui-sref="csv-validation({fund_id: null})").organization-item
+                .organization-item-inner
+                    .organization-logo.organization-logo-mdi: .mdi.mdi-chevron-up
+                .organization-name(ng-bind="'csv_validation.buttons.choose' | translate")
+            br
+    
+        csv-upload(ng-if="$ctrl.fund" fund-key="$ctrl.fund.key" record-types="$ctrl.recordTypes")
+        
+        prevalidated-table(prevalidations="$ctrl.prevalidations" record-types="$ctrl.recordTypes")

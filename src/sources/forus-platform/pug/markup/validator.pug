@@ -1,0 +1,31 @@
+extends ../layout/layout-markup
+block content
+    .card(class=(state=='closed'?'card-outline':'')).form
+        .card-header: .card-title Add new validator 
+        .card-section.card-section-primary
+            .row 
+                .col.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label Group
+                        select.form-control
+                            option Existing
+                            option Add new
+                    .form-group.form-group-inline
+                        label.form-label Assign to a group
+                        select.form-control
+                            option One 
+                            option Two 
+                            option Three 
+                    .form-group.form-group-inline
+                        label.form-label Add new group title
+                        input(type="text" placeholder="Add new group title").form-control
+        .card-section.card-section-primary
+            .row 
+                .col.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label Identiteit adres
+                        input(type="text" placeholder="").form-control
+        .card-section.card-section-primary
+            .text-center
+                button.button.button-default Annuleren
+                button.button.button-primary Bevestigen

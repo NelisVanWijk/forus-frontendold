@@ -1,0 +1,90 @@
+extends ../layout/layout-markup
+block content
+    .block.block-csv
+        .csv-inner
+            .csv-upload-btn
+                .csv-upload-icon: .mdi.mdi-upload
+                .csv-upload-text
+                    | Upload .csv file
+                    br
+                    span Load the .txt or .csv file
+            .csv-file
+                .block.block-file.has-error
+                    .file-error.mdi.mdi-close-circle
+                    .file-name Depositphotos_2472676_xl-2015.csv
+                    .file-size 2 mb
+                    .file-remove.mdi.mdi-close
+
+    .block.block-csv
+        .csv-inner
+            .csv-upload-progress
+                .csv-upload-icon: .mdi.mdi-loading
+                .csv-progress
+                    .csv-progress-state Uploading...
+                    .csv-progress-bar: .csv-progress-bar-stick
+                    .csv-progress-value 50%
+                .text-center: button.button.button-default Annuleren
+
+    .block.block-csv
+        .csv-inner
+            .csv-upload-progress.done
+                .csv-upload-icon: .mdi.mdi-check
+                .csv-progress
+                    .csv-progress-state Completed
+                    .csv-progress-bar: .csv-progress-bar-stick
+                    .csv-progress-value 100%
+                .text-center
+                    button.button.button-default Annuleren
+                    button.button.button-primary Bevestigen
+
+    .card(class=(state=='closed'?'card-outline':'')).form
+        .card-header
+            .row
+                .col.col-sm-8.col-xs-12: .card-title Vouchers
+                .col.col-sm-4.col-xs-12: .form: input(type="text" placeholder="Search").form-control
+        .card-section
+            .card-block.card-block-table
+                .table-wrapper
+                    table.table
+                        tr
+                            th Nr. Pers
+                            th Kinderen
+                            th Code
+                            th.text-right Activated
+                        mixin row(active)
+                            tr
+                                td: span.text-primary-light 123456789012345
+                                td 2
+                                td DA04-12345
+                                td.text-right: .tag.tag-sm(class="tag-" + (active?'success':'default'))=active?'Yes':'No'
+                        +row(true)
+                        +row(true)
+                        +row(true)
+                        +row(true)
+                        +row(true)
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+        .card-section
+            .table-pagination
+                .table-pagination-counter 8 results
+                .table-pagination-navigation
+                    button(disabled).button.button-default Prev
+                    button.button.button-default 1
+                    button.button.button-default 2
+                    button.button.button-primary 3
+                    button(disabled).button.button-default Next
+        .card-section.text-right
+            .table-pagination
+                .table-pagination-navigation
+                    button.button.button-default
+                        em.mdi.mdi-upload 
+                        | Import
+                    button.button.button-default
+                        em.mdi.mdi-download  
+                        | Export
+                    button.button.button-default
+                        .mdi.mdi-delete  
+                        | Delete

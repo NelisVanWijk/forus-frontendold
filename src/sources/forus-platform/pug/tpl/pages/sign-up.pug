@@ -1,0 +1,265 @@
+.app.app-container: .block.block-sign-up-steps
+    // Steps header
+    .sign-up-header: .steps
+        mixin step_item(step)
+            .step-item(ng-class="{active: $ctrl.step == " + step + ", done: $ctrl.step > " + step + "}")
+                .step-item-icon
+                    img(ng-if="$ctrl.step > " + step src="./assets/img/sign-up/check.svg")
+                    img(ng-if="$ctrl.step == " + step src="./assets/img/sign-up/process.svg")
+                    img(ng-if="$ctrl.step < " + step src="./assets/img/sign-up/question.svg")
+                .step-item-title(ng-bind="'sign_up.step.step_" + step + "' | translate")
+        
+        - let totalSteps = 7;
+        - for (let i = 1; i <= totalSteps; i++)
+            +step_item(i)
+
+    .sign-up-content
+        // Step header
+        mixin step_header(step)
+            .step-header
+                .step-header-title(translate="sign_up.header.top_title_step_" + step)
+                .step-header-subtitle(translate="sign_up.header.top_subtitle_step_" + step)
+
+        // Step card header
+        mixin card_header(step)
+            .card-header
+                .card-title(translate="sign_up.header.title_step_" + step)
+                .card-subtitle(translate="sign_up.header.subtitle_step_" + step)
+                - if(step == 1)
+                    img.card-header-image(ng-src="./assets/img/sign-up/scan-qr.png")
+                
+        // Step 1: Download the app
+        .step-item(ng-show="$ctrl.step == 1")
+            .card
+                +card_header(1)
+
+                .card-section.card-section-primary(ng-if="!$ctrl.sentSms")
+                    .card-block
+                        .text-center
+                            .card-title(translate="sign_up.sms.title")
+                            .card-subtitle(translate="sign_up.sms.description")
+
+                        phone-control(ng-model="phoneForm.values.phone" cant-delete-length="2")
+                        .pincode-errors.text-center: .form-error(ng-repeat="error in phoneForm.errors.phone" ng-bind="error")
+                        .text-center
+                            .card-subdescription(translate="sign_up.sms.subdescription")
+
+                .card-section.card-section-primary.text-center(ng-if="!$ctrl.sentSms")
+                    button(ng-click="$ctrl.next()" translate="sign_up.sms.button.send").button.button-primary
+
+                .card-section.card-section-primary.text-center(ng-if="$ctrl.sentSms")
+                    .card-title(translate="sign_up.sms.sent")
+                    .card-subtitle(translate="sign_up.sms.sent_description")
+                    
+                .card-section.card-section-primary
+                    .card-block.card-block-download-app
+                        //.download-links
+                            a(href="https://itunes.apple.com/nl/app/me-forus/id1422610676").download-link
+                                .download-link-icon(style="background-image: url('./assets/img/sign-up/app-store.png');")
+                                .download-link-title
+                                    translate(translate="sign_up.download.ios")
+                                    .download-link-arrow.mdi.mdi-arrow-right
+
+                            a(href="https://play.google.com/store/apps/details?id=io.forus.me").download-link.download-link-android
+                                .download-link-icon(style="background-image: url('./assets/img/sign-up/playstore.png');")
+                                .download-link-title
+                                    translate(translate="sign_up.download.android")
+                                    .download-link-arrow.mdi.mdi-arrow-right
+
+
+                        label(for="have_app").download-confirmation: .form: .checkbox.checkbox-confirm
+                            input(type="checkbox" id="have_app" ng-model="$ctrl.has_app" ng-change="$ctrl.changeHasApp()")
+                            .checkbox-label(for="have_app")
+                                .checkbox-box: .mdi.mdi-check
+                                div(translate="sign_up.download.already_have_app")
+
+            .step-footer(ng-if="$ctrl.has_app")
+                a(translate="sign_up.buttons.go_step_2" ng-click="$ctrl.skipToStep(2)").button.button-primary
+
+        // Step 2: Personal info
+        .step-item(ng-show="$ctrl.step == 2"): form(ng-submit="$ctrl.next()").form
+            .card
+                +card_header(2)
+
+                .card-section: .card-section-inner.flex
+                    .card-col.card-col-3: .pseudo-wrapper
+                        .form-group
+                            label.form-label
+                                translate(translate="sign_up.labels.mail")
+                                tooltip(text="'Een persoonlijk e-mailadres is nodig om gebruik te kunnen maken van Me.'")
+                            input(ng-model="$ctrl.signUpForm.values.records.primary_email" type="text" placeholder="E-mail").form-control
+                            .form-error(ng-repeat="error in $ctrl.signUpForm.errors['records.primary_email']" ng-bind="error")
+                        .form-group
+                            label(translate="sign_up.labels.mail_confirmation").form-label
+                            input(ng-model="$ctrl.signUpForm.values.records.primary_email_confirmation" type="text" placeholder="E-mail").form-control
+                            .form-error(ng-repeat="error in $ctrl.signUpForm.errors['records.primary_email_confirmation']" ng-bind="error")
+                        .form-group
+                            label(translate="sign_up.labels.name").form-label
+                            input(ng-model="$ctrl.signUpForm.values.records.given_name" type="text" placeholder="Voornaam").form-control
+                            .form-error(ng-repeat="error in $ctrl.signUpForm.errors['records.given_name']" ng-bind="error")
+                        .form-group
+                            label(translate="sign_up.labels.lastname").form-label
+                            input(ng-model="$ctrl.signUpForm.values.records.family_name" type="text" placeholder="Achternaam").form-control
+                            .form-error(ng-repeat="error in $ctrl.signUpForm.errors['records.family_name']" ng-bind="error")
+                    
+                    .card-col.card-col-3
+                        .card-block.card-block-login(ng-if="!$ctrl.showLoginBlock")
+                            .login-title(translate="sign_up.login.title")
+                            .login-description(translate="sign_up.login.description")
+                            .login-actions: a(ng-click="$ctrl.showLoginQrCode()" translate="sign_up.buttons.login").button.button-primary
+
+                        .card-block.card-block-login(ng-show="$ctrl.showLoginBlock")
+                            .login-title(translate="sign_up.login.title")
+                            
+                            .login-qrcode: .block.block-auth-qr-code: .qr_code#login_auth_qrcode
+                            
+                            .login-description(translate="sign_up.login.qr_description")
+                            .login-actions
+                                a(ng-click="$ctrl.showLoginQrCode()" translate="sign_up.buttons.reload_qr").button.button-primary
+
+            .step-footer
+                a(translate="sign_up.buttons.cancel" ng-click="$ctrl.back()").button.button-default
+                button(type="submit" translate="sign_up.buttons.next").button.button-primary
+
+        // Step 3: Organization info
+        .step-item(ng-show="$ctrl.step == 3"): form(ng-submit="$ctrl.next()").form
+            .card
+                +card_header(3)
+
+                .card-section: .card-section-inner.flex
+                    .card-col.card-col-3: .card-section-inner
+                        .card-section: .pseudo-wrapper
+                            .form-group
+                                label.form-label
+                                    translate(translate="organization_edit.labels.name")
+                                input(ng-model="$ctrl.organizationForm.values.name" type="text" placeholder="Bedrijfsnaam").form-control
+                                .form-error(ng-repeat="error in $ctrl.organizationForm.errors.name" ng-bind="error")
+                            .form-group
+                                label.form-label
+                                    translate(translate="organization_edit.labels.bank")
+                                    tooltip(text="'Vul hier het rekeningnummer in waar u de betalingen op wilt ontvangen'")
+                                    .form-label
+                                input(ng-model="$ctrl.organizationForm.values.iban" type="text" placeholder="IBAN-nummer").form-control
+                                .form-error(ng-repeat="error in $ctrl.organizationForm.errors.iban" ng-bind="error")
+                            .form-group
+                                label(translate="sign_up.labels.bank_confirmation").form-label
+                                input(ng-model="$ctrl.organizationForm.values.iban_confirmation" type="text" placeholder="Herhaal IBAN-nummer").form-control
+                                .form-error(ng-repeat="error in $ctrl.organizationForm.errors.iban_confirmation" ng-bind="error")
+                            .form-group
+                                label(translate="organization_edit.labels.mail").form-label
+                                input(ng-model="$ctrl.organizationForm.values.email" type="text" placeholder="E-mailadres").form-control
+                                .form-error(ng-repeat="error in $ctrl.organizationForm.errors.email" ng-bind="error")
+                            .form-group
+                                label(translate="organization_edit.labels.phone").form-label
+                                input(ng-model="$ctrl.organizationForm.values.phone" type="text" placeholder="Telefoonnummer").form-control
+                                .form-error(ng-repeat="error in $ctrl.organizationForm.errors.phone" ng-bind="error")
+
+                        .card-section: .pseudo-wrapper
+                            product-categories-control(
+                                ng-model="$ctrl.organizationForm.values.product_categories"
+                                options="$ctrl.productCategories")
+
+                            .form-group
+                                label(translate="organization_edit.labels.kvk").form-label
+                                input(ng-model="$ctrl.organizationForm.values.kvk" type="text" placeholder="KvK-nummer").form-control
+                                .form-error(ng-repeat="error in $ctrl.organizationForm.errors.kvk" ng-bind="error")
+                            .form-group
+                                label(translate="organization_edit.labels.tax").form-label
+                                input(ng-model="$ctrl.organizationForm.values.btw" type="text" placeholder="BTW-nummer").form-control
+                                .form-error(ng-repeat="error in $ctrl.organizationForm.errors.btw" ng-bind="error")
+                
+                    .card-col.card-col-3
+                        photo-selector(
+                            type="organization_logo"
+                            thumbnail="$ctrl.media.sizes.thumbnail" 
+                            select-photo="$ctrl.selectPhoto(file)")
+                        .info-block.info-block-primary
+                            | De afbeelding dient vierkant te zijn met een minimum afmeting van 400x400px. 
+                            br
+                            | Toegestaande formaten: .JPG, .PNG
+
+            .step-footer
+                a(translate="sign_up.buttons.cancel" ng-click="$ctrl.back()" ng-if="!$ctrl.signedIn").button.button-default
+                button(translate="sign_up.buttons.next").button.button-primary
+
+        // Step 4: Organization offices
+        .step-item(ng-show="$ctrl.step == 4")
+            .card
+                +card_header(4)
+                
+                .card-section.card-section-primary: office-edit-inline(
+                    ng-repeat="office in $ctrl.offices track by $index" office="office" organization-id="$ctrl.organization.id")
+
+                .card-section.card-section-primary.text-right: button(
+                    ng-click="$ctrl.addOffice()" translate="offices_edit.buttons.add_office").button.button-primary
+
+            .step-footer
+                a(translate="sign_up.buttons.cancel" ng-click="$ctrl.back()" ng-if="!$ctrl.signedIn").button.button-default
+                a(translate="sign_up.buttons.next" ng-click="$ctrl.next()").button.button-primary
+
+        // Step 5: Authenticate device
+        .step-item(ng-show="$ctrl.step == 5")
+            +step_header(5)
+
+            .card(ng-if="$ctrl.step == 5")
+                +card_header(5)
+
+                .card-section.card-section-primary
+                    .row
+                        .col.col-sm-8.col-sm-offset-2.app-instruction
+                            .row
+                                .col.col-sm-6
+                                    img(src="./assets/img/sign-up/screen1.png")
+                                    .title(translate="sign_up.app_instruction.step_1")
+                                    img.line-item(src="./assets/img/sign-up/line1.png")
+                                .col.col-sm-6
+                                    img(src="./assets/img/sign-up/screen2.png")
+                                    .title(translate="sign_up.app_instruction.step_2")
+
+                .divider-img: img(src="./assets/img/sign-up/Base7.png")
+
+                .card-section.card-section-primary: .card-block.card-block-pincode
+                    .pincode-title(translate="sign_up.app_header.title")
+                    .pincode-subtitle(translate="sign_up.app_header.subtitle")
+
+                    pincode-control(ng-model="authorizePincodeForm.values.auth_code")
+
+                    .pincode-errors: .form-error(ng-repeat="error in authorizePincodeForm.errors.auth_code" ng-bind="error")
+
+                .card-section.card-section-primary.text-center
+                    a(ng-click="$ctrl.skipToStep(7)" translate="sign_up.buttons.skip").button.button-default
+                    button(ng-click="$ctrl.next()" translate="sign_up.buttons.next").button.button-primary
+
+        // Step 6: SignIn through QrCode
+        .step-item(ng-show="$ctrl.step == 6")
+            +step_header(6)
+
+            .card
+                +card_header(6)
+
+                .card-section.card-section-primary: .block.block-auth-qr-code
+                    .qr_code#platform_auth_qrcode
+                    .qr_code-desc(translate="sign_up.qr_code.description")
+
+        // Step 7: Funds available
+        .step-item(ng-show="$ctrl.step == 7")
+            .card
+                +card_header(7)
+
+                .card-section.card-section-primary
+                    div(
+                        ng-if="$ctrl.fundsAvailable.length > 0"
+                        ng-repeat="fund in $ctrl.fundsAvailable"
+                        fund-card-provider-can-join
+                        fund="fund"
+                        organization="$ctrl.organization")
+
+                    block-empty(ng-if="$ctrl.funds.length == 0" text="'Er zijn momenteel geen actieve fondsen.'")
+
+            .step-footer: a(ng-click="$ctrl.next()" translate="sign_up.buttons.next").button.button-primary
+
+        // Mobile device warning
+        .hidden-lg.hidden-md.open-pc-section: .section-inner
+            .img-block: img(src="./assets/img/sign-up/user-mobile.png")
+            .title(translate="sign_up.open_pc.title")
+            .open-pc-description(translate="sign_up.open_pc.description")

@@ -1,0 +1,38 @@
+extends ../layout/layout-markup
+block content
+    .card(class=(state=='closed'?'card-outline':'')).form
+        .card-header: .card-title Nieuw fonds toevoegen
+        .card-section.card-section-primary
+            .row 
+                .col.col-sm-8.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label Fund name
+                        input(type="text" placeholder="Fund name").form-control
+                    .form-group.form-group-inline
+                        label.form-label Fund description
+                        input(type="text" placeholder="Fund description").form-control
+                    .form-group.form-group-inline
+                        label.form-label Startdatum
+                        input(type="text" placeholder="Starting date" value="dd.mm.jjjj").form-control
+                    .form-group.form-group-inline
+                        label.form-label Einddatum
+                        input(type="text" placeholder="Ending date" value="dd.mm.jjjj").form-control
+        .card-section.card-section-primary
+            .row 
+                .col.col-sm-8.col-xs-12
+                    .form-group.form-group-inline
+                        label.form-label Product categorie
+                        input(type="text" placeholder="KvK-nummer").form-control
+                    .form-group.form-group-inline
+                        label.form-label &nbsp;
+                        .form-offset
+                            .tag.tag-primary.tag-square 
+                                | Product categories
+                                a(href="#").mdi.mdi-close
+                            .tag.tag-primary.tag-square 
+                                | Fiets
+                                a(href="#").mdi.mdi-close
+        .card-section.card-section-primary
+            .text-center
+                button.button.button-default Annuleren
+                button.button.button-primary Bevestigen

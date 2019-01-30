@@ -1,0 +1,68 @@
+.app.app-container
+    menu
+    section.app.app-content
+        //information-block(text="'products.cannot_delete'" type="'danger'")
+        .card: form.form
+            .card-header: .card-title {{ "product_edit.header.title" | translate }}
+            .card-section.card-section-primary
+                .row 
+                    .col.col-xs-12
+                        .form-group.form-group-inline
+                            label.form-label &nbsp;
+                            .form-offset
+                                photo-selector(
+                                    type="product_photo"
+                                    thumbnail="$ctrl.media.sizes.thumbnail"
+                                    select-photo="$ctrl.selectPhoto(file)")
+            .card-section.card-section-primary
+                .row 
+                    .col.col-lg-9.col-md-12
+                        .form-group.form-group-inline
+                            label.form-label {{ "product_edit.labels.name" | translate }}
+                            input(ng-model="$ctrl.form.values.name" type="text" placeholder="Naam").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.name" ng-bind="error")
+                        .form-group.form-group-inline.tooltipped
+                            label.form-label {{ "product_edit.labels.description" | translate }}
+                            textarea(ng-model="$ctrl.form.values.description" placeholder="Omschrijving").form-control
+                            tooltip(text="'Bijvoorbeeld: aantal lessen, abonnementsvorm, omschrijving cursus, einddatum activiteit, voorwaarden, bijzonderheden, etc.'")
+                            .form-error(ng-repeat="error in $ctrl.form.errors.description" ng-bind="error")
+            .card-section.card-section-primary
+                .row 
+                    .col.col-lg-9.col-md-12
+                        .form-group.form-group-inline
+                            label.form-label {{ "product_edit.labels.new" | translate }}
+                            input(ng-model="$ctrl.form.values.price" type="number" placeholder="Prijs" step="0.01").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.price" ng-bind="error")
+                        .form-group.form-group-inline
+                            label.form-label {{ "product_edit.labels.old" | translate }}
+                            input(ng-model="$ctrl.form.values.old_price" type="number" placeholder="Oude prijs" step="0.01").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.old_price" ng-bind="error")
+                        .form-group.form-group-inline.tooltipped
+                            label.form-label {{ "product_edit.labels.total" | translate }}
+                            input(ng-model="$ctrl.form.values.total_amount" type="number" placeholder="Aantal aanbiedingen").form-control
+                            tooltip(text="'Let op! U kunt het aantal aanbiedingen niet verminderen, u kunt wel meer aanbiedingen toevoegen'")
+                            .form-error(ng-repeat="error in $ctrl.form.errors.total_amount" ng-bind="error")
+            .card-section.card-section-primary
+                .row 
+                    .col.col-lg-9.col-md-12
+                        .form-group.form-group-inline.tooltipped
+                            label.form-label {{ "product_edit.labels.expire" | translate }}
+                            datepicker(date-format="yyyy-MM-dd" datepicker-mobile="").form-control
+                                input(ng-model="$ctrl.form.values.expire_at" type="text" placeholder="dd.mm.jjjj").form-control
+                            tooltip(text="'De uiterlijke datum tot waneer uw aanbieding loopt. Aanbieding wordt na deze datum verwijderd uit de webshop en kan niet meer worden opgehaald.'")
+                            .form-error(ng-repeat="error in $ctrl.form.errors.expire_at" ng-bind="error")
+            .card-section.card-section-primary
+                .row 
+                    .col.col-lg-9.col-md-12
+                        .form-group.form-group-inline
+                            label.form-label {{ "product_edit.labels.category" | translate }}
+                            select(
+                                ng-options="productCategory.id as productCategory.name for productCategory in $ctrl.productCategories" 
+                                ng-model="$ctrl.form.values.product_category_id"
+                                placeholder="Status").form-control
+                            .form-error(ng-repeat="error in $ctrl.form.errors.product_category_id" ng-bind="error")
+
+            .card-section.card-section-primary
+                .text-center
+                    button(type="button" ng-click="$ctrl.cancel()").button.button-default {{ "product_edit.buttons.cancel" | translate }}
+                    button(type="button" ng-click="$ctrl.saveProduct()").button.button-primary {{ "product_edit.buttons.confirm" | translate }}

@@ -1,0 +1,112 @@
+extends ../layout/layout-markup
+block content
+    .card-heading
+        | Producten
+        a(href="#").link
+            em.mdi.mdi-plus-circle 
+            | Voeg product toe
+
+    mixin product(title, state)
+        .card(class=(state=='closed'?'card-outline':''))
+            .card-section
+                .card-section-actions
+                    .card-section-action-price
+                        | € 10.000,-
+                        .old-price € 20.000,-
+
+                    if (state == 'active')
+                        .tag.tag-success Active
+                    if (state == 'paused')
+                        .tag.tag-warning Paused
+                    if (state == 'closed')
+                        .tag.tag-default Closed
+
+                        
+                .card-block.card-block-product
+                    .product-img: img(src="./assets/img/product-photo.jpg", alt="")
+                    a(href="./product.html").product-title #{title}
+                    a(href="#").product-subtitle Mountain fiets
+
+                    .card-block.card-block-listing
+                        .card-block-listing-label Budgets
+                        | Kindpakket 2017, Kindpakket 2018
+
+            mixin keyvalue_item_horizontal(key, value)
+                .keyvalue-item
+                    .keyvalue-key=key
+                    .keyvalue-value=value
+
+            .card-section
+                .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+                    .row
+                        .col.col-sm-4
+                            +keyvalue_item_horizontal("Verkoop statistieken", "€ 10.000,-")
+                    
+            .card-section.card-section-warning
+                .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+                    .row
+                        .col.col-sm-12
+                            +keyvalue_item_horizontal("Gezien", "x 15")
+                            +keyvalue_item_horizontal("Bewaard", "x 2")
+
+            .card-section.card-section-primary
+                .text-right
+                    a(href="#").button.button-primary
+                        em.mdi.mdi-settings  
+                        | Verwijderen
+
+                    a(href="#").button.button-default
+                        em.mdi.mdi-pen  
+                        | Bewerk
+
+    +product("Giant X-Ray 2", "active")
+    
+    .card
+        .card-header: .card-title Transactions
+        .card-section
+            .card-block.card-block-table
+                .table-wrapper
+                    table.table
+                        tr
+                            th AMOUNT
+                            th DESCRIPTION
+                            th CUSTOMER
+                            th DATE
+                            th 
+                        mixin row()
+                            tr
+                                td: a(href="./transaction.html").text-primary-light €19000.00
+                                td: a(href="./transaction.html") 
+                                    | Auction Payment -  
+                                    br
+                                    | ch_1BpcoqBQO0R3BKRwYEyl1jd9
+                                td: a(href="#").text-primary-light Harris s Vernick
+                                td 2018/01/29 14:37:08
+                                td: .hover-actions
+                                    em.mdi.mdi-dots-horizontal
+                                    .hover-actions-menu
+                                        .hover-actions-label ACTION
+                                        .hover-actions-item Refund charge
+                                        .hover-actions-item Copy charge ID to clipboard
+                                        .hover-actions-sep
+                                        .hover-actions-label CONNECTIONS
+                                        .hover-actions-item View payment details
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+                        +row()
+        .card-section
+            .table-pagination
+                .table-pagination-counter 8 results
+                .table-pagination-navigation
+                    button(disabled).button.button-default Prev
+                    button.button.button-default 1
+                    button.button.button-default 2
+                    button.button.button-primary 3
+                    button(disabled).button.button-default Next

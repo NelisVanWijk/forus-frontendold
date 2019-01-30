@@ -1,0 +1,31 @@
+extends ../layout/layout
+
+block vars
+    - var modal_shown=true
+    
+block content
+    header.section.section-header: .wrapper
+        include ../layout/includes/navbar
+
+    - for (var i = 0; i < 32; i++)
+        br
+
+    .popups
+        .popup.popup-auth
+            .popup-backdrop
+            .popup-content
+                .popup-close.mdi.mdi-close
+
+                .popup-title Aanmelden
+                .popup-subtitle Please enter your e-mail address in order to receive your login details.
+
+                .form
+                    .form-group
+                        .block.block-pincode
+                            .pincode-number 1
+                            .pincode-number 2
+                            .pincode-number 3
+                            .pincode-number 4
+                            .pincode-number 5
+                            .pincode-number 6
+                    .form-group: button.button.button-primary.button-wide SUBMIT

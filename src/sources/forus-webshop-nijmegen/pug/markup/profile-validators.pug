@@ -1,0 +1,36 @@
+extends ../layout/layout
+block content
+    .header-splash: .splash.splash-d
+    
+    header.section.section-header: .wrapper
+        include ../layout/includes/navbar
+    
+    section.section.section-profile: .wrapper
+        .section-title My Vouchers (2)
+        
+        .block.block-profile
+            include ../layout/blocks/profile-inner
+
+            .profile-content
+                .block.block-validators
+                    .block-card
+                        .block-header Validators
+                        .block-body
+                            mixin validator_item(name, pending)
+                                .validator-item
+                                    .validator-image: img(src="./assets/img/placeholders/fund-thumbnail.png", alt="")
+                                    .validator-name=name
+                                    .validator-state
+                                        if (pending)
+                                            .label.label-default Pending
+                                        else
+                                            .validator-send
+                                                | SEND
+                                                em.mdi.mdi-arrow-right
+                            
+                            +validator_item("Gemeente Zuidhorn", true)
+                            +validator_item("Gemeente Zuidhorn", false)
+
+                include ../layout/blocks/empty
+
+    include ../layout/sections/contact-form 

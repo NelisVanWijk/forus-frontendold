@@ -1,0 +1,6 @@
+.block.block-empty
+    .block-title(ng-bind="title")
+    .block-description(ng-bind="description")
+    a(ng-click="$root.popups.auth.open('activate-code')").block-link
+        | {{ "empty_block.guide" | translate }}
+        em.mdi.mdi-arrow-right

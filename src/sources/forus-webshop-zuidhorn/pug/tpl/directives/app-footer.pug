@@ -1,0 +1,68 @@
+section.section.section-footer(ng-if="displayFooter")
+    .wrapper
+        .block.block-footer: .row
+            .col(ng-class="$root.appConfigs.features.newsletter?'col-md-3':'col-md-4'")
+                img(src="./assets/img/logo-bw.png").footer-logo
+                .footer-schedule
+                    .schedule-label E-mailadres:		
+                    .schedule-value kindpakket@zuidhorn.nl
+                .footer-schedule
+                    .schedule-label Telefoonnummer:		
+                    .schedule-value (0594) 508888
+                .footer-schedule
+                    .schedule-label Adres:		
+                    .schedule-value Hooiweg 9, 9801 AJ Zuidhorn
+                //.block.block-app_download
+                    .download-button: a(href="https://play.google.com/store/apps/details?id=io.forus.me")
+                        .download-label Beschikbaar in de
+                        .download-value Play Store
+                        .download-icon: img(src="./assets/img/icon-app/icon-app-android.png")
+                    .download-button: a(href="https://itunes.apple.com/nl/app/me-forus/id1422610676")
+                        .download-label Beschikaar in de
+                        .download-value App Store
+                        .download-icon: img(src="./assets/img/icon-app/icon-app-ios.svg")
+                        
+            .col(ng-class="$root.appConfigs.features.newsletter?'col-md-4':'col-md-5'")
+                .footer-label Openingstijden Gemeente
+                .footer-schedule
+                    .schedule-label Maandag: 		
+                    .schedule-value 8.30-12.30, 13.30-16.30, 18.00-19.30
+                    
+                .footer-schedule
+                    .schedule-label Dinsdag:		
+                    .schedule-value 8.30-12.30
+
+                .footer-schedule
+                    .schedule-label Woensdag: 		
+                    .schedule-value 8.30-12.30, 13.30-17.30
+                
+                .footer-schedule
+                    .schedule-label Donderdag:	 	
+                    .schedule-value 8.30-12.30
+                
+                .footer-schedule
+                    .schedule-label Vrijdag: 		
+                    .schedule-value 8.30-12.30
+            
+            .col.col-md-3
+                .footer-label Navigatie
+                nav.footer-nav
+                    .footer-nav-item: a(href="/provider/") Bent u een winkelier in Zuidhorn en wilt u meer informatie?
+                    .footer-nav-item: a(href="/sponsor/") Bent u een medewerker van een Gemeente en wilt u meer informatie?
+            
+            .col.col-md-3(ng-if="$root.appConfigs.features.newsletter")
+                .footer-label Ontvang onze nieuwsbrief
+                .form
+                    .form-group.footer-subscribe
+                        input(type="email" placeholder="E-mail").form-control.form-control-fancy
+                        button.button.button-primary: .mdi.mdi-arrow-right
+            
+    .block.block-copyrights: .wrapper
+        .copyrights © 2018 Forus.io
+        .links
+            a(href="https://media.forus.io/static/Algemene%20Voorwaarden%20Kindpakket%20website.pdf") Algemene Voorwaarden
+            .link-separator
+            a(href="https://www.leek.nl/home/privacybeleid_3895") Privacy Statement
+        .developed
+            | 
+            a(href="#")

@@ -1,0 +1,34 @@
+.header-splash: .splash.splash-d
+
+header.section.section-header: .wrapper
+    top-navbar
+
+section.section.section-profile: .wrapper
+    .section-title {{ "records_validate.header.title" | translate }} ({{ $ctrl.records.length }})
+    
+    .block.block-profile
+        .profile-aside
+            profile-card
+
+        .profile-content
+            .block.block-validators
+                .block-card
+                    .block-header {{ "records_validate.header.validators" | translate }}
+                    .block-body
+                        .validator-item(ng-repeat="validator in $ctrl.validators")
+                            .validator-image: img(
+                                ng-src="{{ validator.organization.logo.sizes.thumbnail || './assets/img/placeholders/fund-thumbnail.png' }}")
+                            .validator-name(ng-bind="validator.organization.name")
+                            .validator-state
+                                
+                                div(ng-if="validator.isPending").label.label-default {{ "records_validate.header.hold" | translatew }}
+                                div(ng-if="!validator.isPending" ng-click="$ctrl.requestValidation(validator)").validator-send
+                                    | {{ "records_validate.header.send" | translate }}
+                                    em.mdi.mdi-arrow-right
+
+            empty-block(
+                title="Geen validators"
+                description="Er zijn momenteel geen validators"
+                ng-if="$ctrl.validators.length == 0")
+
+contact-form 

@@ -1,0 +1,64 @@
+.popups
+    .popup.popup-shops_map
+        .popup-backdrop
+        .popup-content
+            .popup-close.mdi.mdi-close
+            .block.block-shops_map
+                .shop_map-header
+                    .shop_map-title Leveranciers op het Forus platform
+                    .shop_map-subtitle Selecteer een categorie op specifieke leveranciers te bekijken.
+                    .shop_map-categories
+                        mixin category_item(name, icon, active)
+                            .shop_map-category-item(class=active?"active":""): .shop_map-category-item-inner
+                                .shop_map-category-radio
+                                .shop_map-category-icon
+                                    img(src="./assets/img/icon-product_categories/icon-product_categories-" + icon + ".png")
+                                .shop_map-category-name=name
+                                .shop_map-category-arrow
+
+                        +category_item("Boeken", 'books', true)
+                        +category_item("Fiets", 'bicycle')
+                        +category_item("Sport accessoires", 'sport_accessoires')
+                        +category_item("Zwemmen", 'swimming')
+                        +category_item("Computer", 'computers')
+                        +category_item("Kleding", 'clothing')
+                        +category_item("Speelgoed", 'toys')
+                .shop_map-sidebar: .nano: .nano-content
+                    .shops
+                        mixin shop_item()
+                            .shop-item
+                                .shop-details
+                                    .shop-image: img(src="./assets/img/placeholders/office-thumbnail.png")
+                                    .shop-name British Petroleum
+                                    .row
+                                        .col.col-md-6
+                                            .shop-details-label EMAIL
+                                            .shop-details-value ulgersmaweg@rminds.nl
+                                        .col.col-md-6
+                                            .shop-details-label ADDRESS
+                                            .shop-details-value Groningen, Ulgersmaweg 35
+                                .shop-schedule
+                                    .shop-schedule-label OPENINGSTIJDEN
+                                    .shop-schedule-value 
+                                        strong Ma: 
+                                        | 09:00-17:00, 
+                                        strong Di: 
+                                        | 09:00-17:00, 
+                                        strong Wo: 
+                                        | 09:00-17:00, 
+                                        atrong Do: 
+                                        | 09:00-17:00, 
+                                        strong Vr: 
+                                        | 09:00-17:00
+
+                        +shop_item()
+                        +shop_item()
+                        +shop_item()
+                        +shop_item()
+                        +shop_item()
+                        +shop_item()
+                        +shop_item()
+                        +shop_item()
+                        +shop_item()
+                .shop_map-content
+                    iframe(frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Groningen, Netherlands&key=AIzaSyAGtyIwa3fytSaFTzIqDWdxZqdkLUzlYzM" allowfullscreen)

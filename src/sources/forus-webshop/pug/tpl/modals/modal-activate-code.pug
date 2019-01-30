@@ -1,0 +1,18 @@
+.modal.modal-auth
+    .modal-backdrop(ng-click="$ctrl.close()")
+    .modal-content
+        .modal-close.mdi.mdi-close(ng-click="$ctrl.close()")
+
+        .modal-title {{ "popup_auth.labels.join" | translate }}
+        .modal-subtitle {{ "popup_auth.labels.code" | translate }}
+
+        form.form(ng-submit="$ctrl.activateCodeForm.submit()")
+            .form-group
+                .form-label {{ "popup_auth.input.code" | translate }}
+                input(ng-model="$ctrl.activateCodeForm.values.code" type="text" placeholder="Activation code").form-control
+                .form-error(ng-if="$ctrl.activateCodeForm.errors.code") {{ "popup_auth.notifications.invalid" | translate }}
+            .form-group
+            .form-group: button(type="submit").button.button-primary.button-wide {{ "popup_auth.buttons.submit" | translate }}
+
+        .modal-footer
+            .footer-text {{ "popup_auth.labels.timelimit" | translate }}

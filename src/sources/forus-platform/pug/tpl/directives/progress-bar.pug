@@ -1,0 +1,4 @@
+.csv-progress
+    .csv-progress-state(ng-bind="status")
+    .csv-progress-bar: .csv-progress-bar-stick(style="width:{{ progress }}%;")
+    .csv-progress-value(ng-bind="(progress | to_fixed:2) + '%'")

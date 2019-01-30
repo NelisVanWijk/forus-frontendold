@@ -1,0 +1,32 @@
+.card
+    .card-section
+        .card-section-actions
+            .card-section-action-price
+                | € {{ product.price }},-
+                .old-price(ng-if="product.old_price") € {{ product.old_price }},-
+
+            if (state == 'active')
+                .tag.tag-success {{ "product_card.status.active" | translate }}
+            if (state == 'paused')
+                .tag.tag-warning {{ "product_card.status.paused" | translate }}
+            if (state == 'closed')
+                .tag.tag-default {{ "product_card.status.closed" | translate }}
+
+        .card-block.card-block-product
+            .product-img: img(ng-src="{{ product.photo.sizes.large || './assets/img/placeholders/product-large.png' }}")
+            a(
+                ui-sref="products-show(product)" 
+                ng-bind="product.name").product-title
+            span(ng-bind="product.product_category.name").product-subtitle
+            .label-item {{ "product_edit.labels.expire" | translate }}: {{ product.expire_at }}
+            .label-item {{ "product_edit.labels.total" | translate }}: {{ product.total_amount }}
+
+    .card-section.card-section-primary
+        .text-right
+            a(ng-click="deleteProduct(product)" ng-if="product.expired || product.sold_out").button.button-primary
+                em.mdi.mdi-delete  
+                | {{ "product_card.buttons.delete" | translate }}
+
+            a(ui-sref="products-edit(product)").button.button-default
+                em.mdi.mdi-pen  
+                | {{ "product_card.buttons.edit" | translate }}

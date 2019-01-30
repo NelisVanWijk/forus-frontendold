@@ -1,0 +1,89 @@
+extends ../layout/layout
+block content
+    .header-splash: .splash.splash-c
+
+    header.section.section-header: .wrapper
+        include ../layout/includes/navbar
+    
+    section.section.section-product: .wrapper
+        .block.block-product
+            .product-card
+                .product-details
+                    .product-photo(style="background-image: url('./assets/img/placeholders/product-large.png')")
+                        img(src="./assets/img/placeholders/product-large.png", alt="")
+                    .product-name
+                        | Giant X-Ray 2 
+                        span.label.label-success Active
+                    .product-categories Bikes, Computers
+                    
+                    .product-funds
+                        .product-fund-label FUNDS
+                        .product-fund-list Kindpakket 2017, Kindpakket 2018
+
+                    .product-price
+                        .product-price-new € 24,95
+                        .product-price-old € 59,95
+
+                    .product-expire
+                        .expire-label EXPIRATION DATE
+                        .expire-value 25.05.2019
+                    
+                    a(href="#").button.button-primary SUBMIT
+                .product-footer
+                    .product-provider-label PROVIDER INFORMATION
+                    .product-provider-value Lidl Groiningen
+                    .product-provider-details
+                        | Address: Zuidhorn 48, 9745 AE Groiningen
+                        br
+                        | Telephone: +31 20 709 5039
+
+            .block.block-info-card
+                .block-header PROVIDER INFORMATION
+                .info-office
+                    .info-office-photo(style="background-image: url('./assets/img/placeholders/office-thumbnail.png')") 
+                        img(src="./assets/img/placeholders/office-thumbnail.png", alt="")
+                    .info-office-details
+                        .info-office-title Lidl Groiningen
+                        .info-office-description
+                            | Address: Zuidhorn 48, 9745 AE Groiningen
+                            br
+                            | Openingstijden: 8-21
+                            br
+                            | Telephone: +31 20 709 5039
+
+
+            .block.block-info-card
+                .block-header PROVIDER INFORMATION
+                .block-content
+                    p Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam excepturi maxime, cumque suscipit quibusdam ex quis error corporis, recusandae natus saepe accusamus dolore dicta amet, officiis impedit ipsum possimus est nisi repellendus adipisci velit? Fugiat asperiores, eaque nostrum natus veritatis reiciendis, necessitatibus rem libero amet quam blanditiis architecto temporibus! Repudiandae amet vero eaque obcaecati, incidunt aperiam quidem rem fugit quaerat, praesentium dolores est corrupti!
+
+                    h4 GENERAL DETAILS
+                    
+                    .lvl
+                        .lvr
+                            .lvl-label Lorem ipsum:
+                            .lvl-value Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint pariatur non amet modi dolores laborum! Ullam recusandae cum eum, eligendi asperiores quod perspiciatis excepturi iure? Corrupti tenetur nihil officiis id quos praesentium.
+                        .lvr
+                            .lvl-label Lorem ipsum:
+                            .lvl-value Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint pariatur non amet modi dolores laborum! Ullam recusandae cum eum.
+                        .lvr
+                            .lvl-label Lorem ipsum:
+                            .lvl-value Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+
+                    h4 TECHNICAL DETAILS
+                    
+                    .lvl
+                        .lvr
+                            .lvl-label Lorem ipsum:
+                            .lvl-value Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint pariatur non amet modi dolores laborum! Ullam recusandae cum eum, eligendi asperiores quod perspiciatis excepturi iure? Corrupti tenetur nihil officiis id quos praesentium.
+                        .lvr
+                            .lvl-label Lorem ipsum:
+                            .lvl-value Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint pariatur non amet modi dolores laborum! Ullam recusandae cum eum.
+                        .lvr
+                            .lvl-label Lorem ipsum:
+                            .lvl-value Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+
+            include ../layout/blocks/map_card
+
+    include ../layout/sections/products-related 
+    include ../layout/sections/contact-form 

@@ -1,0 +1,24 @@
+.profile-aside
+    .profile-card
+        .profile-qr_code: img(src="./assets/img/qr-code.svg", alt="")
+        .profile-details
+            .profile-heading Hier is je persoonlijke QR-Code
+            .profile-description Laat iemanduw persoonlijke QR-code scannen om u valuta, bezit of vouchers te sturen
+        .profile-address
+            .profile-address-label YOUR WALLET ADDRESS:
+            .profile-address-value 0xa970fA71A4AC7A3def1E93a7F2387423H7D83431G37237423
+        .profile-actions
+            a(href="#").profile-action 
+                em.mdi.mdi-content-copy 
+                | Copy address
+            a(href="#").profile-action 
+                em.mdi.mdi-share-variant 
+                | Share
+
+    .profile-menu
+        a(href="#").profile-menu-item.active 
+            | VOUCHERS
+            em.mdi.mdi-arrow-right
+        a(href="#").profile-menu-item 
+            | RECORDS
+            em.mdi.mdi-arrow-right

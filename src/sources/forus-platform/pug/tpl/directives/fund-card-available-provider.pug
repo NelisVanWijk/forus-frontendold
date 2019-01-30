@@ -1,0 +1,18 @@
+.card
+    .card-section
+        .card-section-actions
+            button(ng-click="providerApplyFund(fund)").button.button-primary 
+                em.mdi.mdi-plus-circle 
+                span(translate="fund_card_available_provider.buttons.join")
+
+        .card-block.card-block-fund
+            .fund-img: img(ng-src="{{ fund.logo.sizes.thumbnail || './assets/img/placeholders/organization-thumbnail.png' }}", alt="")
+            .fund-title(ng-if="fund.organization | hasPerm:['manage_funds']" ng-bind="fund.name" ui-sref="funds-show(fund)")
+            .fund-title(ng-if="!(fund.organization | hasPerm:['manage_funds'])" ng-bind="fund.name")
+            br
+            div(ng-bind="fund.organization.name").fund-organization
+
+        .card-block.card-block-listing
+            .card-block-listing-label(translate="fund_card_available_provider.labels.categories")
+            span(ng-bind="fundCategories.join(', ')")
+            small(ng-show="fundCategories.length == 0" translate="fund_card_available_provider.labels.nocategories").text-muted.small

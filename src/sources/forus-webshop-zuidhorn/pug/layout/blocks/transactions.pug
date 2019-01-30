@@ -1,0 +1,19 @@
+.block.block-transactions
+    .transactions-header: .transactions-title Transactions
+    .transactions-body: .transactions-list
+        mixin transaction_item(direction)
+            .transactions-item(class="transactions-item-" + direction)
+                .transactions-item-icon: em(class="mdi-arrow-" + (direction == 'in' ? 'down' : 'up')).mdi
+                .transactions-item-details
+                    .transactions-item-counterpart RMinds
+                    .transactions-item-date 19 May, 14:08
+                .transactions-item-amount 
+                    .transactions-item-value #{direction == 'in' ? '+' : '-'}2,76
+                    .transactions-item-type Money transfer
+        
+        +transaction_item("in")
+        +transaction_item("out")
+        +transaction_item("in")
+        +transaction_item("out")
+        +transaction_item("in")
+        +transaction_item("out")

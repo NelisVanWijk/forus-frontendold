@@ -1,0 +1,24 @@
+.app.app-container
+    menu
+    section.app.app-content
+        div(fund-card-sponsor fund="$ctrl.fund" level="$ctrl.fundLevel")
+
+        .card
+            .card-header: .card-title {{ "funds_show.criterion" | translate }}
+            .card-section
+                .card-block.card-block-keyvalue
+                    mixin keyvalue_item(key, value, links = [])
+                        .keyvalue-item
+                            .keyvalue-key=key
+                            .keyvalue-value
+                                | #{value}
+                                each link, key in links 
+                                    a(href=link.href).keyvalue-link
+                                        em.mdi(class=('mdi-' + link.mdi))
+                                        | #{link.text}
+                    
+                    +keyvalue_item("Locatie", "Zuidhorn")
+                    +keyvalue_item("Aantal kinderen", "1")
+                    +keyvalue_item("Leeftijd", "> 18 jaar oud")
+                    +keyvalue_item("Inkomensgrens", "< € 1118.46")
+                    

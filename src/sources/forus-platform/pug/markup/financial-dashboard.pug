@@ -1,0 +1,177 @@
+extends ../layout/layout-markup
+block content
+    .card-heading You are looking now at the financial dashboard for:
+    .card
+        .card-section
+            .form
+                .form-label Fund
+                select.form-control
+                    option Choose...
+                    option Kindpakket 2018
+    .block.block-charts
+        .row: .col.col-sm-12: .card
+            .card-section
+                .chart-header
+                    .chart-header-range
+                        a(href="#").chart-header-item Kwartaal
+                        a(href="#").chart-header-item.active Maand
+                        a(href="#").chart-header-item Week
+                        a(href="#").chart-header-item All
+                    .chart-header-title September 2018
+                    .chart-header-actions
+                        .button.button-default Vorige
+                        .button.button-default Volgende
+                .chart-body
+                    canvas(height="100px" demo-linear-chart)
+        .chart-row
+            .card: .card-section
+                .chart-control
+                    .chart-label Total amount left
+                    .chart-value
+                        .chart-value_value €50.002,34
+                        .chart-value_label Total spent to date
+                        .chart-value_value_b €4.367,73
+
+            .card: .card-section
+                .chart-control
+                    .chart-label Total used fund result
+                    .chart-radial: div(demo-radial-chart)
+
+            .card: .card-section
+                .chart-control
+                    .chart-label September 2018 usage
+                    .chart-value
+                        .chart-value_value €8.567,34
+                        .chart-value_label Betaald in 15 winkels
+
+            .card: .card-section
+                .chart-control
+                    .chart-label Number of activations
+                    .chart-value
+                        .chart-value_value 4
+                        .chart-value_label New citizens this month
+        
+    .card-heading Providers (5)
+    mixin card(title)
+        .card
+            .card-section
+                .card-section-actions
+                        
+                .card-block.card-block-provider
+                    .provider-img: img(src="./assets/img/zuidhorn-logo.jpg", alt="")
+                    a(href="./fund.html").provider-title #{title}
+                    br
+                    .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                        .card-block-listing-label Email
+                        span.text-primary-light ulgersmaweg@rminds.nl
+                    .card-block.card-block-listing.card-block-listing-inline.card-block-listing-variant
+                        .card-block-listing-label Business Address
+                        | Groningen, Ulgersmaweg 35
+                .card-block.card-block-listing
+                    .card-block-listing-label Categories
+                    | Bikes, Computers
+
+            mixin keyvalue_item_horizontal(key, value)
+                .keyvalue-item
+                    .keyvalue-key=key
+                    .keyvalue-value=value
+
+            .card-section.card-section-primary
+                .card-block.card-block-keyvalue.card-block-keyvalue-horizontal
+                    +keyvalue_item_horizontal("KVK", "45667773")
+                    +keyvalue_item_horizontal("BTW", "NL3213214556B01")
+                    +keyvalue_item_horizontal("IBAN", "NL10INGB3455664430")
+            .card-section.card-section-primary.text-center
+                a(href="#").button.button-default
+                    em.mdi.mdi-poll 
+                    | View statistics
+
+                a(href="#").button.button-primary
+                    em.mdi.mdi-coins 
+                    | Transactions
+            .block.block-charts
+                .card-section
+                    .arrow-box.border.bg-dim: .arrow
+                    .chart-header
+                        .chart-header-range
+                            a(href="#").chart-header-item Qwartaal
+                            a(href="#").chart-header-item.active Maand
+                            a(href="#").chart-header-item Week
+                            a(href="#").chart-header-item All
+                        .chart-header-title September 2018
+                        .chart-header-actions
+                            .button.button-default Vorige
+                            .button.button-default Volgende
+                    .chart-body
+                        canvas(height="100px" demo-linear-chart)
+                .card-section
+                    .row.chart-row.chart-row-condensed
+                        .col.col-sm-3
+                            .chart-control
+                                .chart-label Fund share (total)
+                                .chart-radial: div(demo-radial-chart size="sm")
+
+                        .col.col-sm-3
+                            .chart-control
+                                .chart-label Fund share (september)
+                                .chart-radial: div(demo-radial-chart size="sm")
+
+                        .col.col-sm-3
+                            .chart-control
+                                .chart-label September 2018 usage
+                                .chart-value
+                                    .chart-value_value €8.567,34
+                                    .chart-value_label in 27 transacties
+
+                        .col.col-sm-3
+                            .chart-control
+                                .chart-label Average purchase
+                                .chart-value
+                                    .chart-value_value €8.567,34
+
+            .card-header
+                .arrow-box.border.bg-dim: .arrow
+                .card-title Transactions (8)
+            .card-section
+                .card-block.card-block-table
+                    .table-wrapper
+                        table.table
+                            tr
+                                th AMOUNT
+                                th DESCRIPTION
+                                th CUSTOMER
+                                th DATE
+                                th 
+                            mixin row()
+                                tr
+                                    td: a(href="./transaction.html").text-primary-light €19000.00
+                                    td: a(href="./transaction.html") 
+                                        | Auction Payment -  
+                                        br
+                                        | ch_1BpcoqBQO0R3BKRwYEyl1jd9
+                                    td: a(href="#").text-primary-light Harris s Vernick
+                                    td 2018/01/29 14:37:08
+                                    td: .hover-actions
+                                        em.mdi.mdi-dots-horizontal
+                                        .hover-actions-menu
+                                            .hover-actions-label ACTION
+                                            .hover-actions-item Refund charge
+                                            .hover-actions-item Copy charge ID to clipboard
+                                            .hover-actions-sep
+                                            .hover-actions-label CONNECTIONS
+                                            .hover-actions-item View payment details
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+                            +row()
+
+
+    +card("Hewlett-Packard")
+    +card("Kindpakket 2017")
+    +card("Kindpakket 2016")
